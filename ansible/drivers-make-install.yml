@@ -8,12 +8,12 @@
   tasks:
     - name: Build drivers from source files
       make:
-        chdir: '../drivers/{{ item.name }}'
-      loop: '{{ drivers }}'
+        chdir: '../offline-cache/drivers//{{ item.name }}'
+      loop: '{{ offline.drivers }}'
 
     - name: Install built drivers
-      loop: '{{ drivers }}'
+      loop: '{{ offline.drivers }}'
       sudo: yes
       make:
-        chdir: '../drivers/{{ item.name }}'
+        chdir: '../offline-cache/drivers/{{ item.name }}'
         target: install
