@@ -64,6 +64,7 @@ apt:
         - krita    # KDE Image editor
         - ktorrent # KDE Torrent downloader
         - mc
+        - neofetch
         - nfs-common
         - numix-blue-gtk-theme
         - numix-gtk-theme
