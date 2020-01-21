@@ -4,3 +4,4 @@
 - src: geerlingguy.php
 - src: https://github.com/morgangraphics/ansible-role-nvm
 - src: jaredhocutt.jetbrains_toolbox
+- src: gantsign.visual-studio-code
