@@ -8,3 +8,4 @@
 - import_playbook: install-jetbrains-toolbox.yml
 - import_playbook: configure-zsh.yml
 - import_playbook: install-docksal.yml
+- import_playbook: copy-home-directory.yml
