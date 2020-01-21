@@ -1,0 +1,24 @@
+---
+
+- hosts: 127.0.0.1
+  connection: local
+  sudo: false
+  vars_files:
+    - ../config.yml
+
+  tasks:
+    - name: Download Docksal installer
+      get_url: 
+        url: https://get.docksal.io
+        dest: /tmp/docksal.sh
+        mode: 0755
+
+    - name: Run Docksal installer
+      shell: /tmp/docksal.sh
+      environment:
+        DOCKSAL_CONFIRM_YES: 1
+
+    - name: Remove Docksal installer
+      file: 
+        path: /tmp/docksal.sh
+        state: absent
