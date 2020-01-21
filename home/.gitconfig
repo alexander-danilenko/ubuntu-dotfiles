@@ -1,0 +1,22 @@
+[user]
+	name = Example Name
+	email = example@email.com
+
+[core]
+  autocrlf = input
+  safecrlf = false
+  ignorecase = false
+  excludesfile = 
+  longpaths = true
+[diff]
+  renames = copies
+[color]
+  ui = true
+[alias]
+  a = apply --index
+  p = format-patch --stdout
+  hide = update-index --assume-unchanged
+  unhide = update-index --no-assume-unchanged
+  ignored = !git ls-files -v | grep "^[[:lower:]]"
+[mergetool]
+	keepBackup = true
