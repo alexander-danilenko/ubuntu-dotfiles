@@ -9,32 +9,40 @@ node:
   npm:
     # List of npm packages that will be installed globally.
     global: [eslint, gulp, bower, eslint-config-google, eslint-config-standard, eslint-config-airbnb, eslint-config-standard, eslint-plugin-jsx-a11y, eslint-plugin-react, eslint-plugin-import]
-
+    
 # APT package manager settings.
 apt:
   # List of repos that should be added. If repo has gpg key it has to be added as well, otherwise repo will not work. 
   repos:
     - name: Docker (from 18.04 LTS Bionic)
+      filename: docker
       repo: 'deb https://download.docker.com/linux/ubuntu bionic stable'
       gpg: 'https://download.docker.com/linux/ubuntu/gpg'
 
     - name: Google Chrome
+      filename: google-chrome
       repo: 'deb http://dl.google.com/linux/chrome/deb/ stable main'
+      gpg: 'https://dl-ssl.google.com/linux/linux_signing_key.pub'
 
     - name: Numix theme
+      filename: numix
       repo: 'ppa:numix/ppa'
 
     - name: Papirus icon theme
+      filename: papirus
       repo: 'ppa:papirus/papirus'
 
     - name: Shutter screenshot tool
+      filename: shutter
       repo: 'ppa:linuxuprising/shutter'
 
     - name: Yarn
+      filename: yarn
       repo: 'deb https://dl.yarnpkg.com/debian/ stable main'
       gpg: 'https://dl.yarnpkg.com/debian/pubkey.gpg'
 
     - name: Sublime Text & Merge
+      filename: sublime
       repo: 'deb https://download.sublimetext.com/ apt/stable/'
       gpg: 'https://download.sublimetext.com/sublimehq-pub.gpg'
 
@@ -53,7 +61,8 @@ apt:
         - exfat-fuse
         - exfat-utils
         - google-chrome-stable
-        - gwenview # LDE Image browser 
+        - gwenview # KDE Image browser 
+        - htop
         - kdevelop
         - kdevelop-php
         - kdevelop-python

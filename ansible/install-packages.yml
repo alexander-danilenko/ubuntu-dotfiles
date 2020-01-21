@@ -17,12 +17,21 @@
       loop: '{{ apt.repos }}'
       apt_repository:
         repo: '{{ item.repo }}'
+        filename: '{{ item.filename }}'
         state: present
-        update_cache: true
 
-    - name: 'Install packages...'
+    - name: Make sure broken packages are fixed
+      shell: 'apt --fix-broken install'
+      sudo: true
+        
+    - name: 'Update apt cache...'
       apt:
         update_cache: yes
+        state: fixed
+        force: true
+        
+    - name: 'Install packages...'
+      apt:
         pkg: '{{ apt.packages.install.list }}'
 
     - name: 'Install DEB packages...'
