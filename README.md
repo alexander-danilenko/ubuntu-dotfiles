@@ -1,20 +1,22 @@
 ## Motivation
 Setting up a new PHP/Drupal developer machine can be an ad-hoc, manual, and time-consuming process. Current project aims to simplify the process with instructions and dotfiles/scripts to automate the setup of the following:
 
-- PHP installation
-- Composer installation
-- Drupal CodeSniffer standard installation
-- Node + npm (via nvm) installation
-- JetBrains toolbox installation
-- ZSH configuration
-- Downloading *.deb packages with all their dependencies for future usage (for example on environment without internet access)
-- USB WiFi Drivers installation for following WiFi dongles:
+- [PHP](https://www.php.net/)
+- [Composer](https://getcomposer.org/)
+- [Drupal CodeSniffer standard](https://git.drupalcode.org/project/coder/tree/8.x-3.x/coder_sniffer)
+- Node/Npm (via [nvm](https://github.com/nvm-sh/nvm)) installation
+- [JetBrains Toolbox](https://www.jetbrains.com/toolbox-app/)
+- ZSH + plugins configuration
+
+It also helps poor people without internet connection to:
+- Download *.deb packages with all their dependencies for future usage (for example on environment without internet access)
+- Install USB WiFi Drivers installation for following WiFi dongles:
     - Asus AC56 (RTL8812AU)
     - Asus AC53 Nano (RTL8822BU)
 
 ## Dependencies
 - K/Ubuntu 19.10+
-- Ansible (will be installed automatically)
+- [Ansible](https://www.ansible.com/) (will be installed automatically)
 
 ## Usage
 
