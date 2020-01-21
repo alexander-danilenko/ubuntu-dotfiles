@@ -21,9 +21,6 @@ apt:
     - name: Google Chrome
       repo: 'deb http://dl.google.com/linux/chrome/deb/ stable main'
 
-    - name: Grub Customizer
-      repo: 'ppa:danielrichter2007/grub-customizer'
-
     - name: Numix theme
       repo: 'ppa:numix/ppa'
 
@@ -56,16 +53,15 @@ apt:
         - exfat-fuse
         - exfat-utils
         - google-chrome-stable
-        - grub-customizer
         - gwenview # LDE Image browser 
         - kdevelop
         - kdevelop-php
         - kdevelop-python
-        - knights # KDE Chess
-        - kompare # KDE diff viewer
-        - kpat # KDE Solitaire 
-        - krdc # KDE RDC/VNC viewer
-        - krita # KDE Image editor
+        - knights  # KDE Chess
+        - kompare  # KDE Diff viewer
+        - kpat     # KDE Solitaire 
+        - krdc     # KDE RDC/VNC viewer
+        - krita    # KDE Image editor
         - ktorrent # KDE Torrent downloader
         - mc
         - nfs-common
@@ -79,7 +75,6 @@ apt:
         - sublime-merge
         - sublime-text
         - telegram-desktop
-        - transmission
         - vlc
         - zsh
 
