@@ -9,10 +9,8 @@ Setting up a new PHP/Drupal developer machine can be an ad-hoc, manual, and time
 - ZSH + plugins configuration
 
 It also helps poor people without internet connection to:
-- Download *.deb packages with all their dependencies for future usage (for example on environment without internet access)
-- Install USB WiFi Drivers installation for following WiFi dongles:
-    - Asus AC56 (RTL8812AU)
-    - Asus AC53 Nano (RTL8822BU)
+- Download `*.deb` packages with all their dependencies for future usage (for example on environment without internet access). Its helpful for offline packages install especially for packages like `build-essential` that's are not installed in Ubuntu by default.
+- Make and install USB WiFi Drivers installation for WiFi dongles (assuming that drivers require `make && make install`).
 
 ## Dependencies
 - K/Ubuntu 19.10+
