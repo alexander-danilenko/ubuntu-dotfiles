@@ -2,9 +2,14 @@
 
 - hosts: 127.0.0.1
   connection: local
-  sudo: false
   vars_files:
     - ../config.yml
 
-  roles:
-      - jaredhocutt.jetbrains_toolbox
+  tasks:
+    - name: Download Jetbrains Toolbox
+      sudo: true
+      unarchive:
+        src: https://download.jetbrains.com/toolbox/jetbrains-toolbox-1.16.6207.tar.gz
+        dest: /opt
+        remote_src: yes
+        mode: 755
