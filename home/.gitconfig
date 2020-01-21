@@ -1,6 +1,6 @@
 [user]
-	name = Example Name
-	email = example@email.com
+# name = Example Name
+# email = example@example.com
 
 [core]
   autocrlf = input
