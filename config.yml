@@ -10,6 +10,28 @@ node:
     # List of npm packages that will be installed globally.
     global: [eslint, gulp, bower, eslint-config-google, eslint-config-standard, eslint-config-airbnb, eslint-config-standard, eslint-plugin-jsx-a11y, eslint-plugin-react, eslint-plugin-import]
     
+# Visual Studio Code settings.
+vscode:
+  # List of plugins to install.
+  plugins:
+    - ms-vscode.go # Golang
+    - ms-python.python # Python
+    - dbaeumer.vscode-eslint # Eslint
+    - esbenp.prettier-vscode # Prettier - Code formatter
+    - pkief.material-icon-theme # Material Icon Theme
+    - dracula-theme.theme-dracula # Dracula theme
+    - mikestead.dotenv # .env file support
+  # @TODO: Move to config file.
+  settings:
+    "editor.rulers": [80, 120]
+    "files.associations": {
+      "Vagrantfile": "ruby",
+      "*.install": "php",
+      "*.module": "php",
+      "*.theme": "php",
+      "*.info": "ini"
+    }
+
 # APT package manager settings.
 apt:
   # List of repos that should be added. If repo has gpg key it has to be added as well, otherwise repo will not work. 
