@@ -6,15 +6,11 @@
     - ../config.yml
 
   tasks:
-    - name: 'Update apt cache'
-      sudo: true
-      apt:
-        update_cache: true
-
     - name: 'Install apt-rdepends...'
       sudo: true
       apt:
         pkg: 'apt-rdepends'
+        update_cache: true
 
     - name: 'Download deb packages with all dependencies for offline usage'
       raw: 'cd ../offline-cache/deb && apt-get download -q $(apt-rdepends {{ offline.deb.list | join(" ") }} | {{ offline.deb.list_filters | join(" | ") }} )'
