@@ -18,6 +18,13 @@
         filename: 'docker'
         state: present
 
+    - name: 'Install Docker packages'
+      become: yes
+      apt:
+        pkg:
+          - docker-ce
+          - docker-compose
+
     - name: Move Docker directory to ~/.docker
       become: yes
       copy:
@@ -30,12 +37,6 @@
         group : '{{ ansible_facts.user_id }}'
         mode: 755
 
-    - name: 'Install Docker packages'
-      become: yes
-      apt:
-        pkg:
-          - docker-ce
-          - docker-compose
 
     - name: Start Docker service on system boot
       become: yes
