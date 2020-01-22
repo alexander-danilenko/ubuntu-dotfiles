@@ -1,2 +1,10 @@
 {
+    "editor.rulers": [80, 120],
+    "files.associations": {
+      "Vagrantfile": "ruby",
+      "*.install": "php",
+      "*.module": "php",
+      "*.theme": "php",
+      "*.info": "ini"
+    }
 }
