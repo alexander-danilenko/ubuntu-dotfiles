@@ -7,7 +7,7 @@
 
   tasks:
     - name: Download Jetbrains Toolbox
-      sudo: true
+      become: yes
       unarchive:
         src: https://download.jetbrains.com/toolbox/jetbrains-toolbox-1.16.6207.tar.gz
         dest: /opt

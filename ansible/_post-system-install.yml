@@ -1,6 +1,7 @@
 ---
 
 - import_playbook: install-packages.yml
+- import_playbook: install-docker.yml
 - import_playbook: install-php.yml
 - import_playbook: install-composer-codesniffer.yml
 - import_playbook: install-nvm.yml

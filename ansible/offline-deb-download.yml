@@ -7,7 +7,7 @@
 
   tasks:
     - name: 'Install apt-rdepends...'
-      sudo: true
+      become: yes
       apt:
         pkg: 'apt-rdepends'
         update_cache: true

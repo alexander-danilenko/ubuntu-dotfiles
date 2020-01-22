@@ -13,7 +13,7 @@
 
     - name: Install built drivers
       loop: '{{ offline.drivers }}'
-      sudo: yes
+      become: yes
       make:
         chdir: '../offline-cache/drivers/{{ item.name }}'
         target: install

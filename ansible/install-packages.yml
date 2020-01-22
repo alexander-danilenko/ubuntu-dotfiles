@@ -2,7 +2,7 @@
 
 - hosts: 127.0.0.1
   connection: local
-  sudo: true
+  become: yes
   vars_files:
     - ../config.yml
 
@@ -22,7 +22,7 @@
 
     - name: Make sure broken packages are fixed
       shell: 'apt --fix-broken install'
-      sudo: true
+      become: yes
         
     - name: 'Update apt cache...'
       apt:

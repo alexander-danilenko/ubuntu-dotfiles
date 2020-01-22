@@ -36,11 +36,6 @@ vscode:
 apt:
   # List of repos that should be added. If repo has gpg key it has to be added as well, otherwise repo will not work. 
   repos:
-    - name: Docker (from 18.04 LTS Bionic)
-      filename: docker
-      repo: 'deb https://download.docker.com/linux/ubuntu bionic stable'
-      gpg: 'https://download.docker.com/linux/ubuntu/gpg'
-
     - name: Google Chrome
       filename: google-chrome
       repo: 'deb http://dl.google.com/linux/chrome/deb/ stable main'
@@ -76,8 +71,6 @@ apt:
         - default-jdk
         - default-jre
         - dia
-        - docker-ce
-        - docker-compose
         - evolution
         - evolution-ews
         - exfat-fuse

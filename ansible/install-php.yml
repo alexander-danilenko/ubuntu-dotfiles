@@ -2,20 +2,20 @@
 
 - hosts: 127.0.0.1
   connection: local
-  sudo: false
+  become: no
   vars_files:
     - ../config.yml
 
   tasks:
     - name: "Add repository for PHP {{ php.version }}."
-      sudo: true
+      become: yes
       apt_repository:
         repo="ppa:ondrej/php"
         update_cache=yes
 
   roles:
     - role: geerlingguy.php
-      sudo: true
+      become: yes
       php_version: "{{ php.version }}"
       php_packages:
         - 'php{{ php.version }}-common'
