@@ -20,7 +20,7 @@ vscode:
     - esbenp.prettier-vscode # Prettier - Code formatter
     - pkief.material-icon-theme # Material Icon Theme
     - dracula-theme.theme-dracula # Dracula theme
-    - mikestead.dotenv # .env file support    
+    - mikestead.dotenv # File support .env
 
 # APT package manager settings.
 apt:
@@ -39,10 +39,6 @@ apt:
       filename: papirus
       repo: 'ppa:papirus/papirus'
 
-    - name: Shutter screenshot tool
-      filename: shutter
-      repo: 'ppa:linuxuprising/shutter'
-
     - name: Yarn
       filename: yarn
       repo: 'deb https://dl.yarnpkg.com/debian/ stable main'
@@ -57,41 +53,82 @@ apt:
     install:
       # List of apt packages to install. Will be installed with all required dependencies.
       list:
-        - curl
-        - default-jdk
-        - default-jre
-        - dia
-        - evolution
-        - evolution-ews
-        - exfat-fuse
-        - exfat-utils
-        - google-chrome-stable
-        - gwenview # KDE Image browser 
-        - htop
-        - kdevelop
-        - kdevelop-php
-        - kdevelop-python
-        - knights  # KDE Chess
-        - kompare  # KDE Diff viewer
-        - kpat     # KDE Solitaire 
-        - krdc     # KDE RDC/VNC viewer
-        - krita    # KDE Image editor
-        - ktorrent # KDE Torrent downloader
-        - mc
-        - neofetch
-        - nfs-common
+        # System and terminal tools
+        - curl        # Command line tool for transferring data with URL syntax
+        - default-jre # Java runtime
+        - dia         # Diagram editor
+        - exfat-fuse  # Read and write exFAT driver
+        - exfat-utils # Utilities to create, check, label and dump exFAT file system 
+        - htop        # Terminal system monitor
+        - lhasa       # lzh unarchiver
+        - mc          # Two panel terminal file manager
+        - neofetch    # Shows Linux System Information with Distribution Logo
+        - net-tools   # Base network tools
+        - nfs-common  # Package for work with NFS shares
+        - rar         # rar archiver
+        - unrar       # rar unarchiver
+        - unzip       # zip unarchiver
+        - zip         # zip archiver
+        - zsh         # zsh shell. Like bash, but better
+
+        # Development
+        - kexi                    # Visual DB editor
+        - kexi-mysql-driver       # Kexi MySQL driver
+        - kexi-postgresql-driver  # Kexi MySQL driver
+        - sublime-merge           # Git GUI client
+        - sublime-text            # Lightning fast code editor
+       #- qtcreator               # QT IDE
+          # Visual Studio code will be installed using ansible playbook
+
+        # Internet
+        - firefox              # From Mozilla team with <3
+        - google-chrome-stable # Thing for collecting your personal data
+        - telegram-desktop     # Text me, baby!
+          # Skype will be installed from deb package
+          # Slack will be installed from deb package
+        
+        # Office
+        - evolution     # Ultimate email client
+        - evolution-ews # Evolution EWS support
+        - libreoffice   # Not best, but good office suite
+
+        # Media
+        - deepin-picker          # Color picker
+        - deepin-screen-recorder # Screen recorder
+        - flameshot              # Screenshot tool
+        - inkscape               # Vector image editor
+        - vlc                    # Ultimate video player that lays everything
+       #- audacity               # Audio editing software
+
+        # KDE-specific packages
+        - gwenview        # Image browser
+        - kdevelop        # IDE for C/C++ and other languages
+        - kdevelop-php    # KDevelop PHP language support
+        - kdevelop-python # KDevelop Python language support
+        - kget            # Download manager
+        - kmahjongg       # Game: Mahjongg
+        - kmines          # Game: Minesweeper
+        - knights         # Game: Chess
+        - kompare         # Diff viewer
+        - kpat            # Game: Solitaire 
+        - krdc            # RDC/VNC viewer
+        - krita           # Image editor
+        - krusader        # Two-panel file manager
+        - ktorrent        # Torrent downloader
+        - kubuntu-restricted-addons # Commonly used restricted packages for Kubuntu
+        - kubuntu-restricted-extras # Commonly used media codecs and fonts for Kubuntu
+        - okular          # Document viewer
+        - plasma-discover-backend-flatpak # Adds flatpak support to Discover package manager
+        - plasma-discover-backend-snap    # Adds snap support to Discover package manager
+       #- kdenlive        # Video editor for KDE
+
+        # Look and feel customization packages
+        - deepin-icon-theme
         - numix-blue-gtk-theme
         - numix-gtk-theme
         - numix-icon-theme
         - numix-icon-theme-circle
-        - plasma-discover-backend-flatpak
-        - plasma-discover-backend-snap
-        - shutter
-        - sublime-merge
-        - sublime-text
-        - telegram-desktop
-        - vlc
-        - zsh
+        - papirus-icon-theme
 
       # List of deb files that should be installed.
       deb:
@@ -106,32 +143,8 @@ apt:
         # Teamviewer.
         - https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
 
-    # Offline packages section.
-    offline:
-      # Following packages will be downloaded with all their dependencies to `./deb` directory.
-      # List kernels wisely as too recent kernel may not be compatible with drivers listed below.
-      download:
-        - ansible
-        - linux-image-5.3.0-26-generic
-        - linux-modules-5.3.0-26-generic
-        - linux-modules-extra-5.3.0-26-generic
-        - linux-headers-5.3.0-26-generic
-        - build-essential
-        - exfat-fuse
-        - exfat-utils
-        - net-tools
-      # Usually package has dependencies that has no install candidates. Exclude that kind of packages using grep filters.
-      filters:
-        - grep -v "^ "
-        - grep -v "^kldutils$"
-        - grep -v "^libc-dev$"
-        - grep -v "^debconf-"
-        - grep -v "^python3-cffi-backend-api-"
-        - grep -v "^perlapi-"
-        - grep -v "^perl-openssl-abi-"
-
 # Section for offline dump.
-# This section is used in `pre-system-install` script.
+# This section is used in `./offline-download.sh` script.
 offline:
   # Drivers that needs to be downloaded and installed using `make && sudo make install`.
   drivers:
@@ -145,21 +158,22 @@ offline:
     # Following packages will be downloaded with all their dependencies to `./deb` directory.
     # Select kernels wisely because too recent kernel may not be compatible with drivers you want to download.
     list:
-      - ansible
-      - linux-image-5.3.0-26-generic
-      - linux-modules-5.3.0-26-generic
-      - linux-modules-extra-5.3.0-26-generic
-      - linux-headers-5.3.0-26-generic
-      - build-essential
-      - exfat-fuse
-      - exfat-utils
-      - net-tools
+      - linux-image-5.3.0-26-generic         # Kernel itself 
+      - linux-headers-5.3.0-26-generic       # Kernel C/C++ headers for compilers
+      - linux-modules-5.3.0-26-generic       # Kernel modules
+      - linux-modules-extra-5.3.0-26-generic # Kernel extra modules
+      - ansible         # Ansible for being able to run playbooks
+      - build-essential # C/C++ build tools, gcc compiler, etc
+      - exfat-fuse      # Read and write exFAT driver
+      - exfat-utils     # Utilities to create, check, label and dump exFAT filesystem 
+      - net-tools       # Base network tools
+
     # Usually package has dependencies that has no install candidates. Exclude that kind of packages using grep filters.
     list_filters:
       - grep -v "^ "
+      - grep -v "^debconf-"
       - grep -v "^kldutils$"
       - grep -v "^libc-dev$"
-      - grep -v "^debconf-"
-      - grep -v "^python3-cffi-backend-api-"
-      - grep -v "^perlapi-"
       - grep -v "^perl-openssl-abi-"
+      - grep -v "^perlapi-"
+      - grep -v "^python3-cffi-backend-api-"
