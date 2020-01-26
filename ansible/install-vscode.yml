@@ -5,8 +5,11 @@
   vars_files:
     - ../config.yml
 
-  roles:
-    - role: gantsign.visual-studio-code
-      users:
-        - username: '{{ ansible_facts.user_id }}'
-          visual_studio_code_extensions: '{{ vscode.plugins }}'
+  tasks:
+    - name: 'Visual Studio Code'
+      include_role:
+        name: ansible-role-visual-studio-code
+      vars:
+        users:
+          - username: '{{ ansible_facts.user_id }}'
+            visual_studio_code_extensions: '{{ vscode.plugins }}'

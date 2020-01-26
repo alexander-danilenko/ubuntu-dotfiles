@@ -6,10 +6,18 @@
     - ../config.yml
 
   tasks:
-    - name: Download Jetbrains Toolbox
-      become: yes
-      unarchive:
-        src: https://download.jetbrains.com/toolbox/jetbrains-toolbox-1.16.6207.tar.gz
-        dest: /opt
-        remote_src: yes
-        mode: 755
+    - name: 'Install python pip'
+      become: true
+      apt:
+        pkg:
+          - python3-pip
+
+    - name: Install Jetbrains Toolbox pip dependencies
+      become: true
+      pip:
+        name:
+          - jmespath
+
+    - name: Jetbrains Toolbox
+      include_role:
+        name: ansible-jetbrains-toolbox

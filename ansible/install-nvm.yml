@@ -5,11 +5,14 @@
   vars_files:
     - ../config.yml
 
-  roles:
-    - role: ansible-role-nvm
-      nodejs_version: "{{ node.version }}"
-      nvm_dir: "{{ ansible_env.HOME }}/.nvm"
-      default: True
-      nvm_commands:
-        - "nvm alias service-default {{ node.version }}"
-        - "nvm exec service-default npm install -g {{ node.npm.global | join(' ') }}"
+  tasks:
+    - name: Node version manager
+      include_role:
+        name: ansible-role-nvm
+      vars:
+        nodejs_version: "{{ node.version }}"
+        nvm_dir: "{{ ansible_env.HOME }}/.nvm"
+        default: True
+        nvm_commands:
+          - "nvm alias service-default {{ node.version }}"
+          - "nvm exec service-default npm install -g {{ node.npm.global | join(' ') }}"

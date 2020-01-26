@@ -56,6 +56,7 @@ apt:
         # System and terminal tools
         - curl        # Command line tool for transferring data with URL syntax
         - default-jre # Java runtime
+        - default-jdk # Jave development kit
         - dia         # Diagram editor
         - exfat-fuse  # Read and write exFAT driver
         - exfat-utils # Utilities to create, check, label and dump exFAT file system 
@@ -65,6 +66,7 @@ apt:
         - neofetch    # Shows Linux System Information with Distribution Logo
         - net-tools   # Base network tools
         - nfs-common  # Package for work with NFS shares
+        - python3-pip # Python3 package manager
         - rar         # rar archiver
         - unrar       # rar unarchiver
         - unzip       # zip unarchiver
@@ -72,12 +74,12 @@ apt:
         - zsh         # zsh shell. Like bash, but better
 
         # Development
-        - kexi                    # Visual DB editor
-        - kexi-mysql-driver       # Kexi MySQL driver
-        - kexi-postgresql-driver  # Kexi MySQL driver
+        #- kexi                    # Visual DB editor
+        #- kexi-mysql-driver       # Kexi MySQL driver
+        #- kexi-postgresql-driver  # Kexi MySQL driver
+        - mysql-workbench
         - sublime-merge           # Git GUI client
         - sublime-text            # Lightning fast code editor
-       #- qtcreator               # QT IDE
           # Visual Studio code will be installed using ansible playbook
 
         # Internet
@@ -102,9 +104,6 @@ apt:
 
         # KDE-specific packages
         - gwenview        # Image browser
-        - kdevelop        # IDE for C/C++ and other languages
-        - kdevelop-php    # KDevelop PHP language support
-        - kdevelop-python # KDevelop Python language support
         - kget            # Download manager
         - kmahjongg       # Game: Mahjongg
         - kmines          # Game: Minesweeper

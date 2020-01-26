@@ -2,7 +2,6 @@
 
 - hosts: 127.0.0.1
   connection: local
-  become: no
   vars_files:
     - ../config.yml
 
@@ -10,20 +9,23 @@
     - name: "Add repository for PHP {{ php.version }}."
       become: yes
       apt_repository:
-        repo="ppa:ondrej/php"
-        update_cache=yes
+        repo: 'ppa:ondrej/php'
+        filename: 'php'
+        state: present
+        update_cache: yes
 
-  roles:
-    - role: geerlingguy.php
-      become: yes
-      php_version: "{{ php.version }}"
-      php_packages:
-        - 'php{{ php.version }}-common'
-        - 'php{{ php.version }}-cli'
-        - 'php{{ php.version }}-gd'
-        - 'php{{ php.version }}-imagick'
-        - 'php{{ php.version }}-mbstring'
-        - 'php{{ php.version }}-mysql'
-        - 'php{{ php.version }}-xml'
-      php_date_timezone: "{{ php.timezone }}"
-      php_enable_webserver: false
+    - name: 'PHP'
+      include_role:
+        name: ansible-role-php
+      vars:
+        php_version: "{{ php.version }}"
+        php_packages:
+          - 'php{{ php.version }}-common'
+          - 'php{{ php.version }}-cli'
+          - 'php{{ php.version }}-gd'
+          - 'php{{ php.version }}-imagick'
+          - 'php{{ php.version }}-mbstring'
+          - 'php{{ php.version }}-mysql'
+          - 'php{{ php.version }}-xml'
+        php_date_timezone: "{{ php.timezone }}"
+        php_enable_webserver: false

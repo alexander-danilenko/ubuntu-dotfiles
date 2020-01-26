@@ -20,19 +20,10 @@
         filename: '{{ item.filename }}'
         state: present
 
-    - name: Make sure broken packages are fixed
-      shell: 'apt --fix-broken install'
-      become: yes
-        
-    - name: 'Update apt cache...'
-      apt:
-        update_cache: yes
-        state: fixed
-        force: true
-        
     - name: 'Install packages...'
       apt:
         pkg: '{{ apt.packages.install.list }}'
+        update_cache: yes
 
     - name: 'Install DEB packages...'
       loop: '{{ apt.packages.install.deb }}'

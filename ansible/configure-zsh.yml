@@ -6,7 +6,7 @@
     - ../config.yml
 
   roles:
-    - role: gantsign.antigen
+    - role: ansible-role-antigen
       users:
         - username: "{{ ansible_facts.user_id }}"
           antigen_libraries:

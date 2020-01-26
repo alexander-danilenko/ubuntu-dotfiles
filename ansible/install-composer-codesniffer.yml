@@ -6,17 +6,19 @@
   vars_files:
     - ../config.yml
 
-  roles:
-    - role: geerlingguy.composer
-      composer_home_path: '~/.composer'
-      composer_keep_updated: true
-      composer_home_owner: "{{ ansible_facts.user_id }}"
-      composer_home_group: "{{ ansible_facts.user_id }}"
-      composer_global_packages:
-        - name: "drupal/coder"
-          release: "*"
+  tasks:
+    - name: Composer
+      include_role:
+        name: ansible-role-composer
+      vars:
+        composer_home_path: '~/.composer'
+        composer_keep_updated: true
+        composer_home_owner: "{{ ansible_facts.user_id }}"
+        composer_home_group: "{{ ansible_facts.user_id }}"
+        composer_global_packages:
+          - name: "drupal/coder"
+            release: "*"
 
-  post_tasks:
     - name: Enable Drupal PHPCS standard
       file:
         state: link
