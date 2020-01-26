@@ -1,6 +1,6 @@
 ## TL;DR
 
-Ansible scripts for fast and easy PHP/Drupal developer linux setup and dotfiles for Kubuntu. 
+This repo contains Ansible scripts for fast and easy PHP/Drupal developer linux setup and dotfiles for Kubuntu. 
 
 ---
 
