@@ -27,29 +27,3 @@
         - 'php{{ php.version }}-xml'
       php_date_timezone: "{{ php.timezone }}"
       php_enable_webserver: false
-
-    - role: geerlingguy.composer
-      composer_add_to_path: true
-      composer_home_path: '~/.composer'
-      composer_path: /usr/local/bin/composer
-      composer_keep_updated: true
-      composer_home_owner: "{{ ansible_facts.user_id }}"
-      composer_home_group: "{{ ansible_facts.user_id }}"
-      composer_global_packages:
-        - name: "drupal/coder"
-          release: "*"
-
-  post_tasks:
-    - name: Enable Drupal PHPCS standard
-      file:
-        state: link
-        force: yes
-        src: ~/.composer/vendor/drupal/coder/coder_sniffer/Drupal
-        dest: ~/.composer/vendor/squizlabs/php_codesniffer/src/Standards/Drupal
-
-    - name: Enable DrupalPractice PHPCS standard
-      file:
-        state: link
-        force: yes
-        src: ~/.composer/vendor/drupal/coder/coder_sniffer/DrupalPractice
-        dest: ~/.composer/vendor/squizlabs/php_codesniffer/src/Standards/DrupalPractice
