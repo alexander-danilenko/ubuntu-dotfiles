@@ -1,4 +1,0 @@
----
-
-- import_playbook: drivers-download.yml
-- import_playbook: offline-deb-download.yml
