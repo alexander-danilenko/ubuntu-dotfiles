@@ -93,6 +93,11 @@ apt:
         - evolution     # Ultimate email client
         - evolution-ews # Evolution EWS support
         - libreoffice   # Not best, but good office suite
+        - libreoffice-help-ru
+        - libreoffice-help-en-us
+        - libreoffice-base-drivers
+        - libreoffice-l10n-ru
+        - libreoffice-l10n-uk
 
         # Media
         - deepin-picker          # Color picker
