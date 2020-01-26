@@ -17,7 +17,7 @@ services:
   mail:
     extends:
       file: ${HOME}/.docksal/stacks/services.yml
-      service: apache
+      service: mail
 
   # PHPMyAdmin
   pma:
