@@ -74,9 +74,6 @@ apt:
         - zsh         # zsh shell. Like bash, but better
 
         # Development
-        #- kexi                    # Visual DB editor
-        #- kexi-mysql-driver       # Kexi MySQL driver
-        #- kexi-postgresql-driver  # Kexi MySQL driver
         - mysql-workbench
         - sublime-merge           # Git GUI client
         - sublime-text            # Lightning fast code editor
