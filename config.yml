@@ -111,6 +111,7 @@ apt:
         - kompare         # Diff viewer
         - kpat            # Game: Solitaire 
         - krdc            # RDC/VNC viewer
+        - krename         # Mass rename tool
         - krita           # Image editor
         - krusader        # Two-panel file manager
         - ktorrent        # Torrent downloader
