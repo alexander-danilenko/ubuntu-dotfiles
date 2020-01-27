@@ -15,7 +15,7 @@ echo_green() {
 
 if [ "$(ls -A ./deb | grep ".deb$")" ]; then
   echo_green "./deb directory has deb files. Installing them..."
-  sudo dpkg -i offline-cache/deb/*.deb && sudo apt-get install --fix-broken
+  sudo dpkg -i ./deb/*.deb && sudo apt-get install --fix-broken
 else
   echo_red "ERROR: './deb' directory has no deb files."
   exit 1
