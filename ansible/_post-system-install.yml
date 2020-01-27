@@ -6,7 +6,6 @@
 - import_playbook: install-composer-codesniffer.yml
 - import_playbook: install-nvm.yml
 - import_playbook: install-vscode.yml
-- import_playbook: install-jetbrains-toolbox.yml
 - import_playbook: configure-zsh.yml
 - import_playbook: install-docksal.yml
 - import_playbook: copy-home-directory.yml

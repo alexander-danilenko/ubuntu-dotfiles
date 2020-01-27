@@ -2,12 +2,12 @@
 
 - hosts: 127.0.0.1
   connection: local
+  become: yes
   vars_files:
     - ../config.yml
 
   tasks:
     - name: "Add repository for PHP {{ php.version }}."
-      become: yes
       apt_repository:
         repo: 'ppa:ondrej/php'
         filename: 'php'

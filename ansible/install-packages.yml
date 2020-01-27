@@ -20,10 +20,29 @@
         filename: '{{ item.filename }}'
         state: present
 
-    - name: 'Install packages...'
+    - name: 'Update apt cache'
+      apt:
+        update_cache: yes
+
+    - name: 'Install packages from config.yml list'
       apt:
         pkg: '{{ apt.packages.install.list }}'
-        update_cache: yes
+
+    - name: 'Make sure that flatpak package is installed'
+      apt:
+        pkg: 'flatpak'
+
+    - name: 'Configure flathub repo'
+      flatpak_remote:
+        name: flathub
+        flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+    
+    - name: Install flatpak packages
+      become: yes
+      loop: '{{ apt.packages.install.flathub }}'
+      flatpak:
+        name: '{{ item }}'
+        remote: flathub
 
     - name: 'Install DEB packages...'
       loop: '{{ apt.packages.install.deb }}'
