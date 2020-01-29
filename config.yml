@@ -75,8 +75,8 @@ apt:
 
         # Development
         - mysql-workbench
-        - sublime-merge           # Git GUI client
-        - sublime-text            # Lightning fast code editor
+        - sublime-merge   # Git GUI client
+        - sublime-text    # Lightning fast code editor
 
         # Internet
         - firefox              # From Mozilla team with <3
@@ -134,10 +134,6 @@ apt:
         - https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
 
       flathub:
-        - com.getpostman.Postman
-        - com.jetbrains.PhpStorm
-       #- com.jetbrains.IntelliJ-IDEA-Community
-       #- com.jetbrains.PyCharm-Community
         - com.skype.Client # Skype
         - com.slack.Slack # Slack chat
         - com.xnview.XnViewMP # Image viewer

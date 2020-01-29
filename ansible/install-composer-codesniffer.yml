@@ -4,17 +4,18 @@
   connection: local
   become: yes
   vars_files:
-    - ../config.yml
+    - ../config.yml 
 
   tasks:
     - name: Composer
       include_role:
         name: ansible-role-composer
       vars:
-        composer_home_path: '~/.composer'
-        composer_keep_updated: true
-        composer_home_owner: "{{ ansible_facts.user_id }}"
+        composer_add_to_path: true
         composer_home_group: "{{ ansible_facts.user_id }}"
+        composer_home_owner: "{{ ansible_facts.user_id }}"
+        composer_home_path: '/home/{{ ansible_facts.user_id }}/.composer'
+        composer_keep_updated: true
         composer_global_packages:
           - name: "drupal/coder"
             release: "*"
@@ -23,12 +24,12 @@
       file:
         state: link
         force: yes
-        src: ~/.composer/vendor/drupal/coder/coder_sniffer/Drupal
-        dest: ~/.composer/vendor/squizlabs/php_codesniffer/src/Standards/Drupal
+        src: /home/{{ ansible_facts.user_id }}/.config/composer/vendor/drupal/coder/coder_sniffer/Drupal
+        dest: /home/{{ ansible_facts.user_id }}/.config/composer/vendor/squizlabs/php_codesniffer/src/Standards/Drupal
 
     - name: Enable DrupalPractice PHPCS standard
       file:
         state: link
         force: yes
-        src: ~/.composer/vendor/drupal/coder/coder_sniffer/DrupalPractice
-        dest: ~/.composer/vendor/squizlabs/php_codesniffer/src/Standards/DrupalPractice
+        src: /home/{{ ansible_facts.user_id }}/.config/composer/vendor/drupal/coder/coder_sniffer/DrupalPractice
+        dest: /home/{{ ansible_facts.user_id }}/.config/composer/vendor/squizlabs/php_codesniffer/src/Standards/DrupalPractice
