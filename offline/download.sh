@@ -39,8 +39,8 @@ done
 mkdir -p ./deb ./drivers
 
 echo_green "Downloading drivers.."
-[[ ! -d "./drivers/RTL8812AU" ]] && curl https://codeload.github.com/gordboy/rtl8812au-5.6.4.2/zip/master -o drivers/RTL8812AU.zip
-[[ ! -d "./drivers/RTL8822BU" ]] && curl https://codeload.github.com/EntropicEffect/rtl8822bu/zip/master  -o drivers/RTL8822BU.zip
+curl --silent https://codeload.github.com/gordboy/rtl8812au-5.6.4.2/zip/master -o drivers/RTL8812AU.zip
+curl --silent https://codeload.github.com/EntropicEffect/rtl8822bu/zip/master  -o drivers/RTL8822BU.zip
 
 echo_green "Downloading all packages with their dependencies..."
 cd ./deb
