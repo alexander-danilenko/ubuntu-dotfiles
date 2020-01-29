@@ -4,7 +4,7 @@ set -e
 
 ################## Variables ###################################################
 # Linux kernel version that drivers was tested on.
-KERNEL=${KERNEL:-5.3.0-26}
+KERNEL=${KERNEL:-5.3.0-29}
 # List of packages required for download.
 PACKAGES=(
     linux-image-${KERNEL}-generic
@@ -19,7 +19,7 @@ PACKAGES=(
 
 # List of packages required for script to run.
 DEPENDENCIES=(
-    git
+    curl
     apt-rdepends
 )
 
@@ -39,8 +39,8 @@ done
 mkdir -p ./deb ./drivers
 
 echo_green "Downloading drivers.."
-[[ ! -d "./drivers/RTL8812AU" ]] && git clone https://github.com/gordboy/rtl8812au-5.6.4.2.git drivers/RTL8812AU
-[[ ! -d "./drivers/RTL8822BU" ]] && git clone https://github.com/EntropicEffect/rtl8822bu.git drivers/RTL8822BU
+[[ ! -d "./drivers/RTL8812AU" ]] && curl https://codeload.github.com/gordboy/rtl8812au-5.6.4.2/zip/master -o drivers/RTL8812AU.zip
+[[ ! -d "./drivers/RTL8822BU" ]] && curl https://codeload.github.com/EntropicEffect/rtl8822bu/zip/master  -o drivers/RTL8822BU.zip
 
 echo_green "Downloading all packages with their dependencies..."
 cd ./deb
