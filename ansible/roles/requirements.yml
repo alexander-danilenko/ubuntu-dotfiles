@@ -1,6 +1,5 @@
 - src: https://github.com/gantsign/ansible-role-antigen
 - src: https://github.com/gantsign/ansible-role-visual-studio-code
-- src: https://github.com/geerlingguy/ansible-role-composer
 - src: https://github.com/geerlingguy/ansible-role-git
 - src: https://github.com/geerlingguy/ansible-role-php
 - src: https://github.com/jaredhocutt/ansible-jetbrains-toolbox
