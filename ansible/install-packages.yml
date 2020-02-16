@@ -19,6 +19,7 @@
         repo: '{{ item.repo }}'
         filename: '{{ item.filename }}'
         state: present
+        update_cache: no
 
     - name: 'Update apt cache'
       apt:

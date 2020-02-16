@@ -25,7 +25,7 @@ Setting up a new PHP/Drupal developer machine can be an ad-hoc, manual, and time
 - ...and many many more (see [`config.yml`](config.yml) file).
 
 ## Dependencies
-- [Kubuntu 19.10](https://kubuntu.org/)
+- [Kubuntu 18.04+](https://kubuntu.org/) or [KDE Neon](https://neon.kde.org/)
 - [Ansible](https://www.ansible.com/) (will be installed automatically)
 
 ## Usage

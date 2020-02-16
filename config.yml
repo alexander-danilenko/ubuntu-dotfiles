@@ -14,18 +14,22 @@ node:
 vscode:
   # List of plugins to install.
   plugins:
-    - ms-vscode.go # Golang
-    - ms-python.python # Python
-    - dbaeumer.vscode-eslint # Eslint
-    - esbenp.prettier-vscode # Prettier - Code formatter
-    - pkief.material-icon-theme # Material Icon Theme
+    - ms-vscode.go                # Golang
+    - ms-python.python            # Python
+    - dbaeumer.vscode-eslint      # Eslint
+    - esbenp.prettier-vscode      # Prettier - Code formatter
+    - pkief.material-icon-theme   # Material Icon Theme
     - dracula-theme.theme-dracula # Dracula theme
-    - mikestead.dotenv # File support .env
+    - mikestead.dotenv            # File support .env
 
 # APT package manager settings.
 apt:
-  # List of repos that should be added. If repo has gpg key it has to be added as well, otherwise repo will not work. 
   repos:
+    - name: Docker
+      filename: docker
+      repo: 'deb https://download.docker.com/linux/ubuntu bionic stable'
+      gpg: 'https://download.docker.com/linux/ubuntu/gpg'
+
     - name: Google Chrome
       filename: google-chrome
       repo: 'deb http://dl.google.com/linux/chrome/deb/ stable main'
@@ -33,11 +37,13 @@ apt:
 
     - name: Numix theme
       filename: numix
-      repo: 'ppa:numix/ppa'
+      repo: 'deb http://ppa.launchpad.net/numix/ppa/ubuntu bionic main'
+      gpg: 'https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x43e076121739dee5fb96bbed52b709720f164eeb'
 
     - name: Papirus icon theme
       filename: papirus
-      repo: 'ppa:papirus/papirus'
+      repo: 'deb http://ppa.launchpad.net/papirus/papirus/ubuntu bionic main'
+      gpg: 'https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x9461999446faf0df770bfc9ae58a9d36647cae7f'
 
     - name: Yarn
       filename: yarn
@@ -61,6 +67,7 @@ apt:
         - exfat-fuse  # Read and write exFAT driver
         - exfat-utils # Utilities to create, check, label and dump exFAT file system 
         - htop        # Terminal system monitor
+        - jq          # JSON query tool
         - lhasa       # lzh unarchiver
         - mc          # Two panel terminal file manager
         - neofetch    # Shows Linux System Information with Distribution Logo
@@ -94,8 +101,8 @@ apt:
         - libreoffice-l10n-uk
 
         # Media
-        - deepin-picker          # Color picker
-        - deepin-screen-recorder # Screen recorder
+        #- deepin-picker          # Color picker
+        #- deepin-screen-recorder # Screen recorder
         - flameshot              # Screenshot tool
         - inkscape               # Vector image editor
 
@@ -117,8 +124,8 @@ apt:
         - ktorrent        # Torrent downloader
         - kubuntu-restricted-addons # Commonly used restricted packages for Kubuntu
         - kubuntu-restricted-extras # Commonly used media codecs and fonts for Kubuntu
-        - plasma-discover-backend-flatpak # Adds flatpak support to Discover package manager
-        - plasma-discover-backend-snap    # Adds snap support to Discover package manager
+        #- plasma-discover-backend-flatpak # Adds flatpak support to Discover package manager
+        #- plasma-discover-backend-snap    # Adds snap support to Discover package manager
 
         # Look and feel customization packages
         - deepin-icon-theme
@@ -131,11 +138,11 @@ apt:
       # List of deb files that should be installed.
       deb:
         # Teamviewer.
-        - https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
+        - https://downloads.slack-edge.com/linux_releases/slack-desktop-4.3.2-amd64.deb'
+        - https://download.xnview.com/XnViewMP-linux-x64.deb'
+        - https://zoom.us/client/latest/zoom_amd64.deb'
+        - https://go.skype.com/skypeforlinux-64.deb'
+        - https://download.teamviewer.com/download/linux/teamviewer_amd64.deb'
 
       flathub:
-        - com.skype.Client # Skype
-        - com.slack.Slack # Slack chat
-        - com.xnview.XnViewMP # Image viewer
         - org.zealdocs.Zeal # Documentation offline viewer
-        - us.zoom.Zoom # Zoom.us client
