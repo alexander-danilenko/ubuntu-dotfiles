@@ -7,13 +7,13 @@
     - ../config.yml
 
   tasks:
-    - name: Adding apt keys
+    - name: 'Adding apt keys...'
       loop: '{{ apt.repos }}'
       apt_key:
         url: '{{ item.gpg }}'
       when: item.gpg is defined
 
-    - name: 'Add PPA repositories.'
+    - name: 'Adding PPA repositories...'
       loop: '{{ apt.repos }}'
       apt_repository:
         repo: '{{ item.repo }}'
@@ -21,31 +21,31 @@
         state: present
         update_cache: no
 
-    - name: 'Update apt cache'
+    - name: 'Updating apt cache...'
       apt:
         update_cache: yes
 
-    - name: 'Install packages from config.yml list'
+    - name: 'Installing packages from config.yml list...'
       apt:
         pkg: '{{ apt.packages.install.list }}'
 
-    - name: 'Make sure that flatpak package is installed'
+    - name: 'Installing DEB packages...'
+      loop: '{{ apt.packages.install.deb }}'
+      apt:
+        deb: '{{ item }}'
+
+    - name: 'Making sure that flatpak package is installed...'
       apt:
         pkg: 'flatpak'
 
-    - name: 'Configure flathub repo'
+    - name: 'Configuring flathub repo...'
       flatpak_remote:
         name: flathub
         flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
     
-    - name: Install flatpak packages
+    - name: 'Installing flatpak packages...'
       become: yes
       loop: '{{ apt.packages.install.flathub }}'
       flatpak:
         name: '{{ item }}'
         remote: flathub
-
-    - name: 'Install DEB packages...'
-      loop: '{{ apt.packages.install.deb }}'
-      apt:
-        deb: '{{ item }}'

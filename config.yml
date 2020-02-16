@@ -137,12 +137,11 @@ apt:
 
       # List of deb files that should be installed.
       deb:
-        # Teamviewer.
-        - https://downloads.slack-edge.com/linux_releases/slack-desktop-4.3.2-amd64.deb'
-        - https://download.xnview.com/XnViewMP-linux-x64.deb'
-        - https://zoom.us/client/latest/zoom_amd64.deb'
-        - https://go.skype.com/skypeforlinux-64.deb'
-        - https://download.teamviewer.com/download/linux/teamviewer_amd64.deb'
+        - https://downloads.slack-edge.com/linux_releases/slack-desktop-4.3.2-amd64.deb
+        - https://download.xnview.com/XnViewMP-linux-x64.deb
+        - https://zoom.us/client/latest/zoom_amd64.deb
+        - https://go.skype.com/skypeforlinux-64.deb
+        - https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
 
       flathub:
         - org.zealdocs.Zeal # Documentation offline viewer
