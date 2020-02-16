@@ -16,3 +16,4 @@
         nvm_commands:
           - "nvm alias service-default {{ node.version }}"
           - "nvm exec service-default npm install -g {{ node.npm.global | join(' ') }}"
+      when: node.install|bool

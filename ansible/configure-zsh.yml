@@ -5,21 +5,16 @@
   vars_files:
     - ../config.yml
 
-  roles:
-    - role: ansible-role-antigen
-      users:
-        - username: "{{ ansible_facts.user_id }}"
-          antigen_libraries:
-            - name: oh-my-zsh
-          antigen_theme:
-            name: avit
-          antigen_bundles:
-            # Bundles from the default repo (robbyrussell's oh-my-zsh).
-            - name: git
-            - name: command-not-found
-            # Autosuggestions bundle.
-            - name: zsh-autosuggestions
-              url: zsh-users/zsh-autosuggestions
-            # ZSH nvm.
-            - name: zsh-nvm
-              url: lukechilds/zsh-nvm
+  tasks:
+    - name: Installing and configuration zsh + antigen
+      include_role:
+        name: ansible-role-antigen
+      vars:
+        users:
+          - username: "{{ ansible_facts.user_id }}"
+            antigen_libraries:
+              - name: oh-my-zsh
+            antigen_theme:
+              name: '{{ zsh.theme }}'
+            antigen_bundles: '{{ zsh.antigen_bundles }}'
+      when: zsh.install|bool

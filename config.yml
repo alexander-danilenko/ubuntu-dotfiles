@@ -1,10 +1,18 @@
-# PHP settings.
-php:
-  version: '7.3'
-  timezone: 'America/New_York'
+# ZSH settings.
+zsh:
+  install: yes
+  theme: robbyrussell
+  antigen_bundles:
+    - name: git
+    - name: command-not-found
+    - name: zsh-autosuggestions
+      url: zsh-users/zsh-autosuggestions
+    - name: zsh-nvm
+      url: lukechilds/zsh-nvm
 
 # Node settings.
 node:
+  install: yes
   version: '12.14.1'
   npm:
     # List of npm packages that will be installed globally.
@@ -12,6 +20,7 @@ node:
     
 # Visual Studio Code settings.
 vscode:
+  install: yes
   # List of plugins to install.
   plugins:
     - ms-vscode.go                # Golang
@@ -79,6 +88,18 @@ apt:
         - unzip       # zip unarchiver
         - zip         # zip archiver
         - zsh         # zsh shell. Like bash, but better
+
+        # PHP 7.3
+        - php7.3-common
+        - php7.3-cli
+        - php7.3-curl
+        - php7.3-gd
+        - php7.3-json
+        - php7.3-mbstring
+        - php7.3-mysql
+        - php7.3-opcache
+        - php7.3-xml
+        - php7.3-zip
 
         # Development
         - mysql-workbench
