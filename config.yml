@@ -1,7 +1,7 @@
 # ZSH settings.
 zsh:
   install: yes
-  theme: robbyrussell
+  theme: avit
   antigen_bundles:
     - name: git
     - name: command-not-found
