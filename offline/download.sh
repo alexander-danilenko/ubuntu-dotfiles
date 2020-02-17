@@ -4,7 +4,7 @@ set -e
 
 ################## Variables ###################################################
 # Linux kernel version that drivers was tested on.
-KERNEL=${KERNEL:-5.3.0-29}
+KERNEL=${KERNEL:-5.3.0-28}
 # List of packages required for download.
 PACKAGES=(
     linux-image-${KERNEL}-generic
