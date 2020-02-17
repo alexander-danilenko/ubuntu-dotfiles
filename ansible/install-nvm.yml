@@ -6,14 +6,21 @@
     - ../config.yml
 
   tasks:
-    - name: Node version manager
-      include_role:
-        name: ansible-role-nvm
-      vars:
-        nodejs_version: "{{ node.version }}"
-        nvm_dir: "{{ ansible_env.HOME }}/.nvm"
-        default: True
-        nvm_commands:
-          - "nvm alias service-default {{ node.version }}"
-          - "nvm exec service-default npm install -g {{ node.npm.global | join(' ') }}"
+
+    - name: Remove ~/.nvm
+      file:
+        path: ~/.nvm
+        state: absent
+      when: node.install|bool
+
+    - name: Install nvm
+      raw: wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
+      when: node.install|bool
+
+    - name: Install node v{{ node.version }}
+      raw: '. ~/.nvm/nvm.sh && nvm install {{ node.version }}'
+      when: node.install|bool
+
+    - name: Install npm global packages
+      raw: '. ~/.nvm/nvm.sh && npm --global install {{ node.npm.global|join(" ") }}'
       when: node.install|bool
