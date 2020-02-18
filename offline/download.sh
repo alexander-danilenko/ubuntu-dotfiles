@@ -30,20 +30,23 @@ echo_green() {
 
 ################## Process #####################################################
 
+CURRENT_DIR=$(pwd)
+
 # Make sure all dependencies satisfied.
 for i in "${DEPENDENCIES[@]}"; do
     echo_green "Making sure $i package is installed"
     which $i 2>/dev/null || { sudo apt-get install -y -q $i; }
 done
 
-mkdir -p ./deb ./drivers
+mkdir -p $CURRENT_DIR/deb $CURRENT_DIR/drivers
 
 echo_green "Downloading drivers.."
-curl --silent https://codeload.github.com/gordboy/rtl8812au-5.6.4.2/zip/master -o drivers/RTL8812AU.zip
-curl --silent https://codeload.github.com/EntropicEffect/rtl8822bu/zip/master  -o drivers/RTL8822BU.zip
+cd $CURRENT_DIR/drivers && \
+curl --silent -L https://codeload.github.com/gordboy/rtl8812au-5.6.4.2/zip/master -o $CURRENT_DIR/drivers/rtl8812au-5.6.4.2-master.zip
+curl --silent -L https://codeload.github.com/EntropicEffect/rtl8822bu/zip/master -o $CURRENT_DIR/drivers/rtl8822bu-master.zip
 
 echo_green "Downloading all packages with their dependencies..."
-cd ./deb
+cd $CURRENT_DIR/deb
 apt-get download -q $(apt-rdepends ${PACKAGES[*]} | grep -v "^ " | \
     # Exclude packages that has no installable packages.
     grep -v "^kldutils$" | \
