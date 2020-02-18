@@ -2,26 +2,29 @@
 
 set -e
 
-################## Helper functions ############################################
+################## Variables ###################################################
 
-echo_red() {
-    echo  "$(tput setaf 1)$1$(tput sgr0)"
-}
-
-echo_green() {
-    echo  "$(tput setaf 2)$1$(tput sgr0)"
-}
-
-echo_yellow() {
-    echo  "$(tput setaf 3)$1$(tput sgr0)"
-}
-
-################## Process #####################################################
+# List of drivers to install.
 DRIVERS=(
   'rtl8812au-5.6.4.2-master'
   'rtl8822bu-master'
 )
 CURRENT_DIR=$(pwd)
+
+################## Helper functions ############################################
+
+echo_red() {
+    echo  "$(tput setaf 1)$1$(tput sgr0)"
+}
+echo_green() {
+    echo  "$(tput setaf 2)$1$(tput sgr0)"
+}
+echo_yellow() {
+    echo  "$(tput setaf 3)$1$(tput sgr0)"
+}
+
+################## Process #####################################################
+
 for drivername in ${DRIVERS[@]}
 do
     if [ ! -f $CURRENT_DIR/drivers/$drivername.zip ]; then

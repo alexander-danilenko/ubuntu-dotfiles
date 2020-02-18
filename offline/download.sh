@@ -32,7 +32,6 @@ DEPENDENCIES=(
 echo_green() {
     echo  "$(tput setaf 2)$1$(tput sgr0)"
 }
-
 echo_yellow() {
     echo  "$(tput setaf 3)$1$(tput sgr0)"
 }
@@ -49,7 +48,7 @@ done
 
 mkdir -p $CURRENT_DIR/deb $CURRENT_DIR/drivers
 
-echo_green "Downloading drivers..."
+echo_yellow "Downloading drivers..."
 cd $CURRENT_DIR/drivers && \
 for drivername in ${!DRIVERS[@]}
 do
@@ -57,7 +56,7 @@ do
   curl --silent -L ${DRIVERS[$drivername]} -o $CURRENT_DIR/drivers/$drivername.zip
 done
 
-echo_green "Downloading all packages with their dependencies..."
+echo_yellow "Downloading all packages with their dependencies..."
 cd $CURRENT_DIR/deb
 apt-get download -q $(apt-rdepends ${PACKAGES[*]} | grep -v "^ " | \
     # Exclude packages that has no installable packages.
