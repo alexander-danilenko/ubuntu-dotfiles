@@ -3,6 +3,7 @@
 set -e
 
 ################## Variables ###################################################
+
 # Linux kernel version. Current version by default.
 KERNEL=${KERNEL:-$(uname -r)}
 # List of packages required for download.
@@ -16,12 +17,10 @@ PACKAGES=(
     exfat-utils     # exFAT file system tools.
     net-tools       # Basic networking tools handy for setup.
 )
-
 declare -A DRIVERS=(
   ['rtl8812au-5.6.4.2-master']='https://codeload.github.com/gordboy/rtl8812au-5.6.4.2/zip/master'
   ['rtl8822bu-master']='https://codeload.github.com/EntropicEffect/rtl8822bu/zip/master'
 )
-
 # List of packages required for script to run.
 DEPENDENCIES=(
     curl
@@ -29,6 +28,7 @@ DEPENDENCIES=(
 )
 
 ################## Helper functions ############################################
+
 echo_green() {
     echo  "$(tput setaf 2)$1$(tput sgr0)"
 }

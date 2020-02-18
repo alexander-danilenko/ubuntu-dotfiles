@@ -3,12 +3,17 @@
 set -e
 
 ################## Helper functions ############################################
+
 echo_red() {
     echo  "$(tput setaf 1)$1$(tput sgr0)"
 }
 
 echo_green() {
     echo  "$(tput setaf 2)$1$(tput sgr0)"
+}
+
+echo_yellow() {
+    echo  "$(tput setaf 3)$1$(tput sgr0)"
 }
 
 ################## Process #####################################################
@@ -24,11 +29,11 @@ do
         exit 1
     fi
 
-    echo_green "[$drivername] Unzipping driver to /usr/src/$drivername ..."
+    echo_yellow "[$drivername] Unzipping driver to /usr/src/$drivername ..."
     sudo rm -rf /usr/src/$drivername
     sudo unzip ${CURRENT_DIR}/drivers/$drivername.zip -d /usr/src/ > /dev/null
 
-    echo_green "[$drivername] Running 'make && make install'"
+    echo_yellow "[$drivername] Running 'make && make install'"
     cd /usr/src/$drivername && \
     sudo make > /dev/null && \
     sudo make install
