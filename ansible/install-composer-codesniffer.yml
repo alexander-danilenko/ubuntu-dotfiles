@@ -13,19 +13,22 @@
         dest: /usr/local/bin/composer
         mode: '0755'
 
+    - name: Create ~/.composer if it does not exist
+      file:
+        path: ~/.composer
+        state: directory
+
     - name: Require drupal/coder globally
       command: composer global require drupal/coder  
 
     - name: Enable Drupal PHPCS standard
       file:
         state: link
-        force: yes
-        src: ~/.config/composer/vendor/drupal/coder/coder_sniffer/Drupal
-        dest: ~/.config/composer/vendor/squizlabs/php_codesniffer/src/Standards/Drupal
+        src: ~/.composer/vendor/drupal/coder/coder_sniffer/Drupal
+        dest: ~/.composer/vendor/squizlabs/php_codesniffer/src/Standards/Drupal
 
     - name: Enable DrupalPractice PHPCS standard
       file:
         state: link
-        force: yes
-        src: ~/.config/composer/vendor/drupal/coder/coder_sniffer/DrupalPractice
-        dest: ~/.config/composer/vendor/squizlabs/php_codesniffer/src/Standards/DrupalPractice
+        src: ~/.composer/vendor/drupal/coder/coder_sniffer/DrupalPractice
+        dest: ~/.composer/vendor/squizlabs/php_codesniffer/src/Standards/DrupalPractice

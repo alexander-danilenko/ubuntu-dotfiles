@@ -1,10 +1,18 @@
-# PHP settings.
-php:
-  version: '7.3'
-  timezone: 'America/New_York'
+# ZSH settings.
+zsh:
+  install: yes
+  theme: avit
+  antigen_bundles:
+    - name: git
+    - name: command-not-found
+    - name: zsh-autosuggestions
+      url: zsh-users/zsh-autosuggestions
+    - name: zsh-nvm
+      url: lukechilds/zsh-nvm
 
 # Node settings.
 node:
+  install: yes
   version: '12.14.1'
   npm:
     # List of npm packages that will be installed globally.
@@ -12,20 +20,25 @@ node:
     
 # Visual Studio Code settings.
 vscode:
+  install: yes
   # List of plugins to install.
   plugins:
-    - ms-vscode.go # Golang
-    - ms-python.python # Python
-    - dbaeumer.vscode-eslint # Eslint
-    - esbenp.prettier-vscode # Prettier - Code formatter
-    - pkief.material-icon-theme # Material Icon Theme
+    - ms-vscode.go                # Golang
+    - ms-python.python            # Python
+    - dbaeumer.vscode-eslint      # Eslint
+    - esbenp.prettier-vscode      # Prettier - Code formatter
+    - pkief.material-icon-theme   # Material Icon Theme
     - dracula-theme.theme-dracula # Dracula theme
-    - mikestead.dotenv # File support .env
+    - mikestead.dotenv            # File support .env
 
 # APT package manager settings.
 apt:
-  # List of repos that should be added. If repo has gpg key it has to be added as well, otherwise repo will not work. 
   repos:
+    - name: Docker
+      filename: docker
+      repo: 'deb https://download.docker.com/linux/ubuntu bionic stable'
+      gpg: 'https://download.docker.com/linux/ubuntu/gpg'
+
     - name: Google Chrome
       filename: google-chrome
       repo: 'deb http://dl.google.com/linux/chrome/deb/ stable main'
@@ -33,21 +46,33 @@ apt:
 
     - name: Numix theme
       filename: numix
-      repo: 'ppa:numix/ppa'
+      repo: 'deb http://ppa.launchpad.net/numix/ppa/ubuntu bionic main'
+      gpg: 'https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x43e076121739dee5fb96bbed52b709720f164eeb'
 
     - name: Papirus icon theme
       filename: papirus
-      repo: 'ppa:papirus/papirus'
+      repo: 'deb http://ppa.launchpad.net/papirus/papirus/ubuntu bionic main'
+      gpg: 'https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x9461999446faf0df770bfc9ae58a9d36647cae7f'
 
     - name: Yarn
       filename: yarn
       repo: 'deb https://dl.yarnpkg.com/debian/ stable main'
       gpg: 'https://dl.yarnpkg.com/debian/pubkey.gpg'
 
+    - name: Visual Studio Code
+      filename: vscode
+      repo: 'deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main'
+      gpg: 'https://packages.microsoft.com/keys/microsoft.asc'
+      
     - name: Sublime Text & Merge
       filename: sublime
       repo: 'deb https://download.sublimetext.com/ apt/stable/'
       gpg: 'https://download.sublimetext.com/sublimehq-pub.gpg'
+
+    - name: PHP
+      filename: php
+      repo: 'deb http://ppa.launchpad.net/ondrej/php/ubuntu bionic main'
+      gpg: 'https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x14aa40ec0831756756d7f66c4f4ea0aae5267a6c'
 
   packages:
     install:
@@ -61,6 +86,7 @@ apt:
         - exfat-fuse  # Read and write exFAT driver
         - exfat-utils # Utilities to create, check, label and dump exFAT file system 
         - htop        # Terminal system monitor
+        - jq          # JSON query tool
         - lhasa       # lzh unarchiver
         - mc          # Two panel terminal file manager
         - neofetch    # Shows Linux System Information with Distribution Logo
@@ -73,6 +99,18 @@ apt:
         - zip         # zip archiver
         - zsh         # zsh shell. Like bash, but better
 
+        # PHP 7.3
+        - php7.3-common
+        - php7.3-cli
+        - php7.3-curl
+        - php7.3-gd
+        - php7.3-json
+        - php7.3-mbstring
+        - php7.3-mysql
+        - php7.3-opcache
+        - php7.3-xml
+        - php7.3-zip
+
         # Development
         - mysql-workbench
         - sublime-merge   # Git GUI client
@@ -81,7 +119,6 @@ apt:
         # Internet
         - firefox              # From Mozilla team with <3
         - google-chrome-stable # Thing for collecting your personal data
-        - telegram-desktop     # Text me, baby!
         
         # Office
         - evolution     # Ultimate email client
@@ -94,8 +131,8 @@ apt:
         - libreoffice-l10n-uk
 
         # Media
-        - deepin-picker          # Color picker
-        - deepin-screen-recorder # Screen recorder
+        #- deepin-picker          # Color picker
+        #- deepin-screen-recorder # Screen recorder
         - flameshot              # Screenshot tool
         - inkscape               # Vector image editor
 
@@ -117,8 +154,8 @@ apt:
         - ktorrent        # Torrent downloader
         - kubuntu-restricted-addons # Commonly used restricted packages for Kubuntu
         - kubuntu-restricted-extras # Commonly used media codecs and fonts for Kubuntu
-        - plasma-discover-backend-flatpak # Adds flatpak support to Discover package manager
-        - plasma-discover-backend-snap    # Adds snap support to Discover package manager
+        #- plasma-discover-backend-flatpak # Adds flatpak support to Discover package manager
+        #- plasma-discover-backend-snap    # Adds snap support to Discover package manager
 
         # Look and feel customization packages
         - deepin-icon-theme
@@ -130,12 +167,12 @@ apt:
 
       # List of deb files that should be installed.
       deb:
-        # Teamviewer.
         - https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
 
       flathub:
-        - com.skype.Client # Skype
-        - com.slack.Slack # Slack chat
-        - com.xnview.XnViewMP # Image viewer
         - org.zealdocs.Zeal # Documentation offline viewer
-        - us.zoom.Zoom # Zoom.us client
+        - org.telegram.desktop
+        - com.skype.Client
+        - com.xnview.XnViewMP
+        - us.zoom.Zoom
+        - com.slack.Slack

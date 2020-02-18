@@ -6,10 +6,12 @@
     - ../config.yml
 
   tasks:
-    - name: 'Visual Studio Code'
-      include_role:
-        name: ansible-role-visual-studio-code
-      vars:
-        users:
-          - username: '{{ ansible_facts.user_id }}'
-            visual_studio_code_extensions: '{{ vscode.plugins }}'
+    - name: 'Installing Visual Studio Code...'
+      apt:
+        name: code
+      when: vscode.install|bool
+
+    - name: 'Installing code extensions...'
+      loop: '{{ vscode.plugins }}'
+      command: 'code --install-extension {{ item }}'
+      when: vscode.install|bool

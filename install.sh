@@ -4,11 +4,13 @@ set -e
 
 ################## Variables ###################################################
 
-# List of packages required for script to run.
-DEPENDENCIES=(
-    ansible
-    git
-)
+# Packages required for script to run.
+which git 2>/dev/null || { sudo apt-get install -y -q git; }
+which ansible 2>/dev/null || { 
+  sudo apt install software-properties-common
+  sudo apt-add-repository --yes --update ppa:ansible/ansible
+  sudo apt install ansible -y -q
+}
 
 ################## Helper functions ############################################
 echo_green() {
@@ -17,14 +19,8 @@ echo_green() {
 
 ################## Process #####################################################
 
-# Make sure all dependencies satisfied.
-for i in "${DEPENDENCIES[@]}"; do
-    echo_green "$(tput setaf 2)Making sure $i package is installed$(tput sgr0)"
-    which $i 2>/dev/null || { sudo apt-get install -y -q $i; }
-done
-
 echo_green "Satisfying ansible dependencies..."
 ansible-galaxy install -r ansible/roles/requirements.yml --roles-path ./ansible/roles && \
 
 echo_green "Running ansible playbook..."
-ansible-playbook ansible/_post-system-install.yml --ask-become-pass
+ansible-playbook ansible/main.yml --ask-become-pass
