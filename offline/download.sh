@@ -3,14 +3,14 @@
 set -e
 
 ################## Variables ###################################################
-# Linux kernel version that drivers was tested on.
-KERNEL=${KERNEL:-5.3.0-28}
+# Linux kernel version. Current version by default.
+KERNEL=${KERNEL:-$(uname -r)}
 # List of packages required for download.
 PACKAGES=(
-    linux-image-${KERNEL}-generic
-    linux-modules-${KERNEL}-generic
-    linux-modules-extra-${KERNEL}-generic
-    linux-headers-${KERNEL}-generic
+    linux-image-${KERNEL}
+    linux-modules-${KERNEL}
+    linux-modules-extra-${KERNEL}
+    linux-headers-${KERNEL}
     build-essential # C/C++ building tools.
     exfat-fuse      # exFAT file system drivers.
     exfat-utils     # exFAT file system tools.
