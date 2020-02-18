@@ -17,6 +17,11 @@ PACKAGES=(
     net-tools       # Basic networking tools handy for setup.
 )
 
+declare -A DRIVERS=(
+  ['rtl8812au-5.6.4.2-master']='https://codeload.github.com/gordboy/rtl8812au-5.6.4.2/zip/master'
+  ['rtl8822bu-master']='https://codeload.github.com/EntropicEffect/rtl8822bu/zip/master'
+)
+
 # List of packages required for script to run.
 DEPENDENCIES=(
     curl
@@ -26,6 +31,10 @@ DEPENDENCIES=(
 ################## Helper functions ############################################
 echo_green() {
     echo  "$(tput setaf 2)$1$(tput sgr0)"
+}
+
+echo_yellow() {
+    echo  "$(tput setaf 3)$1$(tput sgr0)"
 }
 
 ################## Process #####################################################
@@ -40,10 +49,13 @@ done
 
 mkdir -p $CURRENT_DIR/deb $CURRENT_DIR/drivers
 
-echo_green "Downloading drivers.."
+echo_green "Downloading drivers..."
 cd $CURRENT_DIR/drivers && \
-curl --silent -L https://codeload.github.com/gordboy/rtl8812au-5.6.4.2/zip/master -o $CURRENT_DIR/drivers/rtl8812au-5.6.4.2-master.zip
-curl --silent -L https://codeload.github.com/EntropicEffect/rtl8822bu/zip/master -o $CURRENT_DIR/drivers/rtl8822bu-master.zip
+for drivername in ${!DRIVERS[@]}
+do
+  echo_yellow "[$drivername] Downloading..."
+  curl --silent -L ${DRIVERS[$drivername]} -o $CURRENT_DIR/drivers/$drivername.zip
+done
 
 echo_green "Downloading all packages with their dependencies..."
 cd $CURRENT_DIR/deb
