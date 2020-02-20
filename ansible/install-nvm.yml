@@ -6,6 +6,10 @@
     - ../config.yml
 
   tasks:
+    - name: Making sure that "nodejs" package is removed
+      apt:
+        name: nodejs
+        state: absent
 
     - name: Remove ~/.nvm
       file:
