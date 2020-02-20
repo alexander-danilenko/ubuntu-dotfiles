@@ -50,3 +50,6 @@ ini_set('display_startup_errors', TRUE);
 //$config['system.logging']['error_level'] = 'some'; /* Errors and warnings. No notices. */
 //$config['system.logging']['error_level'] = 'all';  /* All messages. */
 $config['system.logging']['error_level'] = 'verbose'; /* All messages, with backtrace information. */
+
+/* Other configuration =======================================================*/
+$settings['http_client_config']['timeout'] = 60; // Guzzle client timeout.
