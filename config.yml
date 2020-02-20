@@ -80,8 +80,8 @@ apt:
       list:
         # System and terminal tools
         - curl        # Command line tool for transferring data with URL syntax
-        - default-jre # Java runtime
         - default-jdk # Jave development kit
+        - default-jre # Java runtime
         - dia         # Diagram editor
         - exfat-fuse  # Read and write exFAT driver
         - exfat-utils # Utilities to create, check, label and dump exFAT file system 
@@ -94,6 +94,7 @@ apt:
         - nfs-common  # Package for work with NFS shares
         - python3-pip # Python3 package manager
         - rar         # rar archiver
+        - tree        # Displays an indented directory tree, in color
         - unrar       # rar unarchiver
         - unzip       # zip unarchiver
         - zip         # zip archiver
