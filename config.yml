@@ -36,12 +36,12 @@ apt:
   repos:
     - name: Docker
       filename: docker
-      repo: 'deb https://download.docker.com/linux/ubuntu bionic stable'
+      repo: 'deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable'
       gpg: 'https://download.docker.com/linux/ubuntu/gpg'
 
     - name: Google Chrome
       filename: google-chrome
-      repo: 'deb http://dl.google.com/linux/chrome/deb/ stable main'
+      repo: 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main'
       gpg: 'https://dl-ssl.google.com/linux/linux_signing_key.pub'
 
     - name: Numix theme
@@ -120,16 +120,19 @@ apt:
         # Internet
         - firefox              # From Mozilla team with <3
         - google-chrome-stable # Thing for collecting your personal data
+        - qbittorrent          # Best torrent downloading ever
         
         # Office
-        - evolution     # Ultimate email client
-        - evolution-ews # Evolution EWS support
-        - libreoffice   # Not best, but good office suite
-        - libreoffice-help-ru
-        - libreoffice-help-en-us
+        # - evolution     # Email client
+        # - evolution-ews # Microsoft Exchange services support
+        - libreoffice     # Not best, but good office suite
         - libreoffice-base-drivers
+        - libreoffice-help-en-us
+        - libreoffice-help-ru
         - libreoffice-l10n-ru
         - libreoffice-l10n-uk
+        - thunderbird
+        - thunderbird-locale-ru
 
         # Media
         #- deepin-picker          # Color picker
@@ -138,9 +141,8 @@ apt:
         - inkscape               # Vector image editor
 
         # KDE-specific packages
-        - ksystemlog
-        - ksysguard
         - gwenview        # Image browser
+        - kcalc           # Calculator
         - kget            # Download manager
         - kmahjongg       # Game: Mahjongg
         - kmines          # Game: Minesweeper
@@ -148,11 +150,12 @@ apt:
         - kompare         # Diff viewer
         - kpat            # Game: Solitaire 
         - krdc            # RDC/VNC viewer
-        - krita           # Image editing software
-        - okular          # Document viewer
         - krename         # Mass rename tool
+        - krita           # Image editing software
         - krusader        # Two-panel file manager
-        - ktorrent        # Torrent downloader
+        - ksysguard       # System monitor
+        - ksystemlog      # System logs viewer
+        - okular          # Document viewer
         - kubuntu-restricted-addons # Commonly used restricted packages for Kubuntu
         - kubuntu-restricted-extras # Commonly used media codecs and fonts for Kubuntu
         #- plasma-discover-backend-flatpak # Adds flatpak support to Discover package manager
@@ -165,6 +168,30 @@ apt:
         - numix-icon-theme
         - numix-icon-theme-circle
         - papirus-icon-theme
+        - adwaita-icon-theme
+
+        # Fonts.
+        - fonts-dejavu
+        - fonts-dejavu-core
+        - fonts-dejavu-extra
+        - fonts-hack
+        - fonts-hack-web
+        - fonts-inconsolata
+        - fonts-lato
+        - fonts-liberation
+        - fonts-liberation2
+        - fonts-lobster
+        - fonts-noto
+        - fonts-noto-hinted
+        - fonts-noto-mono
+        - fonts-noto-unhinted
+        - fonts-open-sans
+        - fonts-powerline
+        - fonts-roboto
+        - fonts-roboto-fontface
+        - fonts-roboto-unhinted
+        - fonts-ubuntu
+        - fonts-ubuntu-console
 
       # List of deb files that should be installed.
       deb:

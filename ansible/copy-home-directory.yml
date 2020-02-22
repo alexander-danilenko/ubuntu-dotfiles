@@ -12,3 +12,4 @@
         dest: '/home/{{ ansible_facts.user_id }}'
         owner: '{{ ansible_facts.user_id }}'
         group: '{{ ansible_facts.user_id }}'
+        backup: no

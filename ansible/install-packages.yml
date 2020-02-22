@@ -21,13 +21,11 @@
         state: present
         update_cache: no
 
-    - name: 'Updating apt cache...'
-      apt:
-        update_cache: yes
-
     - name: 'Installing packages from config.yml list...'
       apt:
         pkg: '{{ apt.packages.install.list }}'
+        state: latest
+        update_cache: yes
 
     - name: 'Installing DEB packages...'
       loop: '{{ apt.packages.install.deb }}'
@@ -37,6 +35,7 @@
     - name: 'Making sure that flatpak package is installed...'
       apt:
         pkg: 'flatpak'
+        state: latest
 
     - name: 'Configuring flathub repo...'
       flatpak_remote:
