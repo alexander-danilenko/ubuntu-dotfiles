@@ -29,7 +29,7 @@ vscode:
     - esbenp.prettier-vscode      # Prettier - Code formatter
     - pkief.material-icon-theme   # Material Icon Theme
     - dracula-theme.theme-dracula # Dracula theme
-    - mikestead.dotenv            # File support .env
+    - mikestead.dotenv            # File support for .env
 
 # APT package manager settings.
 apt:
@@ -113,7 +113,7 @@ apt:
         - php7.3-zip
 
         # Development
-        - mysql-workbench
+        - mysql-workbench # MySQL GUI client
         - sublime-merge   # Git GUI client
         - sublime-text    # Lightning fast code editor
 
@@ -123,8 +123,8 @@ apt:
         - qbittorrent          # Best torrent downloading ever
         
         # Office
-        # - evolution     # Email client
-        # - evolution-ews # Microsoft Exchange services support
+        #- evolution     # Email client
+        #- evolution-ews # Microsoft Exchange services support
         - libreoffice     # Not best, but good office suite
         - libreoffice-base-drivers
         - libreoffice-help-en-us
@@ -198,9 +198,10 @@ apt:
         - https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
 
       flathub:
-        - org.zealdocs.Zeal # Documentation offline viewer
-        - org.telegram.desktop
-        - com.skype.Client
-        - com.xnview.XnViewMP
-        - us.zoom.Zoom
-        - com.slack.Slack
+        - com.skype.Client        # Skype
+        - com.slack.Slack         # Slack chat
+        - com.xnview.XnViewMP     # Image viewer
+        - org.libretro.RetroArch  # RetroArch for old fasion games
+        - org.telegram.desktop    # Bomb has been planted
+        - org.zealdocs.Zeal       # Documentation offline viewer
+        - us.zoom.Zoom            # Zoom client
