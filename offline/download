@@ -23,4 +23,4 @@ AptDownload(
     kernel=deb_settings.get('kernel'),
     packages=deb_settings.get('list'),
     download_dir=deb_settings.get('download_dir')
-).runDownload()
+).download()
