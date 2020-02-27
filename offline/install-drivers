@@ -1,0 +1,16 @@
+#!/usr/bin/env python3
+
+from scripts.Driver import Driver
+import yaml
+
+with open('config.yml') as config:
+    settings = yaml.load(config)
+
+drivers_settings = settings.get('drivers')
+for driver in drivers_settings.get('list'):
+    Driver(
+        url=driver.get('url'),
+        filename=driver.get('name'),
+        install_commands=driver.get('install'),
+        download_dir=drivers_settings.get('download_dir')
+    ).install()
