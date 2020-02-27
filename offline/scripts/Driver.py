@@ -5,6 +5,7 @@ import sys
 import tempfile
 import zipfile
 import subprocess
+import shutil
 
 
 # Driver handler. Downloads and installs driver.
@@ -61,6 +62,7 @@ class Driver:
 
         # Write downloaded binary file to archive file.
         open(self.download_file_path, 'wb').write(self.response.content)
+
         return self
 
     # Unpacks downloaded driver and runs install commands on unarchived sources
@@ -82,4 +84,9 @@ class Driver:
         command_line = f'cd {tmp_dir} && {" && ".join(self.install_commands)}'
         print_green(f'[{self.filename}] Executing install command: "{command_line}"')
         subprocess.run(command_line, shell=True)
+
+        # Remove driver tmp directory.
+        print_green(f'[driver][{self.filename}] Removing {tmp_dir}')
+        shutil.rmtree(tmp_dir)
+
         return self
