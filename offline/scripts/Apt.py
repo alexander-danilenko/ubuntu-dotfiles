@@ -1,4 +1,4 @@
-from .Rainbow import *
+from .Logger import *
 import os
 import subprocess
 import apt
@@ -12,9 +12,12 @@ class AptDownload:
     kernel: str
     # List of packages that needs to be downloaded.
     packages: [str]
+    # The logger.
+    logger: Logger
 
     def __init__(self, packages, kernel='current', download_dir='./deb'):
-        self.download_dir = download_dir
+        self.logger = Logger('apt')
+        self.download_dir = os.path.abspath(download_dir)
         self.set_kernel(kernel)
         self.set_packages(packages)
 
@@ -24,7 +27,7 @@ class AptDownload:
         if self.kernel.lower() == 'current':
             k = subprocess.Popen('uname -r', stdout=subprocess.PIPE, shell=True)
             self.kernel = k.stdout.read().decode('utf-8').replace('\n', '')
-        print_green(f'[apt] Using kernel "{self.kernel}"')
+        self.logger.log(f'Using kernel "{self.kernel}"')
         return self
 
     # Sets packages list.
@@ -46,7 +49,7 @@ class AptDownload:
         os.chdir(self.download_dir)
         # Run 'apt download' in terminal.
         subprocess.run(f'apt download -q {" ".join(self.get_download_list())}', shell=True)
-        print_green(f'[apt] All packages was downloaded to "{self.download_dir}"')
+        self.logger.log(f'All packages was downloaded to "{self.download_dir}"')
 
 
 # Calculates dependencies recursively for apt package list.

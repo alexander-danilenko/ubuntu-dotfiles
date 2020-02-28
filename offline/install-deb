@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from scripts.Rainbow import *
+from scripts.Logger import *
 import glob
 import os
 import subprocess
@@ -10,21 +10,20 @@ import yaml
 with open('config.yml') as config:
     settings = yaml.load(config)
 
+logger = Logger('apt')
 download_dir = settings.get('deb').get("download_dir")
-deb_path = os.path.normpath(download_dir + '/*.deb')
+download_dir_abs = os.path.abspath(download_dir)
+deb_path = os.path.normpath(download_dir_abs + '/*.deb')
 deb_files = glob.glob(deb_path)
 
 # If no deb files was found.
 if len(deb_files) == 0:
-    print_fail(f'[deb] ERROR: No deb files found at {deb_path}')
+    logger.error(f'ERROR: No deb files found at {deb_path}')
     sys.exit(1)
 
-# Navigate to deb directory.
-os.chdir(download_dir)
-
-# Install all *.deb files.
-subprocess.run('sudo dpkg -i --recursive', shell=True)
+# Install all *.deb files from target dir.
+subprocess.run(f'sudo dpkg -i --recursive {download_dir_abs}', shell=True)
 # Make sure that everything is ok and apt dependencies was met.
 subprocess.run('sudo apt-get install --fix-broken', shell=True)
 
-print_green('[deb] Deb files installation was completed.')
+logger.log('Deb files installation was completed.')
