@@ -92,5 +92,6 @@ class Driver:
         # Remove driver tmp directory.
         self.logger.log(f'Removing {tmp_dir}')
         shutil.rmtree(tmp_dir)
+        self.logger.log('Driver was successfully installed.')
 
         return self
