@@ -20,7 +20,7 @@ drivers:
       url: https://codeload.github.com/gordboy/rtl8812au-5.6.4.2/zip/master
       install:
         - 'cd rtl8812au-5.6.4.2-master'
-        - 'sudo make'
+        - 'sudo make > /dev/null'
         - 'sudo make install'
 
     # Asus USB AC53 Nano WiFi dongle.
@@ -28,7 +28,7 @@ drivers:
       url: https://codeload.github.com/EntropicEffect/rtl8822bu/zip/master
       install:
         - 'cd rtl8822bu-master'
-        - 'sudo make'
+        - 'sudo make > /dev/null'
         - 'sudo make install'
 
     # xBox One gamepad.
