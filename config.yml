@@ -16,7 +16,7 @@ node:
   version: '12.14.1'
   npm:
     # List of npm packages that will be installed globally.
-    global: [eslint, gulp, bower, eslint-config-google, eslint-config-standard, eslint-config-airbnb, eslint-config-standard, eslint-plugin-jsx-a11y, eslint-plugin-react, eslint-plugin-import]
+    global: [bower, eslint, eslint-config-airbnb, eslint-config-google, eslint-config-standard, eslint-config-standard, eslint-plugin-import, eslint-plugin-jsx-a11y, eslint-plugin-react, flow, flow-bin, gulp, lsp, vscode-css-languageserver-bin, vscode-html-languageserver-bin]
     
 # Visual Studio Code settings.
 vscode:
