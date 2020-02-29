@@ -19,22 +19,23 @@ drivers:
     - name: rtl8812au.zip
       url: https://codeload.github.com/gordboy/rtl8812au-5.6.4.2/zip/master
       install:
-        - 'cd rtl8812au-5.6.4.2-master'
-        - 'sudo make > /dev/null'
-        - 'sudo make install'
+        - cd rtl8812au-5.6.4.2-master
+        - sudo make > /dev/null
+        - sudo make install
 
     # Asus USB AC53 Nano WiFi dongle.
     - name: rtl8822bu.zip
       url: https://codeload.github.com/EntropicEffect/rtl8822bu/zip/master
       install:
-        - 'cd rtl8822bu-master'
-        - 'sudo make > /dev/null'
-        - 'sudo make install'
+        - cd rtl8822bu-master
+        - sudo make > /dev/null
+        - sudo make install
 
     # xBox One gamepad.
     - name: xpadneo.zip
       url: https://codeload.github.com/atar-axis/xpadneo/zip/master
       install:
-        - 'cd xpadneo-master'
-        - 'sudo chmod +rwx install.sh'
-        - 'sudo ./install.sh'
+        - cd xpadneo-master
+        - sudo chmod +rwx install.sh
+        - sudo ./install.sh
+        - echo 'options bluetooth disable\_ertm=Y' | sudo tee /etc/modprobe.d/bluetooth.conf
