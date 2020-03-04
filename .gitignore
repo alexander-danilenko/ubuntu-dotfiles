@@ -1,4 +1,4 @@
 .idea
 ansible/roles
 !ansible/roles/requirements.yml
-home/.ssh
+home/*
