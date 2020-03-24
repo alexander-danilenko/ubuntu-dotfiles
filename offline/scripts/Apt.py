@@ -48,7 +48,7 @@ class AptDownload:
         # Navigate to download directory
         os.chdir(self.download_dir)
         # Run 'apt download' in terminal.
-        subprocess.run(f'apt download -q {" ".join(self.get_download_list())}', shell=True)
+        subprocess.run('apt-get download ' + ' '.join(self.get_download_list()), shell=True)
         self.logger.log(f'All packages was downloaded to "{self.download_dir}"')
 
 
