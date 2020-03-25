@@ -6,9 +6,7 @@ set -e
 
 # Packages required for script to run.
 which git 2>/dev/null || { sudo apt-get install -y -q git; }
-which ansible 2>/dev/null || { 
-  sudo apt install ansible -y -q
-}
+which ansible 2>/dev/null || { sudo apt install ansible -y -q; }
 
 ################## Helper functions ############################################
 echo_green() {
