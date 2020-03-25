@@ -39,7 +39,7 @@ class AptDownload:
         return self
 
     def get_download_list(self):
-        return sorted(AptDependencies(self.packages).dependencies)
+        return self.packages + AptDependencies(self.packages).get_dependencies()
 
     def download(self):
         # Create download directory if not exists
@@ -78,3 +78,6 @@ class AptDependencies:
                 if not dp[0].package.name in s:
                     s.add(dp[0].package.name)
                     self.calculate_dependencies(s, dp[0].package, recommends)
+
+    def get_dependencies(self):
+        return list(self.dependencies)
