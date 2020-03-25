@@ -7,9 +7,6 @@ set -e
 # Packages required for script to run.
 which git 2>/dev/null || { sudo apt-get install -y -q git; }
 which ansible 2>/dev/null || { 
-  sudo apt install software-properties-common
-  sudo apt-add-repository --yes ppa:ansible/ansible
-  sudo apt update
   sudo apt install ansible -y -q
 }
 
