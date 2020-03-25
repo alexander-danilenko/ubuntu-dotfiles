@@ -130,16 +130,16 @@ apt:
         - qbittorrent          # Best torrent downloading ever
         
         # Office
-        - evolution     # Email client
-        - evolution-ews # Microsoft Exchange services support
+        # - evolution     # Email client
+        # - evolution-ews # Microsoft Exchange services support
         - libreoffice   # Not best, but good office suite
         - libreoffice-base-drivers
         - libreoffice-help-en-us
         - libreoffice-help-ru
         - libreoffice-l10n-ru
         - libreoffice-l10n-uk
-        #- thunderbird
-        #- thunderbird-locale-ru
+        - thunderbird
+        - thunderbird-locale-ru
 
         # Media
         - flameshot              # Screenshot tool
@@ -165,8 +165,6 @@ apt:
         - okular          # Document viewer
         - kubuntu-restricted-addons # Commonly used restricted packages for Kubuntu
         - kubuntu-restricted-extras # Commonly used media codecs and fonts for Kubuntu
-        #- plasma-discover-backend-flatpak # Adds flatpak support to Discover package manager
-        #- plasma-discover-backend-snap    # Adds snap support to Discover package manager
 
         # KDE plasma themes
         - adapta-kde
@@ -210,9 +208,7 @@ apt:
         - https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
         - https://download.xnview.com/XnViewMP-linux-x64.deb
         - https://downloads.slack-edge.com/linux_releases/slack-desktop-4.3.2-amd64.deb
+        - https://global.download.synology.com/download/Tools/SynologyDriveClient/2.0.1-11061/Ubuntu/Installer/x86_64/synology-drive-client-11061.x86_64.deb
         - https://go.skype.com/skypeforlinux-64.deb
+        - https://zoom.us/client/latest/zoom_amd64.deb
 
-      flathub:
-        - org.telegram.desktop
-        - us.zoom.Zoom            # Zoom client
-        #- org.libretro.RetroArch  # RetroArch for old fasion games

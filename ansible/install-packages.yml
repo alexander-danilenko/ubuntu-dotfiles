@@ -32,19 +32,3 @@
       apt:
         deb: '{{ item }}'
 
-    - name: 'Making sure that flatpak package is installed...'
-      apt:
-        pkg: 'flatpak'
-        state: latest
-
-    - name: 'Configuring flathub repo...'
-      flatpak_remote:
-        name: flathub
-        flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
-    
-    - name: 'Installing flatpak packages...'
-      become: yes
-      loop: '{{ apt.packages.install.flathub }}'
-      flatpak:
-        name: '{{ item }}'
-        remote: flathub
