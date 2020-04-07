@@ -3,6 +3,10 @@
 /* Development services ======================================================*/
 $settings['container_yamls'][] = DRUPAL_ROOT . '/sites/development.services.yml';
 
+/* Devel services ============================================================*/
+$config['devel.settings']['error_handlers'][1] = 1; // Standard drupal errors.
+$config['devel.settings']['devel_dumper'] = 'var_dumper';
+
 /* Performance ===============================================================*/
 $config['system.performance']['cache']['page']['max_age'] = 24 * 3600;
 $config['system.performance']['css'] = ['preprocess' => FALSE, 'gzip' => FALSE];
