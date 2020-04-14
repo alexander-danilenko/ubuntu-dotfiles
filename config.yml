@@ -207,7 +207,7 @@ apt:
       deb:
         - https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
         - https://download.xnview.com/XnViewMP-linux-x64.deb
-        - https://downloads.slack-edge.com/linux_releases/slack-desktop-4.3.2-amd64.deb
+        - https://downloads.slack-edge.com/linux_releases/slack-desktop-4.4.2-amd64.deb
         - https://global.download.synology.com/download/Tools/SynologyDriveClient/2.0.1-11061/Ubuntu/Installer/x86_64/synology-drive-client-11061.x86_64.deb
         - https://go.skype.com/skypeforlinux-64.deb
         - https://zoom.us/client/latest/zoom_amd64.deb
