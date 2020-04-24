@@ -1,3 +1,2 @@
-- src: https://github.com/gantsign/ansible-role-antigen
 - src: https://github.com/jaredhocutt/ansible-jetbrains-toolbox
-- src: https://github.com/morgangraphics/ansible-role-nvm
+- src: https://github.com/alexander-danilenko/ansible-role-customize-gnome

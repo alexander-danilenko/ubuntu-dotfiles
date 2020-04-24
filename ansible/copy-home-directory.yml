@@ -9,7 +9,5 @@
     - name: "Copy `home` directory from repo to user's home directoriy"
       copy:
         src: '../home/'
-        dest: '/home/{{ ansible_facts.user_id }}'
-        owner: '{{ ansible_facts.user_id }}'
-        group: '{{ ansible_facts.user_id }}'
+        dest: '$HOME'
         backup: no

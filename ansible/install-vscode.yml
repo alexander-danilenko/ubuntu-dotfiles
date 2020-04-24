@@ -6,13 +6,13 @@
     - ../config.yml
 
   tasks:
-    - name: 'Installing Visual Studio Code...'
+    - name: 'Install Visual Studio Code...'
       become: yes
       apt:
         name: code
       when: vscode.install|bool
 
-    - name: 'Installing code extensions...'
+    - name: 'Install code extensions...'
       loop: '{{ vscode.plugins }}'
       command: 'code --install-extension {{ item }}'
       when: vscode.install|bool

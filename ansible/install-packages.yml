@@ -7,13 +7,13 @@
     - ../config.yml
 
   tasks:
-    - name: 'Adding apt keys...'
+    - name: 'Add apt keys'
       loop: '{{ apt.repos }}'
       apt_key:
         url: '{{ item.gpg }}'
       when: item.gpg is defined
 
-    - name: 'Adding PPA repositories...'
+    - name: 'Add PPA repositories'
       loop: '{{ apt.repos }}'
       apt_repository:
         repo: '{{ item.repo }}'
@@ -21,14 +21,28 @@
         state: present
         update_cache: no
 
-    - name: 'Installing packages from config.yml list...'
+    - name: Update apt cache
       apt:
-        pkg: '{{ apt.packages.install.list }}'
-        state: latest
         update_cache: yes
 
-    - name: 'Installing DEB packages...'
+    - name: 'Install global packages'
+      apt:
+        pkg: '{{ apt.packages.install.list }}'
+        state: present
+
+    - name: 'Install gnome packages'
+      apt:
+        pkg: '{{ gnome.apt.install }}'
+        state: present
+      when: gnome.apply|bool
+
+    - name: 'Install KDE packages'
+      apt:
+        pkg: '{{ kde.apt.install }}'
+        state: present
+      when: kde.apply|bool
+
+    - name: 'Install DEB packages'
       loop: '{{ apt.packages.install.deb }}'
       apt:
         deb: '{{ item }}'
-

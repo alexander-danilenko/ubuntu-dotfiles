@@ -1,0 +1,17 @@
+---
+
+- hosts: 127.0.0.1
+  connection: local
+  vars_files:
+    - ../config.yml
+
+  tasks:
+    - name: Configure Gnome
+      include_role:
+        name: ansible-role-customize-gnome
+      vars:
+        gnome_user: $USER
+        gnome_extensions: '{{ gnome.extensions }}'
+        gnome_gsettings: '{{ gnome.gsettings }}'
+        gnome_dconf: '{{ gnome.dconf }}'
+      when: gnome.apply|bool

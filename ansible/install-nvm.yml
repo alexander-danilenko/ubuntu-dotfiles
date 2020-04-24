@@ -6,26 +6,18 @@
     - ../config.yml
 
   tasks:
-    - name: Making sure that "nodejs" package is removed
+    - name: Make sure that "nodejs" package is removed
       become: yes
       apt:
         name: nodejs
         state: absent
 
-    - name: Create ~/.nvm directory
-      file:
-        path: ~/.nvm
-        state: directory
-        recurse: yes
-        mode: '0755'
+    - name: Install node via nvm
+      command: "zsh -c 'source $HOME/.zshrc && nvm install {{ node.version }} && nvm use {{ node.version }}'"
+      when: zsh_antigen_configured is succeeded
+      ignore_errors: yes
 
-    - name: Node version manager
-      include_role:
-        name: ansible-role-nvm
-      vars:
-        nodejs_version: "{{ node.version }}"
-        nvm_dir: "{{ ansible_env.HOME }}/.nvm"
-        default: True
-        nvm_commands:
-          - "nvm alias service-default {{ node.version }}"
-          - "nvm exec service-default npm install -g {{ node.npm.global | join(' ') }}"
+    - name: Install global npm packages
+      command: "zsh -c 'source $HOME/.zshrc && npm install -g {{ node.npm.global | join(' ') }}'"
+      when: zsh_antigen_configured is succeeded
+      ignore_errors: yes

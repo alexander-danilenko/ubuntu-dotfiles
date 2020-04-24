@@ -1,23 +1,43 @@
-# ZSH settings.
-zsh:
+# PHP settings.
+php:
   install: yes
-  theme: avit
-  antigen_bundles:
-    - name: git
-    - name: command-not-found
-    - name: zsh-autosuggestions
-      url: zsh-users/zsh-autosuggestions
-    - name: zsh-nvm
-      url: lukechilds/zsh-nvm
+  version: 7.4
+  composer:
+    # List of packages that will be installed globally.
+    global:
+      - drupal/coder
 
 # Node settings.
 node:
   install: yes
-  version: '12.14.1'
+  version: '--lts' # Use current LTS version.
   npm:
-    # List of npm packages that will be installed globally.
-    global: [bower, eslint, eslint-config-airbnb, eslint-config-google, eslint-config-standard, eslint-config-standard, eslint-plugin-import, eslint-plugin-jsx-a11y, eslint-plugin-react, flow, flow-bin, gulp, lsp, vscode-css-languageserver-bin, vscode-html-languageserver-bin]
-    
+    # List of packages that will be installed globally.
+    global: 
+      - bower
+      - eslint
+      - eslint-config-airbnb
+      - eslint-config-google
+      - eslint-config-standard
+      - eslint-plugin-import
+      - eslint-plugin-jsx-a11y
+      - eslint-plugin-react
+      - firebase-tools # Google Firebase tools
+      - flow
+      - flow-bin
+      - gulp
+      - lsp
+      - vscode-css-languageserver-bin
+      - vscode-html-languageserver-bin
+
+python:
+  install: yes
+  version: 3.8
+  pip3:
+    # List of packages that will be installed globally.
+    global:
+      - awscli
+
 # Visual Studio Code settings.
 vscode:
   install: yes
@@ -33,9 +53,11 @@ vscode:
 
 # APT package manager settings.
 apt:
+  # Add 3rd party DEB repos
   repos:
     - name: Docker
       filename: docker
+      # @TODO: Update when 'focal' repo will be created. 
       repo: 'deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable'
       gpg: 'https://download.docker.com/linux/ubuntu/gpg'
 
@@ -43,21 +65,6 @@ apt:
       filename: google-chrome
       repo: 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main'
       gpg: 'https://dl-ssl.google.com/linux/linux_signing_key.pub'
-
-    - name: Numix theme
-      filename: numix
-      repo: 'deb http://ppa.launchpad.net/numix/ppa/ubuntu bionic main'
-      gpg: 'https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x43e076121739dee5fb96bbed52b709720f164eeb'
-
-    - name: Papirus icon theme
-      filename: papirus
-      repo: 'deb http://ppa.launchpad.net/papirus/papirus/ubuntu bionic main'
-      gpg: 'https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x9461999446faf0df770bfc9ae58a9d36647cae7f'
-
-    - name: Yarn
-      filename: yarn
-      repo: 'deb https://dl.yarnpkg.com/debian/ stable main'
-      gpg: 'https://dl.yarnpkg.com/debian/pubkey.gpg'
 
     - name: Visual Studio Code
       filename: vscode
@@ -69,15 +76,25 @@ apt:
       repo: 'deb https://download.sublimetext.com/ apt/stable/'
       gpg: 'https://download.sublimetext.com/sublimehq-pub.gpg'
 
+    - name: Skype
+      filename: skype
+      repo: 'deb [arch=amd64] https://repo.skype.com/deb stable main'
+      gpg: https://repo.skype.com/data/SKYPE-GPG-KEY
+
     - name: PHP
       filename: php
-      repo: 'deb http://ppa.launchpad.net/ondrej/php/ubuntu bionic main'
-      gpg: 'https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x14aa40ec0831756756d7f66c4f4ea0aae5267a6c'
+      repo: 'deb http://ppa.launchpad.net/ondrej/php/ubuntu focal main'
+      gpg: 'https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x4f4ea0aae5267a6c'
 
     - name: RetroArch
       filename: retroarch
-      repo: 'deb http://ppa.launchpad.net/libretro/stable/ubuntu bionic main'
-      gpg: 'https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3b2ba0b6750986899b189aff18daae7feca3745f'
+      repo: 'deb http://ppa.launchpad.net/libretro/stable/ubuntu focal main'
+      gpg: 'https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x18daae7feca3745f'
+ 
+    - name: SoftMaker Office
+      filename: softmaker-office
+      repo: 'deb [arch=amd64] http://shop.softmaker.com/repo/apt wheezy non-free'
+      gpg: 'https://shop.softmaker.com/repo/linux-repo-public.key'
 
   packages:
     install:
@@ -87,7 +104,6 @@ apt:
         - curl        # Command line tool for transferring data with URL syntax
         - default-jdk # Jave development kit
         - default-jre # Java runtime
-        - dia         # Diagram editor
         - exfat-fuse  # Read and write exFAT driver
         - exfat-utils # Utilities to create, check, label and dump exFAT file system 
         - htop        # Terminal system monitor
@@ -97,90 +113,49 @@ apt:
         - neofetch    # Shows Linux System Information with Distribution Logo
         - net-tools   # Base network tools
         - nfs-common  # Package for work with NFS shares
-        - python3     # Python3 interpreter
-        - python3-pip # Python3 package manager
         - rar         # rar archiver
         - tree        # Displays an indented directory tree, in color
         - unrar       # rar unarchiver
         - unzip       # zip unarchiver
         - zip         # zip archiver
-        - zsh         # zsh shell. Like bash, but better
-
-        # PHP 7.3
-        - php7.3-common
-        - php7.3-cli
-        - php7.3-curl
-        - php7.3-gd
-        - php7.3-json
-        - php7.3-mbstring
-        - php7.3-mysql
-        - php7.3-opcache
-        - php7.3-xml
-        - php7.3-zip
 
         # Development
         - sublime-merge   # Git GUI client
         - sublime-text    # Lightning fast code editor
         - zeal            # Offline documentation viewer
-        #- mysql-workbench # MySQL GUI client
 
         # Internet
         - firefox              # From Mozilla team with <3
         - google-chrome-stable # Thing for collecting your personal data
-        - qbittorrent          # Best torrent downloading ever
-        
+        - transmission         # Torrent client
+        - evolution     # Email client
+        - evolution-ews # Microsoft Exchange services support
+        - skypeforlinux
+        # - thunderbird 
+        # - thunderbird-locale-ru
+
         # Office
-        # - evolution     # Email client
-        # - evolution-ews # Microsoft Exchange services support
-        - libreoffice   # Not best, but good office suite
-        - libreoffice-base-drivers
-        - libreoffice-help-en-us
-        - libreoffice-help-ru
-        - libreoffice-l10n-ru
-        - libreoffice-l10n-uk
-        - thunderbird
-        - thunderbird-locale-ru
+        - softmaker-freeoffice-2018 # Best free MS Office alternative 
+        # - libreoffice
+        # - libreoffice-base-drivers
+        # - libreoffice-help-en-us
+        # - libreoffice-help-ru
+        # - libreoffice-l10n-ru
+        # - libreoffice-l10n-uk
 
         # Media
-        - flameshot              # Screenshot tool
-        - inkscape               # Vector image editor
-        #- deepin-picker          # Color picker
-        #- deepin-screen-recorder # Screen recorder
-
-        # KDE-specific packages
-        - gwenview        # Image browser
-        - kcalc           # Calculator
-        - kget            # Download manager
-        - kmahjongg       # Game: Mahjongg
-        - kmines          # Game: Minesweeper
-        - knights         # Game: Chess
-        - kompare         # Diff viewer
-        - kpat            # Game: Solitaire 
-        - krdc            # RDC/VNC viewer
-        - krename         # Mass rename tool
-        - krita           # Image editing software
-        - krusader        # Two-panel file manager
-        - ksysguard       # System monitor
-        - ksystemlog      # System logs viewer
-        - okular          # Document viewer
-        - kubuntu-restricted-addons # Commonly used restricted packages for Kubuntu
-        - kubuntu-restricted-extras # Commonly used media codecs and fonts for Kubuntu
-
-        # KDE plasma themes
-        - adapta-kde
-        - arc-kde
-        - materia-kde
+        - dia       # Diagram editor
+        - flameshot # Screenshot tool
+        - inkscape  # Vector image editor
 
         # Icons
-        - adwaita-icon-theme
+        - adwaita-icon-theme-full
         - deepin-icon-theme
-        - numix-blue-gtk-theme
-        - numix-gtk-theme
         - numix-icon-theme
         - numix-icon-theme-circle
         - papirus-icon-theme
 
-        # Fonts.
+        # Fonts
         - fonts-dejavu
         - fonts-dejavu-core
         - fonts-dejavu-extra
@@ -207,8 +182,69 @@ apt:
       deb:
         - https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
         - https://download.xnview.com/XnViewMP-linux-x64.deb
-        - https://downloads.slack-edge.com/linux_releases/slack-desktop-4.4.2-amd64.deb
         - https://global.download.synology.com/download/Tools/SynologyDriveClient/2.0.1-11061/Ubuntu/Installer/x86_64/synology-drive-client-11061.x86_64.deb
-        - https://go.skype.com/skypeforlinux-64.deb
-        - https://zoom.us/client/latest/zoom_amd64.deb
 
+# Gnome-specific configuration.
+# Note: it should be applied ONLY to regular Ubuntu installation.
+gnome:
+  apply: yes
+  apt:
+    install:
+      - gnome-tweaks
+      - ubuntu-restricted-addons
+      - ubuntu-restricted-extras
+
+      # Themes
+      - adapta-gtk-theme
+      - materia-gtk-theme
+      - arc-theme
+      - numix-blue-gtk-theme
+      - numix-gtk-theme
+  extensions:
+    - id: 19   # User Themes for Gnome Shell
+      enable: yes
+    - id: 258  # Notifications Alert
+      enable: yes
+    - id: 307  # Dash to Dock
+      enable: yes
+    - id: 906  # Sound Input & Output Device Chooser
+      enable: yes
+    - id: 1040 # Random wallpaper
+      enable: yes
+    - id: 1228 # Arc Menu
+      enable: yes
+    - id: 1251 # Blyr
+      enable: yes
+    - id: 1287 # Unite
+      enable: no
+  gsettings: []
+  dconf: []
+
+# KDE-specific configuration.
+# Note: it should be applied ONLY to KUbuntu installation.
+kde:
+  apply: no
+  apt:
+    install:
+      - gwenview   # Image browser
+      - kcalc      # Calculator
+      - kget       # Download manager
+      - kmahjongg  # Game: Mahjongg
+      - kmines     # Game: Minesweeper
+      - knights    # Game: Chess
+      - kompare    # Diff viewer
+      - kpat       # Game: Solitaire 
+      - krdc       # RDC/VNC viewer
+      - krename    # Mass rename tool
+      - krita      # Image editing software
+      - krusader   # Two-panel file manager
+      - ksysguard  # System monitor
+      - ksystemlog # System logs viewer
+      - okular     # Document viewer
+      - kubuntu-restricted-addons
+      - kubuntu-restricted-extras
+
+      # KDE themes
+      - adapta-kde
+      - arc-kde
+      - materia-kde

@@ -1,0 +1,31 @@
+---
+
+- hosts: 127.0.0.1
+  connection: local
+  vars_files:
+    - ../config.yml
+
+  tasks:
+    - name: Install zsh package
+      apt:
+        name: zsh
+      register: zsh_installed
+
+    - name: Make ~/.antigen directory 
+      file:
+        path: $HOME/.antigen
+        state: directory
+
+    - name: Download Antigen
+      get_url:
+        url: https://git.io/antigen
+        dest: $HOME/.antigen/antigen.zsh
+      register: zsh_antigen_installed
+    
+    - name: Apply settings from ./home/.zshrc
+      copy:
+        src: '../home/.zshrc'
+        dest: '$HOME/.zshrc'
+        backup: no
+      register: zsh_antigen_configured
+
