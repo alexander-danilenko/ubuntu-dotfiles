@@ -48,11 +48,11 @@
         state: present
       when: kde.apply|bool
 
-    # - name: 'Install snap packages'
-    #   become: yes
-    #   loop: '{{ snap.install }}'
-    #   snap:
-    #     name: '{{ item.name }}'
-    #     classic: '{{ item.classic | default("yes") }}'
-    #     channel: '{{ item.channel | default("stable")}}'
-    #     state: present
+    - name: 'Install snap packages'
+      become: yes
+      loop: '{{ snap.install }}'
+      snap:
+        name: '{{ item.name }}'
+        classic: '{{ item.classic | default("yes") }}'
+        channel: '{{ item.channel | default("stable")}}'
+        state: present

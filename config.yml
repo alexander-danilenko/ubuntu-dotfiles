@@ -188,29 +188,29 @@ apt:
     - fonts-ubuntu
     - fonts-ubuntu-console
 
-# snap:
-#   install:
-#     # - name: icloud-for-linux
-#     #   classic: yes
-#     - name: skype
-#     - name: slack
-#     - name: telegram-desktop
-#     - name: zoom-client
-#     - name: sublime-text
-#     - name: sublime-merge
+snap:
+  install:
+    # - name: icloud-for-linux
+    #   classic: yes
+    - name: skype
+    - name: slack
+    - name: telegram-desktop
+    - name: zoom-client
+    - name: sublime-text
+    - name: sublime-merge
 
-#     # Jetbrains products
-#     - name: intellij-idea-community # Jave IDE.
-#     - name: phpstorm                # PHP IDE
-#     - name: pycharm-community       # Python IDE
-#     # - name: clion                   # C/C++ IDE
-#     # - name: goland                  # Golang IDE
-#     # - name: intellij-idea-ultimate  # Java IDE
-#     # - name: pycharm-professional    # Python IDE
-#     # - name: rider                   # .NET IDE
-#     # - name: rubymine                # Ruby IDE
-#     # - name: space                   # JB Space
-#     # - name: webstorm                # HTML/JS IDE
+    # Jetbrains products
+    - name: intellij-idea-community # Jave IDE.
+    - name: phpstorm                # PHP IDE
+    - name: pycharm-community       # Python IDE
+    # - name: clion                   # C/C++ IDE
+    # - name: goland                  # Golang IDE
+    # - name: intellij-idea-ultimate  # Java IDE
+    # - name: pycharm-professional    # Python IDE
+    # - name: rider                   # .NET IDE
+    # - name: rubymine                # Ruby IDE
+    # - name: space                   # JB Space
+    # - name: webstorm                # HTML/JS IDE
 
 # Ubuntu Gnome specific configuration.
 # Note: it should be applied ONLY to regular Ubuntu installation.
