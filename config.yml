@@ -114,11 +114,6 @@ apt:
     - unzip       # zip unarchiver
     - zip         # zip archiver
 
-    # Development
-    - sublime-merge   # Git GUI client
-    - sublime-text    # Lightning fast code editor
-    - zeal            # Offline documentation viewer
-
     # Internet
     - evolution     # Email client
     - evolution-ews # Microsoft Exchange services support
@@ -175,11 +170,12 @@ apt:
 snap:
   install:
     - name: skype
-    - name: slack
-    - name: telegram-desktop
-    - name: zoom-client
-    - name: sublime-text
-    - name: sublime-merge
+    - name: slack            # Corporate chat
+    - name: telegram-desktop # Personal chat
+    - name: zoom-client      # Zoom.us client
+    - name: sublime-text     # Text/code editor
+    - name: sublime-merge    # Git GUI
+    - name: zeal-casept      # Offline documentation viewer
     # - name: icloud-for-linux
     #   classic: yes
     #   channel: latest

@@ -7,7 +7,7 @@ This repo contains Ansible scripts for fast and easy PHP/Drupal developer linux 
 ## Motivation
 Setting up a new PHP/Drupal developer machine can be an ad-hoc, manual, and time-consuming process. Current project aims to simplify the process with instructions and dotfiles/scripts to automate the setup of the following:
 
-- ZSH + antigen + [beast config](home/.zshrc)
+- ZSH + [antigen](https://github.com/zsh-users/antigen) + [beast config](home/.zshrc)
 - [PHP](https://www.php.net/)
 - [Composer](https://getcomposer.org/)
 - [Drupal CodeSniffer standard](https://git.drupalcode.org/project/coder/tree/8.x-3.x/coder_sniffer)
