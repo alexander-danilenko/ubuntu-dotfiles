@@ -1,6 +1,6 @@
 ## TL;DR
 
-This repo contains Ansible scripts for fast and easy PHP/Drupal developer linux setup and dotfiles for Kubuntu. 
+This repo contains Ansible scripts for fast and easy PHP/Drupal developer environment setup on [ubuntu](https://ubuntu.com/)/[kubuntu](https://kubuntu.org/) linux. 
 
 ---
 
@@ -16,6 +16,7 @@ Setting up a new PHP/Drupal developer machine can be an ad-hoc, manual, and time
   - [PHPStorm](https://snapcraft.io/phpstorm)
   - [PyCharm (CE)](https://snapcraft.io/pycharm-community)
   - [IDEA (CE)](https://snapcraft.io/intellij-idea-community)
+  - (optional) any other...
 - [Docker](https://www.docker.com/)
 - [Docksal](https://docksal.io/)
 - [Visual Studio Code](https://code.visualstudio.com/) + Plugins + Themes
