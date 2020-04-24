@@ -8,8 +8,11 @@
   tasks:
     - name: 'Install Visual Studio Code...'
       become: yes
-      apt:
+      snap:
         name: code
+        classic: yes
+        channel: latest
+        state: present
       when: vscode.install|bool
 
     - name: 'Install code extensions...'
