@@ -7,6 +7,12 @@
     - ../config.yml
 
   tasks:
+    # Run deb installation first as deb packages can add apt repos.
+    - name: 'Install DEB packages'
+      loop: '{{ apt.deb }}'
+      apt:
+        deb: '{{ item }}'
+
     - name: 'Add apt keys'
       loop: '{{ apt.repos }}'
       apt_key:
@@ -27,22 +33,26 @@
 
     - name: 'Install global packages'
       apt:
-        pkg: '{{ apt.packages.install.list }}'
+        pkg: '{{ apt.install }}'
         state: present
 
-    - name: 'Install gnome packages'
+    - name: 'Install Gnome-specific packages'
       apt:
         pkg: '{{ gnome.apt.install }}'
         state: present
       when: gnome.apply|bool
 
-    - name: 'Install KDE packages'
+    - name: 'Install KDE-specific packages'
       apt:
         pkg: '{{ kde.apt.install }}'
         state: present
       when: kde.apply|bool
 
-    - name: 'Install DEB packages'
-      loop: '{{ apt.packages.install.deb }}'
-      apt:
-        deb: '{{ item }}'
+    # - name: 'Install snap packages'
+    #   become: yes
+    #   loop: '{{ snap.install }}'
+    #   snap:
+    #     name: '{{ item.name }}'
+    #     classic: '{{ item.classic | default("yes") }}'
+    #     channel: '{{ item.channel | default("stable")}}'
+    #     state: present

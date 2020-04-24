@@ -53,7 +53,7 @@ vscode:
 
 # APT package manager settings.
 apt:
-  # Add 3rd party DEB repos
+  # Add 3rd party apt repos.
   repos:
     - name: Docker
       filename: docker
@@ -96,95 +96,123 @@ apt:
       repo: 'deb [arch=amd64] http://shop.softmaker.com/repo/apt wheezy non-free'
       gpg: 'https://shop.softmaker.com/repo/linux-repo-public.key'
 
-  packages:
-    install:
-      # List of apt packages to install. Will be installed with all required dependencies.
-      list:
-        # System and terminal tools
-        - curl        # Command line tool for transferring data with URL syntax
-        - default-jdk # Jave development kit
-        - default-jre # Java runtime
-        - exfat-fuse  # Read and write exFAT driver
-        - exfat-utils # Utilities to create, check, label and dump exFAT file system 
-        - htop        # Terminal system monitor
-        - jq          # JSON query tool
-        - lhasa       # lzh unarchiver
-        - mc          # Two panel terminal file manager
-        - neofetch    # Shows Linux System Information with Distribution Logo
-        - net-tools   # Base network tools
-        - nfs-common  # Package for work with NFS shares
-        - rar         # rar archiver
-        - tree        # Displays an indented directory tree, in color
-        - unrar       # rar unarchiver
-        - unzip       # zip unarchiver
-        - zip         # zip archiver
+    - name: NordVPN
+      filename: nordvpn
+      repo: 'deb https://repo.nordvpn.com/deb/nordvpn/debian stable main'
+      gpg: 'https://repo.nordvpn.com/gpg/nordvpn_public.asc'
 
-        # Development
-        - sublime-merge   # Git GUI client
-        - sublime-text    # Lightning fast code editor
-        - zeal            # Offline documentation viewer
+  # List of deb files that should be installed.
+  deb:
+    - https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
+    - https://download.xnview.com/XnViewMP-linux-x64.deb
+    - https://global.download.synology.com/download/Tools/SynologyDriveClient/2.0.1-11061/Ubuntu/Installer/x86_64/synology-drive-client-11061.x86_64.deb
 
-        # Internet
-        - firefox              # From Mozilla team with <3
-        - google-chrome-stable # Thing for collecting your personal data
-        - transmission         # Torrent client
-        - evolution     # Email client
-        - evolution-ews # Microsoft Exchange services support
-        - skypeforlinux
-        # - thunderbird 
-        # - thunderbird-locale-ru
+  # List of apt packages to install. Will be installed with all required dependencies.
+  install:
+    # System and terminal tools
+    - curl        # Command line tool for transferring data with URL syntax
+    - default-jdk # Jave development kit
+    - default-jre # Java runtime
+    - exfat-fuse  # Read and write exFAT driver
+    - exfat-utils # Utilities to create, check, label and dump exFAT file system 
+    - htop        # Terminal system monitor
+    - jq          # JSON query tool
+    - lhasa       # lzh unarchiver
+    - mc          # Two panel terminal file manager
+    - neofetch    # Shows Linux System Information with Distribution Logo
+    - net-tools   # Base network tools
+    - nfs-common  # Package for work with NFS shares
+    - nordvpn     # NordVPN client
+    - rar         # rar archiver
+    - tree        # Displays an indented directory tree, in color
+    - unrar       # rar unarchiver
+    - unzip       # zip unarchiver
+    - zip         # zip archiver
 
-        # Office
-        - softmaker-freeoffice-2018 # Best free MS Office alternative 
-        # - libreoffice
-        # - libreoffice-base-drivers
-        # - libreoffice-help-en-us
-        # - libreoffice-help-ru
-        # - libreoffice-l10n-ru
-        # - libreoffice-l10n-uk
+    # Development
+    - sublime-merge   # Git GUI client
+    - sublime-text    # Lightning fast code editor
+    - zeal            # Offline documentation viewer
 
-        # Media
-        - dia       # Diagram editor
-        - flameshot # Screenshot tool
-        - inkscape  # Vector image editor
+    # Internet
+    - firefox              # From Mozilla team with <3
+    - google-chrome-stable # Thing for collecting your personal data
+    - transmission         # Torrent client
+    - evolution     # Email client
+    - evolution-ews # Microsoft Exchange services support
+    - skypeforlinux
+    # - thunderbird 
+    # - thunderbird-locale-ru
 
-        # Icons
-        - adwaita-icon-theme-full
-        - deepin-icon-theme
-        - numix-icon-theme
-        - numix-icon-theme-circle
-        - papirus-icon-theme
+    # Office
+    - softmaker-freeoffice-2018 # Best free MS Office alternative 
+    # - libreoffice
+    # - libreoffice-base-drivers
+    # - libreoffice-help-en-us
+    # - libreoffice-help-ru
+    # - libreoffice-l10n-ru
+    # - libreoffice-l10n-uk
 
-        # Fonts
-        - fonts-dejavu
-        - fonts-dejavu-core
-        - fonts-dejavu-extra
-        - fonts-hack
-        - fonts-hack-web
-        - fonts-inconsolata
-        - fonts-lato
-        - fonts-liberation
-        - fonts-liberation2
-        - fonts-lobster
-        - fonts-noto
-        - fonts-noto-hinted
-        - fonts-noto-mono
-        - fonts-noto-unhinted
-        - fonts-open-sans
-        - fonts-powerline
-        - fonts-roboto
-        - fonts-roboto-fontface
-        - fonts-roboto-unhinted
-        - fonts-ubuntu
-        - fonts-ubuntu-console
+    # Media
+    - dia       # Diagram editor
+    - flameshot # Screenshot tool
+    - inkscape  # Vector image editor
 
-      # List of deb files that should be installed.
-      deb:
-        - https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
-        - https://download.xnview.com/XnViewMP-linux-x64.deb
-        - https://global.download.synology.com/download/Tools/SynologyDriveClient/2.0.1-11061/Ubuntu/Installer/x86_64/synology-drive-client-11061.x86_64.deb
+    # Icons
+    - adwaita-icon-theme-full
+    - deepin-icon-theme
+    - numix-icon-theme
+    - numix-icon-theme-circle
+    - papirus-icon-theme
 
-# Gnome-specific configuration.
+    # Fonts
+    - fonts-dejavu
+    - fonts-dejavu-core
+    - fonts-dejavu-extra
+    - fonts-hack
+    - fonts-hack-web
+    - fonts-inconsolata
+    - fonts-lato
+    - fonts-liberation
+    - fonts-liberation2
+    - fonts-lobster
+    - fonts-noto
+    - fonts-noto-hinted
+    - fonts-noto-mono
+    - fonts-noto-unhinted
+    - fonts-open-sans
+    - fonts-powerline
+    - fonts-roboto
+    - fonts-roboto-fontface
+    - fonts-roboto-unhinted
+    - fonts-ubuntu
+    - fonts-ubuntu-console
+
+# snap:
+#   install:
+#     # - name: icloud-for-linux
+#     #   classic: yes
+#     - name: skype
+#     - name: slack
+#     - name: telegram-desktop
+#     - name: zoom-client
+#     - name: sublime-text
+#     - name: sublime-merge
+
+#     # Jetbrains products
+#     - name: intellij-idea-community # Jave IDE.
+#     - name: phpstorm                # PHP IDE
+#     - name: pycharm-community       # Python IDE
+#     # - name: clion                   # C/C++ IDE
+#     # - name: goland                  # Golang IDE
+#     # - name: intellij-idea-ultimate  # Java IDE
+#     # - name: pycharm-professional    # Python IDE
+#     # - name: rider                   # .NET IDE
+#     # - name: rubymine                # Ruby IDE
+#     # - name: space                   # JB Space
+#     # - name: webstorm                # HTML/JS IDE
+
+# Ubuntu Gnome specific configuration.
 # Note: it should be applied ONLY to regular Ubuntu installation.
 gnome:
   apply: yes
