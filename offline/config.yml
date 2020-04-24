@@ -6,11 +6,40 @@ deb:
     - linux-modules-{KERNEL}
     - linux-modules-extra-{KERNEL}
     - linux-headers-{KERNEL}
-    - build-essential # C/C++ building tools.
-    - exfat-fuse      # exFAT file system drivers.
-    - exfat-utils     # exFAT file system tools.
-    - net-tools       # Basic networking tools handy for setup.
-    - dkms            # Dynamic Kernel Module Support Framework
+    - build-essential
+    - exfat-fuse
+    - exfat-utils
+    - net-tools
+    - dkms
+    - binutils
+    - fakeroot
+    - dpkg-dev
+    - fakeroot
+    - g++
+    - g++-9
+    - gcc
+    - gcc-9
+    - make
+    - manpages-dev
+    - binutils-common
+    - binutils-x86-64-linux-gnu
+    - libasan5
+    - libatomic1
+    - libbinutils
+    - libc-dev-bin
+    - libc6-dev
+    - libcrypt-dev
+    - libctf-nobfd0
+    - libctf0
+    - libfakeroot
+    - libgcc-9-dev
+    - libitm1
+    - liblsan0
+    - libquadmath0
+    - libstdc++-9-dev
+    - libtsan0
+    - libubsan1
+    - linux-libc-dev
 
 drivers:
   download_dir: './drivers'
