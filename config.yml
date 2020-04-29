@@ -65,7 +65,7 @@ vscode:
     # - oderwat.indent-rainbow # Makes indentation easier to read
 
 # APT package manager settings.
-apt:
+apps:
   # Add 3rd party apt repos.
   repos:
     - name: Docker
@@ -106,7 +106,7 @@ apt:
     - https://global.download.synology.com/download/Tools/SynologyDriveClient/2.0.1-11061/Ubuntu/Installer/x86_64/synology-drive-client-11061.x86_64.deb
 
   # List of apt packages to install. Will be installed with all required dependencies.
-  install:
+  apt:
     # System and terminal tools
     - curl        # Command line tool for transferring data with URL syntax
     - default-jdk # Jave development kit
@@ -180,32 +180,32 @@ apt:
     - fonts-ubuntu
     - fonts-ubuntu-console
 
-snap:
-  install:
-    - name: skype
-    - name: slack            # Corporate chat
-    - name: telegram-desktop # Personal chat
-    - name: zoom-client      # Zoom.us client
-    - name: sublime-text     # Text/code editor
-    - name: sublime-merge    # Git GUI
-    - name: zeal-casept      # Offline documentation viewer
-    # - name: icloud-for-linux
-    #   classic: yes
-    #   channel: latest
+  snap:
+    install:
+      - name: skype
+      - name: slack            # Corporate chat
+      - name: telegram-desktop # Personal chat
+      - name: zoom-client      # Zoom.us client
+      - name: sublime-text     # Text/code editor
+      - name: sublime-merge    # Git GUI
+      - name: zeal-casept      # Offline documentation viewer
+      # - name: icloud-for-linux
+      #   classic: yes
+      #   channel: latest
 
-    # Jetbrains products
-    - name: intellij-idea-community # Jave IDE
-    - name: phpstorm                # PHP IDE
-    - name: pycharm-community       # Python IDE
-    # - name: android-studio          # Android IDE
-    # - name: clion                   # C/C++ IDE
-    # - name: goland                  # Golang IDE
-    # - name: intellij-idea-ultimate  # Java IDE
-    # - name: pycharm-professional    # Python IDE
-    # - name: rider                   # .NET IDE
-    # - name: rubymine                # Ruby IDE
-    # - name: space                   # JB Space
-    # - name: webstorm                # HTML/JS IDE
+      # Jetbrains products
+      - name: intellij-idea-community # Jave IDE
+      - name: phpstorm                # PHP IDE
+      - name: pycharm-community       # Python IDE
+      # - name: android-studio          # Android IDE
+      # - name: clion                   # C/C++ IDE
+      # - name: goland                  # Golang IDE
+      # - name: intellij-idea-ultimate  # Java IDE
+      # - name: pycharm-professional    # Python IDE
+      # - name: rider                   # .NET IDE
+      # - name: rubymine                # Ruby IDE
+      # - name: space                   # JB Space
+      # - name: webstorm                # HTML/JS IDE
 
 # Ubuntu Gnome specific configuration.
 # Note: it should be applied ONLY to regular Ubuntu installation.

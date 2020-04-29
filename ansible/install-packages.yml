@@ -2,47 +2,49 @@
 
 - hosts: 127.0.0.1
   connection: local
-  become: yes
   vars_files:
     - ../config.yml
 
   tasks:
     # Run deb installation first as deb packages can add apt repos.
     - name: 'Install DEB packages'
-      loop: '{{ apt.deb }}'
+      become: yes
+      loop: '{{ apps.deb }}'
       apt:
         deb: '{{ item }}'
 
     - name: 'Add apt keys'
-      loop: '{{ apt.repos }}'
+      become: yes
+      loop: '{{ apps.repos }}'
       apt_key:
         url: '{{ item.gpg }}'
       when: item.gpg is defined
 
     - name: 'Add PPA repositories'
-      loop: '{{ apt.repos }}'
+      become: yes
+      loop: '{{ apps.repos }}'
       apt_repository:
         repo: '{{ item.repo }}'
         filename: '{{ item.filename }}'
         state: present
         update_cache: no
 
-    - name: Update apt cache
+    - name: 'Install global packages'
+      become: yes
       apt:
+        pkg: '{{ apps.apt }}'
+        state: present
         update_cache: yes
 
-    - name: 'Install global packages'
-      apt:
-        pkg: '{{ apt.install }}'
-        state: present
-
     - name: 'Install Gnome-specific packages'
+      become: yes
       apt:
         pkg: '{{ gnome.apt.install }}'
         state: present
       when: gnome.apply|bool
 
     - name: 'Install KDE-specific packages'
+      become: yes
       apt:
         pkg: '{{ kde.apt.install }}'
         state: present
@@ -50,7 +52,7 @@
 
     - name: 'Install snap packages'
       become: yes
-      loop: '{{ snap.install }}'
+      loop: '{{ apps.snap.install }}'
       snap:
         name: '{{ item.name }}'
         classic: '{{ item.classic | default("yes") }}'
