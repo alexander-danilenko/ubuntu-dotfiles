@@ -8,7 +8,7 @@ import sys
 import yaml
 
 with open('config.yml') as config:
-    settings = yaml.load(config)
+    settings = yaml.load(config, Loader=yaml.FullLoader)
 
 logger = Logger('apt')
 download_dir = settings.get('deb').get("download_dir")

@@ -4,7 +4,7 @@ from scripts.Driver import Driver
 import yaml
 
 with open('config.yml') as config:
-    settings = yaml.load(config)
+    settings = yaml.load(config, Loader=yaml.FullLoader)
 
 drivers_settings = settings.get('drivers')
 for driver in drivers_settings.get('list'):

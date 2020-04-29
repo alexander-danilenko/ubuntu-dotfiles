@@ -5,7 +5,7 @@ from scripts.Driver import Driver
 from scripts.Apt import AptDownload
 
 with open('config.yml') as config:
-    settings = yaml.load(config)
+    settings = yaml.load(config, Loader=yaml.FullLoader)
 
 # Download all drivers.
 drivers_settings = settings.get('drivers')
