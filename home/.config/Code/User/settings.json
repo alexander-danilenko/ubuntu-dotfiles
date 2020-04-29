@@ -1,11 +1,26 @@
 {
-    "editor.tabSize": 2,
-    "editor.rulers": [80, 120],
-    "files.associations": {
-      "Vagrantfile": "ruby",
-      "*.install": "php",
-      "*.module": "php",
-      "*.theme": "php",
-      "*.info": "ini"
-    }
+  "debug.console.fontSize": 15,
+  "editor.fontFamily": "JetBrains Mono",
+  "editor.fontLigatures": true,
+  "editor.fontSize": 15,
+  "editor.renderWhitespace": "selection",
+  "editor.rulers": [8, 16, 32, 80, 120],
+  "editor.tabSize": 2,
+  "terminal.integrated.fontSize": 15,
+  "window.menuBarVisibility": "toggle",
+  "window.zoomLevel": 0,
+  "workbench.activityBar.visible": true,
+  "workbench.colorTheme": "GNOME dark",
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.statusBar.visible": true,
+  "workbench.colorCustomizations": {
+      "editorRuler.foreground": "#151515"
+  },
+  "files.associations": {
+    "Vagrantfile": "ruby",
+    "*.install": "php",
+    "*.module": "php",
+    "*.theme": "php",
+    "*.info": "ini"
+  }
 }
