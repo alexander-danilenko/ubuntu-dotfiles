@@ -7,6 +7,7 @@
 
   tasks:
     - name: Install zsh package
+      become: true
       apt:
         name: zsh
       register: zsh_installed
