@@ -1,6 +1,6 @@
 ## TL;DR
 
-This repo contains Ansible scripts for fast and easy PHP/Drupal developer environment setup on [ubuntu](https://ubuntu.com/)/[kubuntu](https://kubuntu.org/) linux. 
+This repo contains Ansible scripts for fast and easy PHP/Drupal developer environment setup on [ubuntu](https://ubuntu.com/) linux. 
 
 ---
 
@@ -30,7 +30,6 @@ Setting up a new PHP/Drupal developer machine can be an ad-hoc, manual, and time
 
 ## Tested on following distributions:
 - [ubuntu 20.04](https://ubuntu.com/)
-- [kubuntu 20.04](https://kubuntu.org/)
 
 ## Usage
 
