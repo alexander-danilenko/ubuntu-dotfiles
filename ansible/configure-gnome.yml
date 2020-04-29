@@ -13,5 +13,4 @@
         gnome_user: $USER
         gnome_extensions: '{{ gnome.extensions }}'
         gnome_gsettings: '{{ gnome.gsettings }}'
-        gnome_dconf: '{{ gnome.dconf }}'
       when: gnome.apply|bool

@@ -181,93 +181,66 @@ apps:
     - fonts-ubuntu-console
 
   snap:
-    install:
-      - name: skype
-      - name: slack            # Corporate chat
-      - name: telegram-desktop # Personal chat
-      - name: zoom-client      # Zoom.us client
-      - name: sublime-text     # Text/code editor
-      - name: sublime-merge    # Git GUI
-      - name: zeal-casept      # Offline documentation viewer
-      # - name: icloud-for-linux
-      #   classic: yes
-      #   channel: latest
+    - name: skype
+    - name: slack            # Corporate chat
+    - name: telegram-desktop # Personal chat
+    - name: zoom-client      # Zoom.us client
+    - name: sublime-text     # Text/code editor
+    - name: sublime-merge    # Git GUI
+    - name: zeal-casept      # Offline documentation viewer
+    # - name: icloud-for-linux
+    #   classic: yes
+    #   channel: latest
 
-      # Jetbrains products
-      - name: intellij-idea-community # Jave IDE
-      - name: phpstorm                # PHP IDE
-      - name: pycharm-community       # Python IDE
-      # - name: android-studio          # Android IDE
-      # - name: clion                   # C/C++ IDE
-      # - name: goland                  # Golang IDE
-      # - name: intellij-idea-ultimate  # Java IDE
-      # - name: pycharm-professional    # Python IDE
-      # - name: rider                   # .NET IDE
-      # - name: rubymine                # Ruby IDE
-      # - name: space                   # JB Space
-      # - name: webstorm                # HTML/JS IDE
+    # Jetbrains products
+    - name: intellij-idea-community # Jave IDE
+    - name: phpstorm                # PHP IDE
+    - name: pycharm-community       # Python IDE
+    # - name: android-studio          # Android IDE
+    # - name: clion                   # C/C++ IDE
+    # - name: goland                  # Golang IDE
+    # - name: intellij-idea-ultimate  # Java IDE
+    # - name: pycharm-professional    # Python IDE
+    # - name: rider                   # .NET IDE
+    # - name: rubymine                # Ruby IDE
+    # - name: space                   # JB Space
+    # - name: webstorm                # HTML/JS IDE
 
 # Ubuntu Gnome specific configuration.
-# Note: it should be applied ONLY to regular Ubuntu installation.
 gnome:
   apply: yes
   apt:
-    install:
-      - gnome-tweaks
-      - ubuntu-restricted-addons
-      - ubuntu-restricted-extras
+    - gnome-tweaks
+    - ubuntu-restricted-addons
+    - ubuntu-restricted-extras
 
-      # Themes
-      - adapta-gtk-theme
-      - materia-gtk-theme
-      - arc-theme
-      - numix-blue-gtk-theme
-      - numix-gtk-theme
+    # Themes
+    - adapta-gtk-theme
+    - materia-gtk-theme
+    - arc-theme
+    - numix-blue-gtk-theme
+    - numix-gtk-theme
   extensions:
-    - id: 19   # User Themes for Gnome Shell
-      enable: yes
-    - id: 258  # Notifications Alert
-      enable: yes
-    - id: 307  # Dash to Dock
-      enable: yes
-    - id: 906  # Sound Input & Output Device Chooser
-      enable: yes
-    - id: 1040 # Random wallpaper
-      enable: yes
-    - id: 1228 # Arc Menu
-      enable: yes
-    - id: 1251 # Blyr
-      enable: yes
-    - id: 1287 # Unite
-      enable: no
-  gsettings: []
-  dconf: []
-
-# KDE-specific configuration.
-# Note: it should be applied ONLY to KUbuntu installation.
-kde:
-  apply: no
-  apt:
-    install:
-      - gwenview   # Image browser
-      - kcalc      # Calculator
-      - kget       # Download manager
-      - kmahjongg  # Game: Mahjongg
-      - kmines     # Game: Minesweeper
-      - knights    # Game: Chess
-      - kompare    # Diff viewer
-      - kpat       # Game: Solitaire 
-      - krdc       # RDC/VNC viewer
-      - krename    # Mass rename tool
-      - krita      # Image editing software
-      - krusader   # Two-panel file manager
-      - ksysguard  # System monitor
-      - ksystemlog # System logs viewer
-      - okular     # Document viewer
-      - kubuntu-restricted-addons
-      - kubuntu-restricted-extras
-
-      # KDE themes
-      - adapta-kde
-      - arc-kde
-      - materia-kde
+    - { id: 19,   enable: yes } # User Themes for Gnome Shell
+    - { id: 258,  enable: yes } # Notifications Alert
+    - { id: 307,  enable: yes } # Dash to Dock
+    - { id: 906,  enable: yes } # Sound Input & Output Device Chooser
+    - { id: 1040, enable: yes } # Random wallpaper
+    - { id: 1228, enable: yes } # Arc Menu
+    - { id: 1251, enable: yes } # Blyr
+    - { id: 1287, enable: no  } # Unite
+  gsettings:
+      # Disable paste on middle click
+    - { schema: org.gnome.desktop.interface, key: gtk-enable-primary-paste, value: "false" }
+      # Monospace font and size
+    - { schema: org.gnome.desktop.interface, key: monospace-font-name, value: '"JetBrains Mono 12"' }
+      # Disable lock on suspend
+    - { schema: org.gnome.desktop.screensaver, key: ubuntu-lock-on-suspend, value: "false" }
+      # Time before session is considered idle (seconds)
+    - { schema: org.gnome.desktop.session, key: idle-delay, value: 1800 }
+      # Files: Enable tree in list view
+    - { schema: org.gnome.nautilus.list-view, key: use-tree-view, value: "true" }
+      # Dash: Icon size
+    - { schema: org.gnome.shell.extensions.dash-to-dock, key: dash-max-icon-size, value: 36 }
+      # Terminal: menu accelerator key (F10)
+    - { schema: org.gnome.Terminal.Legacy.Settings, key: menu-accelerator-enabled, value: "false" }

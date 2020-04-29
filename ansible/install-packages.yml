@@ -39,20 +39,13 @@
     - name: 'Install Gnome-specific packages'
       become: yes
       apt:
-        pkg: '{{ gnome.apt.install }}'
+        pkg: '{{ gnome.apt }}'
         state: present
       when: gnome.apply|bool
 
-    - name: 'Install KDE-specific packages'
-      become: yes
-      apt:
-        pkg: '{{ kde.apt.install }}'
-        state: present
-      when: kde.apply|bool
-
     - name: 'Install snap packages'
       become: yes
-      loop: '{{ apps.snap.install }}'
+      loop: '{{ apps.snap }}'
       snap:
         name: '{{ item.name }}'
         classic: '{{ item.classic | default("yes") }}'
