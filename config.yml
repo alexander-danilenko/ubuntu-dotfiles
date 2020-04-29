@@ -150,13 +150,6 @@ apps:
     - flameshot # Screenshot tool
     - inkscape  # Vector image editor
 
-    # Icons
-    - adwaita-icon-theme-full
-    - deepin-icon-theme
-    - numix-icon-theme
-    - numix-icon-theme-circle
-    - papirus-icon-theme
-
     # Fonts
     - fonts-dejavu
     - fonts-dejavu-core
@@ -220,27 +213,54 @@ gnome:
     - arc-theme
     - numix-blue-gtk-theme
     - numix-gtk-theme
+
+    # Icons
+    - papirus-icon-theme
+
+    # Cursors
+    - oxygen-cursor-theme
   extensions:
-    - { id: 19,   enable: yes } # User Themes for Gnome Shell
     - { id: 258,  enable: yes } # Notifications Alert
     - { id: 307,  enable: yes } # Dash to Dock
     - { id: 906,  enable: yes } # Sound Input & Output Device Chooser
     - { id: 1040, enable: yes } # Random wallpaper
-    - { id: 1228, enable: yes } # Arc Menu
     - { id: 1251, enable: yes } # Blyr
-    - { id: 1287, enable: no  } # Unite
   gsettings:
-      # Disable paste on middle click
-    - { schema: org.gnome.desktop.interface, key: gtk-enable-primary-paste, value: "false" }
-      # Monospace font and size
-    - { schema: org.gnome.desktop.interface, key: monospace-font-name, value: '"JetBrains Mono 12"' }
-      # Disable lock on suspend
-    - { schema: org.gnome.desktop.screensaver, key: ubuntu-lock-on-suspend, value: "false" }
-      # Time before session is considered idle (seconds)
-    - { schema: org.gnome.desktop.session, key: idle-delay, value: 1800 }
-      # Files: Enable tree in list view
-    - { schema: org.gnome.nautilus.list-view, key: use-tree-view, value: "true" }
-      # Dash: Icon size
-    - { schema: org.gnome.shell.extensions.dash-to-dock, key: dash-max-icon-size, value: 36 }
-      # Terminal: menu accelerator key (F10)
-    - { schema: org.gnome.Terminal.Legacy.Settings, key: menu-accelerator-enabled, value: "false" }
+    # Desktop customization
+    - org.gnome.desktop.interface icon-theme "Papirus"
+    - org.gnome.desktop.interface cursor-theme "oxy-white"
+    
+    # Disable paste on middle click
+    - org.gnome.desktop.interface gtk-enable-primary-paste false
+    
+    # Monospace font and size
+    - org.gnome.desktop.interface monospace-font-name "JetBrains Mono 12"
+    
+    # Disable lock on suspend
+    - org.gnome.desktop.screensaver ubuntu-lock-on-suspend false
+    
+    # Time before session is considered idle (seconds)
+    - org.gnome.desktop.session idle-delay 1800
+    
+    # Files: Enable tree in list view
+    - 'org.gnome.nautilus.list-view use-tree-view true'
+    
+    # Terminal: menu accelerator key (F10)
+    - org.gnome.Terminal.Legacy.Settings menu-accelerator-enabled false
+    
+    # Dash to dock settings
+    - org.gnome.shell.extensions.dash-to-dock autohide true
+    - org.gnome.shell.extensions.dash-to-dock autohide-in-fullscreen false
+    - org.gnome.shell.extensions.dash-to-dock click-action "minimize-or-previews"
+    - org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 36
+    - org.gnome.shell.extensions.dash-to-dock dock-fixed true
+    - org.gnome.shell.extensions.dash-to-dock extend-height true
+    - org.gnome.shell.extensions.dash-to-dock hide-delay 0.2
+    - org.gnome.shell.extensions.dash-to-dock intellihide true
+    - org.gnome.shell.extensions.dash-to-dock intellihide-mode "FOCUS_APPLICATION_WINDOWS"
+    - org.gnome.shell.extensions.dash-to-dock pressure-threshold 100
+    - org.gnome.shell.extensions.dash-to-dock require-pressure-to-show true
+    - org.gnome.shell.extensions.dash-to-dock show-apps-at-top false
+    - org.gnome.shell.extensions.dash-to-dock show-delay 0.25
+    - org.gnome.shell.extensions.dash-to-dock show-mounts false
+    - org.gnome.shell.extensions.dash-to-dock show-trash false
