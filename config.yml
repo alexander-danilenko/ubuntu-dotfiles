@@ -43,13 +43,26 @@ vscode:
   install: yes
   # List of plugins to install.
   plugins:
-    - ms-vscode.go                # Golang
-    - ms-python.python            # Python
-    - dbaeumer.vscode-eslint      # Eslint
-    - esbenp.prettier-vscode      # Prettier - Code formatter
-    - pkief.material-icon-theme   # Material Icon Theme
-    - dracula-theme.theme-dracula # Dracula theme
-    - mikestead.dotenv            # File support for .env
+    - christian-kohler.npm-intellisense       # NPM better autocomplete
+    - christian-kohler.path-intellisense      # File path autocomplete
+    - coenraads.bracket-pair-colorizer        # Bracket Pair Colorizer
+    - dbaeumer.vscode-eslint                  # Eslint support
+    - editorconfig.editorconfig               # EditorConfig support
+    - esbenp.prettier-vscode                  # Prettier - Code formatter
+    - fkrull.gtk-dark-titlebar                # GTK Dark Title Bar
+    - mariusschulz.yarn-lock-syntax           # yarn.lock syntax highlight
+    - mhutchie.git-graph                      # Git graph
+    - mikestead.dotenv                        # .env support
+    - ms-azuretools.vscode-docker             # Docker support
+    - ms-python.python                        # Python support
+    - ms-vscode.go                            # Golang support
+    - pkief.material-icon-theme               # Material Icon Theme
+    - rafaelmardojai.vscode-gnome-theme       # A GNOME color theme
+    - visualstudioexptteam.vscodeintellicode  # AI-assisted autocomplete
+    - william-voyek.vscode-nginx              # nginx.conf support
+    - yzhang.markdown-all-in-one              # Markdown tools
+    - znck.grammarly                          # Grammarly
+    # - oderwat.indent-rainbow # Makes indentation easier to read
 
 # APT package manager settings.
 apt:
@@ -80,7 +93,7 @@ apt:
       filename: retroarch
       repo: 'deb http://ppa.launchpad.net/libretro/stable/ubuntu focal main'
       gpg: 'https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x18daae7feca3745f'
- 
+
     - name: SoftMaker Office
       filename: softmaker-office
       repo: 'deb [arch=amd64] http://shop.softmaker.com/repo/apt wheezy non-free'
