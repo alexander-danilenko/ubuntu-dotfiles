@@ -1,6 +1,6 @@
 deb:
   download_dir: './deb'
-  kernel: current # Current version of kernel retrieved by $(uname -r)
+  kernel: 'current' # 'current' version of kernel retrieved by $(uname -r)
   list:
     - linux-image-{KERNEL}
     - linux-modules-{KERNEL}
@@ -40,6 +40,7 @@ deb:
     - libtsan0
     - libubsan1
     - linux-libc-dev
+    - libssl1.1
 
 drivers:
   download_dir: './drivers'
