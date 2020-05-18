@@ -187,6 +187,9 @@ apps:
     - fonts-ubuntu
     - fonts-ubuntu-console
 
+    # Customization
+    - papirus-icon-theme
+
   snap:
     - name: skype
     - name: slack            # Corporate chat
