@@ -29,19 +29,12 @@
         state: present
         update_cache: no
 
-    - name: 'Install global packages'
+    - name: 'Install packages'
       become: yes
       apt:
         pkg: '{{ apps.apt }}'
         state: present
         update_cache: yes
-
-    - name: 'Install Gnome-specific packages'
-      become: yes
-      apt:
-        pkg: '{{ gnome.apt }}'
-        state: present
-      when: gnome.apply|bool
 
     - name: 'Install snap packages'
       become: yes
