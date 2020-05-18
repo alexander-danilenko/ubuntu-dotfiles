@@ -15,8 +15,5 @@ echo_green() {
 
 ################## Process #####################################################
 
-echo_green "Satisfying ansible dependencies..."
-ansible-galaxy install -r ansible/roles/requirements.yml --roles-path ./ansible/roles && \
-
 echo_green "Running ansible playbook..."
 ansible-playbook ansible/main.yml --ask-become-pass
