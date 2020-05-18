@@ -97,9 +97,14 @@ apps:
       repo: 'deb [arch=amd64] http://shop.softmaker.com/repo/apt wheezy non-free'
       gpg: 'https://shop.softmaker.com/repo/linux-repo-public.key'
 
+    - name: TeamViewer
+      filename: teamviewer
+      repo: 'deb http://linux.teamviewer.com/deb stable main'
+      gpg: 'https://download.teamviewer.com/download/linux/signature/TeamViewer2017.asc'
+
+
   # List of deb files that should be installed.
   deb:
-    - https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
     - https://download.xnview.com/XnViewMP-linux-x64.deb
     # - https://global.download.synology.com/download/Tools/SynologyDriveClient/2.0.1-11061/Ubuntu/Installer/x86_64/synology-drive-client-11061.x86_64.deb
 
@@ -128,6 +133,7 @@ apps:
     - firefox              # From Mozilla team with <3
     - google-chrome-stable # Thing for collecting your personal data
     - nordvpn              # NordVPN client
+    - teamviewer
     - thunderbird 
     - thunderbird-locale-ru
     - transmission         # Torrent client
