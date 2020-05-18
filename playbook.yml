@@ -93,10 +93,9 @@
           - php{{ php.version }}-zip
       when: php.install|bool
     - name: 'Download composer'
-      become: yes
       get_url:
         url: https://getcomposer.org/composer-stable.phar
-        dest: /usr/local/bin/composer
+        dest: $HOME/.local/bin/composer
         mode: '0755'
       when: php.install|bool
     - name: 'Create ~/.composer if it does not exist'
