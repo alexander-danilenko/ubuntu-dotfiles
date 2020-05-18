@@ -34,13 +34,6 @@
         url: https://git.io/antigen
         dest: $HOME/.antigen/antigen.zsh
       register: zsh_antigen_installed
-    - name: 'Apply settings from ./home/.zshrc'
-      copy:
-        src: './home/.zshrc'
-        dest: '$HOME/.zshrc'
-        backup: no # Do not make backup copies of files.
-        force: yes
-      register: zsh_antigen_configured
 
     # Install apps.
     - name: 'Install DEB packages' # Run deb installation first as deb packages can add apt repos.
@@ -130,13 +123,11 @@
       apt:
         name: nodejs
         state: absent
-    - name: 'Install node via nvm'
+    - name: 'Install node via nvm' # Assuming zsh-nvm bundle is added.
       command: "zsh -c 'source $HOME/.zshrc && nvm install {{ node.version }} && nvm use {{ node.version }}'"
-      when: zsh_antigen_configured is succeeded
       ignore_errors: yes
-    - name: 'Install global npm packages'
+    - name: 'Install global npm packages' # Assuming zsh-nvm bundle is added.
       command: "zsh -c 'source $HOME/.zshrc && npm install -g {{ node.npm.global | join(' ') }}'"
-      when: zsh_antigen_configured is succeeded
       ignore_errors: yes
 
     # Install python and pip3 packages.
