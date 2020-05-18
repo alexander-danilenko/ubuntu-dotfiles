@@ -5,9 +5,9 @@ php:
   composer:
     # List of packages that will be installed globally.
     global:
-      - drupal/coder # PHPCS Drupal standards
+      - drupal/coder              # PHPCS Drupal standards
       - friendsofphp/php-cs-fixer # PHPCS standard fixer
-      - mglaman/drupal-check # Drupal static code analysis tool
+      - mglaman/drupal-check      # Drupal static code analysis tool
 
 # Node settings.
 node:
