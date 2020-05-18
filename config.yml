@@ -61,8 +61,6 @@ vscode:
     - visualstudioexptteam.vscodeintellicode  # AI-assisted autocomplete
     - william-voyek.vscode-nginx              # nginx.conf support
     - yzhang.markdown-all-in-one              # Markdown tools
-    - znck.grammarly                          # Grammarly
-    # - oderwat.indent-rainbow # Makes indentation easier to read
 
 # APT package manager settings.
 apps:
@@ -103,7 +101,7 @@ apps:
   deb:
     - https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
     - https://download.xnview.com/XnViewMP-linux-x64.deb
-    - https://global.download.synology.com/download/Tools/SynologyDriveClient/2.0.1-11061/Ubuntu/Installer/x86_64/synology-drive-client-11061.x86_64.deb
+    # - https://global.download.synology.com/download/Tools/SynologyDriveClient/2.0.1-11061/Ubuntu/Installer/x86_64/synology-drive-client-11061.x86_64.deb
 
   # List of apt packages to install. Will be installed with all required dependencies.
   apt:
@@ -120,7 +118,6 @@ apps:
     - neofetch    # Shows Linux System Information with Distribution Logo
     - net-tools   # Base network tools
     - nfs-common  # Package for work with NFS shares
-    - nordvpn     # NordVPN client
     - rar         # rar archiver
     - tree        # Displays an indented directory tree, in color
     - unrar       # rar unarchiver
@@ -128,13 +125,12 @@ apps:
     - zip         # zip archiver
 
     # Internet
-    - evolution     # Email client
-    - evolution-ews # Microsoft Exchange services support
     - firefox              # From Mozilla team with <3
     - google-chrome-stable # Thing for collecting your personal data
+    - nordvpn              # NordVPN client
+    - thunderbird 
+    - thunderbird-locale-ru
     - transmission         # Torrent client
-    # - thunderbird 
-    # - thunderbird-locale-ru
 
     # Office
     - softmaker-freeoffice-2018 # Best free MS Office alternative 
