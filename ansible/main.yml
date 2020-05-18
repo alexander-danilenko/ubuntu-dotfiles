@@ -10,5 +10,5 @@
 - import_playbook: install-docker.yml
 - import_playbook: install-docksal.yml
 
-- import_playbook: configure-gnome.yml
 - import_playbook: copy-home-directory.yml
+- import_playbook: configure-gnome.yml
