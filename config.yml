@@ -184,10 +184,7 @@ apps:
     - name: telegram-desktop # Personal chat
     - name: sublime-text     # Text/code editor
     - name: sublime-merge    # Git GUI
-    - name: zeal-casept      # Offline documentation viewer
     # - name: icloud-for-linux
-    #   classic: yes
-    #   channel: latest
 
     # Jetbrains products
     - name: intellij-idea-community # Jave IDE
