@@ -1,6 +1,6 @@
 ![Logo](logo.png)
 
-This repo contains Ansible scripts and dotfiles for fast and easy PHP/Drupal developer environment setup on [Ubuntu linux](https://ubuntu.com/). 
+This repo contains Ansible scripts and dotfiles for fast and easy PHP/Drupal developer environment setup on [Ubuntu](https://ubuntu.com/) linux and its flavors like Kubuntu/Xubuntu/Lubuntu etc. 
 
 ## Motivation
 Setting up a new PHP/Drupal developer machine can be an ad-hoc, manual, and time-consuming process. The current project aims to simplify the process with instructions and dotfiles/scripts to automate the setup of the following:
@@ -10,7 +10,7 @@ Setting up a new PHP/Drupal developer machine can be an ad-hoc, manual, and time
 
 1. Clone repo.
 2. Open [`config.yml`](config.yml) and adjust for your needs.
-3. Run `./install.sh` for running system provisor.
+3. Execute `./install` for running system provisor.
 
 ---
 
@@ -32,7 +32,8 @@ Setting up a new PHP/Drupal developer machine can be an ad-hoc, manual, and time
 - ...and many-many more (see [`config.yml`](config.yml) file).
 
 ## Tested on following distributions:
-- [ubuntu 20.04](https://ubuntu.com/)
+- [Ubuntu 20.04 LTS](https://ubuntu.com/)
+- [Kubuntu 20.04 LTS](https://kubuntu.org/)
 
 - - -
 
