@@ -68,6 +68,11 @@ vscode:
 apps:
   # Add 3rd party apt repos.
   repos:
+    - name: 'Microsoft Visual Studio Code'
+      filename: vscode
+      repo: 'deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main'
+      gpg: 'https://packages.microsoft.com/keys/microsoft.asc'
+
     - name: Docker
       filename: docker
       # @TODO: Update when 'focal' repo will be created. 

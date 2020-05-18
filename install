@@ -16,4 +16,4 @@ echo_green() {
 ################## Process #####################################################
 
 echo_green "Running ansible playbook..."
-ansible-playbook ansible/main.yml --ask-become-pass
+ansible-playbook playbook.yml --ask-become-pass

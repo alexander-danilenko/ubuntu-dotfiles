@@ -1,0 +1,207 @@
+---
+- hosts: 127.0.0.1
+  connection: local
+  vars_files:
+    - ./config.yml
+
+  tasks:
+
+    # Copy home directory.
+    - name: "Copy `home` directory from repo to user's home directoriy"
+      copy:
+        src: './home/'
+        dest: '$HOME'
+        backup: no # Do not make backup copies of files.
+        force: yes
+
+    # Install ZSH + Antigen.
+    - name: 'Install zsh package'
+      become: true
+      apt:
+        name: zsh
+      register: zsh_installed
+    - name: 'Make ~/.antigen directory'
+      file:
+        path: $HOME/.antigen
+        state: directory
+    - name: 'Download Antigen'
+      get_url:
+        url: https://git.io/antigen
+        dest: $HOME/.antigen/antigen.zsh
+      register: zsh_antigen_installed
+    - name: 'Apply settings from ./home/.zshrc'
+      copy:
+        src: './home/.zshrc'
+        dest: '$HOME/.zshrc'
+        backup: no # Do not make backup copies of files.
+        force: yes
+      register: zsh_antigen_configured
+
+    # Install apps.
+    - name: 'Install DEB packages' # Run deb installation first as deb packages can add apt repos.
+      become: yes
+      loop: '{{ apps.deb }}'
+      apt:
+        deb: '{{ item }}'
+    - name: 'Add apt keys'
+      become: yes
+      loop: '{{ apps.repos }}'
+      apt_key:
+        url: '{{ item.gpg }}'
+      when: item.gpg is defined
+    - name: 'Add PPA repositories'
+      become: yes
+      loop: '{{ apps.repos }}'
+      apt_repository:
+        repo: '{{ item.repo }}'
+        filename: '{{ item.filename }}'
+        state: present
+        update_cache: no
+    - name: 'Update APT cache'
+      become: yes
+      apt:
+        update_cache: yes
+    - name: 'Install packages'
+      become: yes
+      apt:
+        pkg: '{{ apps.apt }}'
+        state: present
+        update_cache: no
+    - name: 'Install snap packages'
+      become: yes
+      loop: '{{ apps.snap }}'
+      snap:
+        name: '{{ item.name }}'
+        classic: '{{ item.classic | default("yes") }}'
+        channel: '{{ item.channel | default("stable")}}'
+        state: present
+
+    # Install PHP + Composer + Composer packages.
+    - name: 'Install PHP packages'
+      become: yes
+      apt:
+        name:
+          - php{{ php.version }}-common
+          - php{{ php.version }}-cli
+          - php{{ php.version }}-curl
+          - php{{ php.version }}-gd
+          - php{{ php.version }}-json
+          - php{{ php.version }}-mbstring
+          - php{{ php.version }}-mysql
+          - php{{ php.version }}-opcache
+          - php{{ php.version }}-xml
+          - php{{ php.version }}-zip
+      when: php.install|bool
+    - name: 'Download composer'
+      become: yes
+      get_url:
+        url: https://getcomposer.org/composer-stable.phar
+        dest: /usr/local/bin/composer
+        mode: '0755'
+      when: php.install|bool
+    - name: 'Create ~/.composer if it does not exist'
+      file:
+        path: $HOME/.composer
+        state: directory
+      when: php.install|bool
+    - name: 'Require global composer packages'
+      command: composer global require {{ php.composer.global | join(' ') }}
+      when: php.install|bool
+    - name: 'Enable Drupal PHPCS standard'
+      file:
+        state: link
+        src: $HOME/.composer/vendor/drupal/coder/coder_sniffer/Drupal
+        dest: $HOME/.composer/vendor/squizlabs/php_codesniffer/src/Standards/Drupal
+      when: php.install|bool and 'drupal/coder' in php.composer.global
+    - name: 'Enable DrupalPractice PHPCS standard'
+      file:
+        state: link
+        src: $HOME/.composer/vendor/drupal/coder/coder_sniffer/DrupalPractice
+        dest: $HOME/.composer/vendor/squizlabs/php_codesniffer/src/Standards/DrupalPractice
+      when: php.install|bool and 'drupal/coder' in php.composer.global
+
+    # Install Node.js + npm packages.
+    - name: 'Make sure that "nodejs" package is removed'
+      become: yes
+      apt:
+        name: nodejs
+        state: absent
+    - name: 'Install node via nvm'
+      command: "zsh -c 'source $HOME/.zshrc && nvm install {{ node.version }} && nvm use {{ node.version }}'"
+      when: zsh_antigen_configured is succeeded
+      ignore_errors: yes
+    - name: 'Install global npm packages'
+      command: "zsh -c 'source $HOME/.zshrc && npm install -g {{ node.npm.global | join(' ') }}'"
+      when: zsh_antigen_configured is succeeded
+      ignore_errors: yes
+
+    # Install python and pip3 packages.
+    - name: 'Install Python packages'
+      become: yes
+      apt:
+        name:
+          - python3-pip
+          - python{{ python.version }}
+          - python{{ python.version }}-dev
+          - python{{ python.version }}-doc
+          - python{{ python.version }}-minimal
+      when: python.install|bool
+    - name: 'Require global python3 packages'
+      command: pip3 install --user {{ python.pip3.global | join(' ') }}
+      when: python.install|bool
+
+    # Install and configure vscode.
+    - name: 'Install Visual Studio Code...'
+      become: yes
+      apt:
+        name: code
+        state: latest
+      when: vscode.install|bool
+    - name: 'Install code extensions...'
+      loop: '{{ vscode.plugins }}'
+      command: 'code --install-extension {{ item }}'
+      when: vscode.install|bool
+
+    # Install docker.
+    - name: 'Install Docker packages'
+      become: yes
+      apt:
+        pkg:
+          - docker-ce
+          - docker-compose
+    - name: 'Move Docker directory to ~/.docker'
+      become: yes
+      copy:
+        content: |
+          {
+            "graph": "/home/{{ ansible_facts.user_id }}/.docker"
+          }
+        dest: /etc/docker/daemon.json
+        owner: '{{ ansible_facts.user_id }}'
+        group : '{{ ansible_facts.user_id }}'
+        mode: 755
+    - name: 'Start Docker service on system boot'
+      become: yes
+      service:
+        name: docker
+        enabled: yes
+    - name: 'Restart Docker service'
+      become: yes
+      service:
+        name: docker
+        state: restarted
+
+    # Install Docksal.
+    - name: 'Download Docksal installer'
+      get_url:
+        url: https://get.docksal.io
+        dest: /tmp/docksal.sh
+        mode: 0755
+    - name: 'Run Docksal installer'
+      shell: /tmp/docksal.sh
+      environment:
+        DOCKSAL_CONFIRM_YES: 1 # Force answer "y" to all y/n Docksal questions.
+    - name: 'Remove Docksal installer'
+      file:
+        path: /tmp/docksal.sh
+        state: absent
