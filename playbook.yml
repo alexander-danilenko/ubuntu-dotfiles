@@ -34,6 +34,9 @@
         url: https://git.io/antigen
         dest: $HOME/.antigen/antigen.zsh
       register: zsh_antigen_installed
+    - name: 'Make zsh as a default shell'
+      become: true
+      command: 'chsh -s /bin/zsh'
 
     # Install apps.
     - name: 'Install DEB packages' # Run deb installation first as deb packages can add apt repos.
