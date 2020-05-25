@@ -70,9 +70,9 @@
       become: yes
       loop: '{{ apps.snap }}'
       snap:
-        name: '{{ item.name }}'
-        classic: '{{ item.classic | default("yes") }}'
-        channel: '{{ item.channel | default("stable")}}'
+        name: '{{ item }}'
+        classic: yes
+        channel: stable
         state: present
 
     # Install PHP + Composer + Composer packages.

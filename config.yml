@@ -186,23 +186,23 @@ apps:
     - papirus-icon-theme
 
   snap:
-    - name: skype
-    - name: slack            # Corporate chat
-    - name: telegram-desktop # Personal chat
-    - name: sublime-text     # Text/code editor
-    - name: sublime-merge    # Git GUI
-    # - name: icloud-for-linux
+    - skype
+    - slack            # Corporate chat
+    - telegram-desktop # Personal chat
+    - sublime-text     # Text/code editor
+    - sublime-merge    # Git GUI
+    # - icloud-for-linux
 
     # Jetbrains products
-    - name: intellij-idea-community # Jave IDE
-    - name: phpstorm                # PHP IDE
-    - name: pycharm-community       # Python IDE
-    # - name: android-studio          # Android IDE
-    # - name: clion                   # C/C++ IDE
-    # - name: goland                  # Golang IDE
-    # - name: intellij-idea-ultimate  # Java IDE
-    # - name: pycharm-professional    # Python IDE
-    # - name: rider                   # .NET IDE
-    # - name: rubymine                # Ruby IDE
-    # - name: space                   # JB Space
-    # - name: webstorm                # HTML/JS IDE
+    - intellij-idea-community # Jave IDE
+    - phpstorm                # PHP IDE
+    - pycharm-community       # Python IDE
+    # - android-studio          # Android IDE
+    # - clion                   # C/C++ IDE
+    # - goland                  # Golang IDE
+    # - intellij-idea-ultimate  # Java IDE
+    # - pycharm-professional    # Python IDE
+    # - rider                   # .NET IDE
+    # - rubymine                # Ruby IDE
+    # - space                   # JB Space
+    # - webstorm                # HTML/JS IDE
