@@ -98,11 +98,6 @@ apps:
       repo: 'deb http://ppa.launchpad.net/ondrej/php/ubuntu focal main'
       gpg: 'https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x4f4ea0aae5267a6c'
 
-    - name: RetroArch
-      filename: retroarch
-      repo: 'deb http://ppa.launchpad.net/libretro/stable/ubuntu focal main'
-      gpg: 'https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x18daae7feca3745f'
-
     - name: SoftMaker Office
       filename: softmaker-office
       repo: 'deb [arch=amd64] http://shop.softmaker.com/repo/apt wheezy non-free'
