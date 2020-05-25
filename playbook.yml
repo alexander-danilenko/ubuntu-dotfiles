@@ -195,6 +195,8 @@
         mode: 0755
     - name: 'Run Docksal installer'
       shell: /tmp/docksal.sh
+      args:
+        creates: '/usr/local/bin/fin'
       environment:
         DOCKSAL_CONFIRM_YES: 1 # Force answer "y" to all y/n Docksal questions.
     - name: 'Remove Docksal installer'
