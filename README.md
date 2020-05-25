@@ -1,6 +1,6 @@
 ![Logo](logo.png)
 
-This repo contains Ansible scripts and dotfiles for fast and easy PHP/Drupal developer environment setup on [Ubuntu](https://ubuntu.com/) linux and its flavors like Kubuntu/Xubuntu/Lubuntu etc. 
+This repo contains Ansible scripts and dotfiles for fast and easy PHP/Drupal developer environment setup on [Ubuntu](https://ubuntu.com/) linux and its flavors like K/L/X/ubuntu, Linux Mint, Pop!\_OS, etc. 
 
 ## Motivation
 Setting up a new PHP/Drupal developer machine can be an ad-hoc, manual, and time-consuming process. The current project aims to simplify the process with instructions and dotfiles/scripts to automate the setup of the following:
@@ -31,9 +31,16 @@ Setting up a new PHP/Drupal developer machine can be an ad-hoc, manual, and time
 - [Visual Studio Code](https://code.visualstudio.com/) + Plugins + Themes
 - ...and many-many more (see [`config.yml`](config.yml) file).
 
-## Tested on following distributions:
-- [Ubuntu 20.04 LTS](https://ubuntu.com/)
-- [Kubuntu 20.04 LTS](https://kubuntu.org/)
+## List of supported distributions
+
+| Version           | Supported          |
+| ----------------- | ------------------ |
+| Ubuntu  20.04 LTS | :white_check_mark: |
+| Ubuntu <20.04 LTS | :x:                |
+
+**Ubuntu** here means [Ubuntu](https://ubuntu.com/) itself and all its flavors and distributions based on certain Ubuntu version like: Kubuntu, Lubuntu, Xubuntu, Linux Mint, Pop!\_OS, elementary OS, Zorin OS, etc.
+
+If you experiencing any problems with your distribution, please raise an issue on [GitHub](https://github.com/alexander-danilenko/ubuntu-dotfiles/issues/new).
 
 - - -
 
