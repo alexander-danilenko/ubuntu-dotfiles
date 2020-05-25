@@ -79,8 +79,7 @@ apps:
 
     - name: Docker
       filename: docker
-      # @TODO: Update when 'focal' repo will be created. 
-      repo: 'deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable'
+      repo: 'deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable'
       gpg: 'https://download.docker.com/linux/ubuntu/gpg'
 
     - name: Google Chrome
