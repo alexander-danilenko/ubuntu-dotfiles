@@ -176,6 +176,8 @@
         owner: '{{ ansible_facts.user_id }}'
         group : '{{ ansible_facts.user_id }}'
         mode: 755
+      args:
+        creates: '/home/{{ ansible_facts.user_id }}/.docker' 
     - name: 'Start Docker service on system boot'
       become: yes
       service:
