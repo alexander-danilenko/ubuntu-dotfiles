@@ -44,7 +44,7 @@
       become: yes
       lineinfile:
         path: /etc/zsh/zprofile
-        line: 'emulate sh -c "source /etc/profile'
+        line: 'emulate sh -c "source /etc/profile"'
         create: yes
 
     # Install apps.
