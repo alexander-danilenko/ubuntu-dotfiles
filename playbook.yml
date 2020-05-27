@@ -36,6 +36,16 @@
       become: true
       command: 'chsh -s /bin/zsh'
 
+    # By default zsh is not inheriting any bash profile settings which may lead,
+    # for example, to missing snap apps in main menu.
+    # @see https://askubuntu.com/questions/910821/programs-installed-via-snap-not-showing-up-in-launcher#answer-989485
+    - name: Make sure that /etc/profile is loaded in /etc/zsh/zprofile
+      become: yes
+      lineinfile:
+        path: /etc/zsh/zprofile
+        line: 'emulate sh -c "source /etc/profile'
+        create: yes
+
     # Install apps.
     - name: 'Install DEB packages' # Run deb installation first as deb packages can add apt repos.
       become: yes
