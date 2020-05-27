@@ -7,9 +7,10 @@
   tasks:
 
     # Extend fs.inotify.max_user_watches value.
+    # @see https://confluence.jetbrains.com/display/IDEADEV/Inotify+Watches+Limit
     - name: "Extend echo fs.inotify.max_user_watches"
       become: yes
-      command: 'echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p'
+      command: 'echo "fs.inotify.max_user_watches = 524288" | sudo tee -a /etc/sysctl.conf && sudo sysctl -p'
 
     # Copy home directory.
     - name: "Copy `home` directory from repo to user's home directoriy"
