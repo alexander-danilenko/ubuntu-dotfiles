@@ -6,6 +6,7 @@ php:
     # List of packages that will be installed globally.
     # @TODO: Use cgr as replacement for composer global require: https://github.com/consolidation/cgr
     global:
+      #- drush/drush
       - drupal/coder              # PHPCS Drupal standards
       - friendsofphp/php-cs-fixer # PHPCS standard fixer
       - mglaman/drupal-check      # Drupal static code analysis tool
