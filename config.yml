@@ -129,6 +129,8 @@ apps:
     - default-jre # Java runtime
     - exfat-fuse  # Read and write exFAT driver
     - exfat-utils # Utilities to create, check, label and dump exFAT file system 
+    - heif-gdk-pixbuf  # Apple HEIF/HEIC decoder support 
+    - heif-thumbnailer # Apple HEIF/HEIC thumbnails support 
     - htop        # Terminal system monitor
     - jq          # JSON query tool
     - lhasa       # lzh unarchiver
