@@ -77,6 +77,12 @@
         pkg: '{{ apps.apt }}'
         state: present
         update_cache: no
+        
+    # @TODO: for Linux Mint 20 snap is disabled by default. 
+    # It needs to be enabled by removing nosnap.pref file 
+    # ```sudo rm /etc/apt/preferences.d/nosnap.pref``
+    # Also make sure that snapd package is installed before
+    # running snap commands. 
     - name: 'Install snap packages'
       become: yes
       loop: '{{ apps.snap }}'
