@@ -57,18 +57,18 @@ vscode:
     - editorconfig.editorconfig               # EditorConfig support
     - esbenp.prettier-vscode                  # Prettier - Code formatter
     - github.github-vscode-theme              # GitHub color theme
+    - golang.go                               # Golang support
     - ikappas.composer                        # Composer support
+    - ikappas.phpcs                           # PHP CodeSniffer
     - mariusschulz.yarn-lock-syntax           # yarn.lock syntax highlight
     - mhutchie.git-graph                      # Git graph
     - mikestead.dotenv                        # .env support
     - ms-azuretools.vscode-docker             # Docker support
     - ms-python.python                        # Python support
-    - ms-vscode.go                            # Golang support
     - pkief.material-icon-theme               # Material Icon Theme
     - visualstudioexptteam.vscodeintellicode  # AI-assisted autocomplete
     - william-voyek.vscode-nginx              # nginx.conf support
     - yzhang.markdown-all-in-one              # Markdown tools
-    - ikappas.phpcs                           # PHP CodeSniffer
 
 # APT package manager settings.
 apps:
