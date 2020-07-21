@@ -67,6 +67,14 @@
         filename: '{{ item.filename }}'
         state: present
         update_cache: no
+    # Linux Mint 20 has disabled snaps. For enabling snapd its required to
+    # remove /etc/apt/preferences.d/nosnap.pref file.
+    # @see https://www.omgubuntu.co.uk/2020/06/enable-snap-apps-linux-mint-20 
+    - name: 'Make sure that nosnap.pref file is removed'
+      become: yes
+      file:
+        path: /etc/apt/preferences.d/nosnap.pref
+        state: absent
     - name: 'Update APT cache'
       become: yes
       apt:
@@ -77,12 +85,12 @@
         pkg: '{{ apps.apt }}'
         state: present
         update_cache: no
-        
-    # @TODO: for Linux Mint 20 snap is disabled by default. 
-    # It needs to be enabled by removing nosnap.pref file 
-    # ```sudo rm /etc/apt/preferences.d/nosnap.pref``
-    # Also make sure that snapd package is installed before
-    # running snap commands. 
+    - name: 'Make sure snapd is installed'
+      become: yes
+      apt:
+        pkg: snapd
+        state: present
+        update_cache: no
     - name: 'Install snap packages'
       become: yes
       loop: '{{ apps.snap }}'
@@ -193,8 +201,6 @@
         owner: '{{ ansible_facts.user_id }}'
         group : '{{ ansible_facts.user_id }}'
         mode: 755
-      args:
-        creates: '/home/{{ ansible_facts.user_id }}/.docker' 
     - name: 'Start Docker service on system boot'
       become: yes
       service:
