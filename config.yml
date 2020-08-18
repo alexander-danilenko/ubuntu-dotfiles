@@ -4,9 +4,8 @@ php:
   version: 7.4
   composer:
     # List of packages that will be installed globally.
-    # @TODO: Use cgr as replacement for composer global require: https://github.com/consolidation/cgr
     global:
-      #- drush/drush
+      - drush/drush
       - drupal/coder              # PHPCS Drupal standards
       - friendsofphp/php-cs-fixer # PHPCS standard fixer
       - mglaman/drupal-check      # Drupal static code analysis tool
@@ -31,8 +30,10 @@ node:
       - flow-bin
       - gulp
       - lsp
+      - typescript
       - vscode-css-languageserver-bin
       - vscode-html-languageserver-bin
+      - yarn
 
 python:
   install: yes
@@ -115,11 +116,11 @@ apps:
       repo: 'deb http://linux.teamviewer.com/deb stable main'
       gpg: 'https://download.teamviewer.com/download/linux/signature/TeamViewer2017.asc'
 
-
   # List of deb files that should be installed.
   deb:
     - https://download.xnview.com/XnViewMP-linux-x64.deb
-    # - https://global.download.synology.com/download/Tools/SynologyDriveClient/2.0.1-11061/Ubuntu/Installer/x86_64/synology-drive-client-11061.x86_64.deb
+    - https://downloads.slack-edge.com/linux_releases/slack-desktop-4.8.0-amd64.deb
+    - https://global.download.synology.com/download/Tools/SynologyDriveClient/2.0.1-11061/Ubuntu/Installer/x86_64/synology-drive-client-11061.x86_64.deb
     - https://zoom.us/client/latest/zoom_amd64.deb # Use deb version of zoom for better Hi-DPI monitor support.
 
   # List of apt packages to install. Will be installed with all required dependencies.
@@ -150,18 +151,18 @@ apps:
     - google-chrome-stable # Thing for collecting your personal data
     - nordvpn              # NordVPN client
     - teamviewer
-    - thunderbird 
+    - telegram-desktop
+    - thunderbird
     - thunderbird-locale-ru
     - transmission         # Torrent client
 
     # Office
-    - softmaker-freeoffice-2018 # Best free MS Office alternative 
-    # - libreoffice
-    # - libreoffice-base-drivers
-    # - libreoffice-help-en-us
-    # - libreoffice-help-ru
-    # - libreoffice-l10n-ru
-    # - libreoffice-l10n-uk
+    - libreoffice
+    - libreoffice-base-drivers
+    - libreoffice-help-en-us
+    - libreoffice-help-ru
+    - libreoffice-l10n-ru
+    - libreoffice-l10n-uk
     - sublime-text     # Text/code editor
     - sublime-merge    # Git GUI
 
@@ -198,18 +199,16 @@ apps:
 
   snap:
     - skype
-    - slack            # Corporate chat
-    - telegram-desktop # Personal chat
     # - icloud-for-linux
 
-    # Jetbrains products
-    - intellij-idea-community # Jave IDE
-    - phpstorm                # PHP IDE
-    - pycharm-community       # Python IDE
+    ## Jetbrains products
     # - android-studio          # Android IDE
     # - clion                   # C/C++ IDE
     # - goland                  # Golang IDE
+    - intellij-idea-community # Jave IDE
     # - intellij-idea-ultimate  # Java IDE
+    - phpstorm                # PHP IDE
+    - pycharm-community       # Python IDE
     # - pycharm-professional    # Python IDE
     # - rider                   # .NET IDE
     # - rubymine                # Ruby IDE
