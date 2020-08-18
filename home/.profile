@@ -27,6 +27,14 @@ if [ -d "$HOME/.local/bin" ] ; then
 fi
 
 # set PATH so it includes user's composer bin if it exists
-if [ -d "$HOME/.config/composer/vendor/bin" ] ; then
-    PATH="$HOME/.config/composer/vendor/bin:$PATH"
+if [ -d "$HOME/.composer/vendor/bin" ] ; then
+    PATH="$HOME/.composer/vendor/bin:$PATH"
+fi
+
+# Configure NVM.
+export NVM_DIR="${HOME}/.nvm"
+if [ -s "$NVM_DIR/nvm.sh" ] ; then
+    source "$NVM_DIR/nvm.sh"
+    # Add global npm binaries to path.
+    PATH="$PATH:$(npm config --global get prefix)/bin"
 fi
