@@ -1,0 +1,21 @@
+name: 'Test'
+on:
+  push:
+    branches:
+      - ubuntu-20.04
+
+jobs:
+  terraform:
+    # The purpose of these actions is to deploy infrastructure changes.
+    name: 'Test'
+    runs-on: ubuntu-20.04
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Run provision
+      run: ./install
