@@ -1,13 +1,12 @@
-name: 'Test'
 on:
   push:
     branches:
       - ubuntu-20.04
 
 jobs:
-  terraform:
+  test-on-20-04:
     # The purpose of these actions is to deploy infrastructure changes.
-    name: 'Test'
+    name: 'Ubuntu 20.04 LTS'
     runs-on: ubuntu-20.04
     defaults:
       run:
