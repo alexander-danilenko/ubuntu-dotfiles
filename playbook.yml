@@ -122,25 +122,27 @@
         dest: $HOME/.local/bin/composer
         mode: '0755'
       when: php.install|bool
-    - name: 'Create ~/.config/composer if it does not exist'
+    - name: 'Create ~/.composer if it does not exist'
       file:
-        path: $HOME/.config/composer
+        path: $HOME/.composer
         state: directory
       when: php.install|bool
-    - name: 'Require global composer packages'
-      command: composer global require {{ php.composer.global | join(' ') }}
+    - name: 'Install global composer package: "cgr/consolidation"'
+      command: composer global require consolidation/cgr
+    - name: 'Require global composer packages using "cgr"'
+      command: cgr {{ php.composer.global | join(' ') }}
       when: php.install|bool
     - name: 'Enable Drupal PHPCS standard'
       file:
         state: link
-        src: $HOME/.config/composer/vendor/drupal/coder/coder_sniffer/Drupal
-        dest: $HOME/.config/composer/vendor/squizlabs/php_codesniffer/src/Standards/Drupal
+        src: $HOME/.composer/vendor/drupal/coder/coder_sniffer/Drupal
+        dest: $HOME/.composer/vendor/squizlabs/php_codesniffer/src/Standards/Drupal
       when: php.install|bool and 'drupal/coder' in php.composer.global
     - name: 'Enable DrupalPractice PHPCS standard'
       file:
         state: link
-        src: $HOME/.config/composer/vendor/drupal/coder/coder_sniffer/DrupalPractice
-        dest: $HOME/.config/composer/vendor/squizlabs/php_codesniffer/src/Standards/DrupalPractice
+        src: $HOME/.composer/vendor/drupal/coder/coder_sniffer/DrupalPractice
+        dest: $HOME/.composer/vendor/squizlabs/php_codesniffer/src/Standards/DrupalPractice
       when: php.install|bool and 'drupal/coder' in php.composer.global
 
     # Install Node.js + npm packages.
@@ -149,12 +151,18 @@
       apt:
         name: nodejs
         state: absent
-    - name: 'Install node via nvm' # Assuming zsh-nvm bundle is added.
-      command: "zsh -c 'source $HOME/.zshrc && nvm install {{ node.version }} && nvm use {{ node.version }}'"
-      ignore_errors: yes
-    - name: 'Install global npm packages' # Assuming zsh-nvm bundle is added.
-      command: "zsh -c 'source $HOME/.zshrc && npm install -g {{ node.npm.global | join(' ') }}'"
-      ignore_errors: yes
+    - name: 'Install NVM'
+      shell: >
+        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+      args:
+        creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
+      when: node.install|bool
+    - name: 'Install node via NVM'
+      command: bash -c "source $HOME/.profile && nvm install {{ node.version }} && nvm use {{ node.version }}"
+      when: node.install|bool
+    - name: 'Install global NPM packages' # Assuming zsh-nvm bundle is added.
+      command: bash -c "source $HOME/.profile && npm install -g {{ node.npm.global | join(' ') }}"
+      when: node.install|bool
 
     # Install python and pip3 packages.
     - name: 'Install Python packages'
@@ -182,6 +190,9 @@
       loop: '{{ vscode.plugins }}'
       command: 'code --install-extension {{ item }}'
       when: vscode.install|bool
+      # Assume that not all extensions available to download. Some extensions
+      # may be either removed or renamed.
+      ignore_errors: yes
 
     # Install docker.
     - name: 'Install Docker packages'
@@ -213,18 +224,10 @@
         state: restarted
 
     # Install Docksal.
-    - name: 'Download Docksal installer'
-      get_url:
-        url: https://get.docksal.io
-        dest: /tmp/docksal.sh
-        mode: 0755
-    - name: 'Run Docksal installer'
-      shell: /tmp/docksal.sh
-      args:
-        creates: '/usr/local/bin/fin'
+    - name: 'Install Docksal'
+      shell: >
+        curl -o- https://get.docksal.io | bash
       environment:
-        DOCKSAL_CONFIRM_YES: 1 # Force answer "y" to all y/n Docksal questions.
-    - name: 'Remove Docksal installer'
-      file:
-        path: /tmp/docksal.sh
-        state: absent
+        DOCKSAL_CONFIRM_YES: 1 # Force answer "y" to all y/n Docksal questions.  
+      args:
+        creates: "/usr/local/bin/fin"
