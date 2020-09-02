@@ -71,6 +71,7 @@ vscode:
     - william-voyek.vscode-nginx              # nginx.conf support
     - yzhang.markdown-all-in-one              # Markdown tools
     - hookyqr.beautify                        # HTML/JSON beautifier
+    - dakara.transformer                      # Filter, Sort, Unique, Reverse, Align, CSV, Line Selection, Text Transformations and Macros
 
 # APT package manager settings.
 apps:
