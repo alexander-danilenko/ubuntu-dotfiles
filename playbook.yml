@@ -6,228 +6,412 @@
 
   tasks:
 
-    # Extend fs.inotify.max_user_watches value.
+    ############ Extend fs.inotify.max_user_watches value ######################
     # @see https://confluence.jetbrains.com/display/IDEADEV/Inotify+Watches+Limit
-    - name: "Extend echo fs.inotify.max_user_watches"
-      become: yes
-      command: 'echo "fs.inotify.max_user_watches = 524288" | sudo tee -a /etc/sysctl.conf && sudo sysctl -p'
 
-    # Copy home directory.
-    - name: "Copy `home` directory from repo to user's home directoriy"
+    - name: 'Extend echo fs.inotify.max_user_watches'
+      become: yes
+      shell: 'echo "fs.inotify.max_user_watches = 524288" | sudo tee -a /etc/sysctl.conf && sudo sysctl -p'
+      args:
+        executable: '/bin/bash'
+      tags:
+        - shell
+        - inotify
+
+    ############ Copy "./home" directory #######################################
+
+    - name: 'Copy "./home" directory to $HOME'
       copy:
         src: './home/'
         dest: '$HOME'
         backup: no # Do not make backup copies of files.
         force: yes
+      tags:
+        - home
 
-    # Install ZSH + Antigen.
-    - name: 'Install zsh package'
+    ############ Install ZSH + Antigen #########################################
+
+    - name: 'Copy ".profile" and ".zshrc" to home directory'
+      copy:
+        src: '{{ item }}'
+        dest: '$HOME'
+        backup: no
+      with_items:
+        - './home/.profile'
+        - './home/.zshrc'
+      tags:
+        - shell
+        - zsh
+
+    - name: 'Install "zsh" apt package'
       become: true
       apt:
-        name: zsh
-    - name: 'Make ~/.antigen directory'
+        name: 'zsh'
+      tags:
+        - shell
+        - zsh
+
+    - name: 'Create ~/.antigen directory'
       file:
-        path: $HOME/.antigen
-        state: directory
+        path: '$HOME/.antigen'
+        state: 'directory'
+      tags:
+        - shell
+        - zsh
+        - antigen
+
     - name: 'Download Antigen'
       get_url:
-        url: https://git.io/antigen
-        dest: $HOME/.antigen/antigen.zsh
-    - name: 'Make zsh as a default shell'
+        url: 'https://git.io/antigen'
+        dest: '$HOME/.antigen/antigen.zsh'
+      tags:
+        - shell
+        - zsh
+        - antigen
+
+    - name: 'Set "/bin/zsh" shell as default'
       become: true
-      command: 'chsh -s /bin/zsh'
+      shell: 'chsh -s /bin/zsh'
+      args:
+        executable: '/bin/bash'
+      tags:
+        - shell
+        - zsh
 
     # By default zsh is not inheriting any bash profile settings which may lead,
     # for example, to missing snap apps in main menu.
-    # @see https://askubuntu.com/questions/910821/programs-installed-via-snap-not-showing-up-in-launcher#answer-989485
-    - name: Make sure that /etc/profile is loaded in /etc/zsh/zprofile
+    # @see https://askubuntu.com/questions/910821#answer-989485
+    - name: 'Make sure that "/etc/profile" is loaded in "/etc/zsh/zprofile"'
       become: yes
       lineinfile:
-        path: /etc/zsh/zprofile
+        path: '/etc/zsh/zprofile'
         line: 'emulate sh -c "source /etc/profile"'
         create: yes
+      tags:
+        - shell
+        - zsh
 
-    # Install apps.
-    - name: 'Install DEB packages' # Run deb installation first as deb packages can add apt repos.
+    ############ Install software ##############################################
+
+    # Run deb installation first as deb packages can add apt repos.
+    - name: 'Install *.deb packages'
+      when: apps.deb is defined
       become: yes
       loop: '{{ apps.deb }}'
       apt:
+        only_upgrade: yes # Only upgrade a package if it's already installed.
         deb: '{{ item }}'
+      tags:
+        - software
+        - apt
+        - deb
+
     - name: 'Add apt keys'
+      when: apps.repos is defined and item.gpg is defined
       become: yes
       loop: '{{ apps.repos }}'
       apt_key:
         url: '{{ item.gpg }}'
-      when: item.gpg is defined
-    - name: 'Add PPA repositories'
+      tags:
+        - software
+        - apt
+        - repos
+
+    - name: 'Add apt repositories'
+      when: apps.repos is defined and item.repo is defined
       become: yes
       loop: '{{ apps.repos }}'
       apt_repository:
         repo: '{{ item.repo }}'
         filename: '{{ item.filename }}'
-        state: present
+        state: 'present'
         update_cache: no
+      tags:
+        - software
+        - apt
+        - repos
+
     # Linux Mint 20 has disabled snaps. For enabling snapd its required to
     # remove /etc/apt/preferences.d/nosnap.pref file.
     # @see https://www.omgubuntu.co.uk/2020/06/enable-snap-apps-linux-mint-20 
-    - name: 'Make sure that nosnap.pref file is removed'
+    - name: 'Make sure that "nosnap.pref" file is removed'
       become: yes
       file:
-        path: /etc/apt/preferences.d/nosnap.pref
-        state: absent
-    - name: 'Update APT cache'
+        path: '/etc/apt/preferences.d/nosnap.pref'
+        state: 'absent'
+      tags:
+        - software
+        - snap
+
+    - name: 'Update apt cache'
       become: yes
       apt:
         update_cache: yes
-    - name: 'Install packages'
+      tags:
+        - software
+        - apt
+  
+    - name: 'Install apt packages'
+      when: apps.apt is defined
       become: yes
       apt:
         pkg: '{{ apps.apt }}'
-        state: present
+        state: 'present'
         update_cache: no
-    - name: 'Make sure snapd is installed'
+      tags:
+        - software
+        - apt
+
+    - name: 'Make sure "snapd" is installed'
+      when: apps.snap is defined
       become: yes
       apt:
-        pkg: snapd
-        state: present
+        pkg: 'snapd'
+        state: 'present'
         update_cache: no
+      tags:
+        - software
+        - snap
+
     - name: 'Install snap packages'
+      when: apps.snap is defined
       become: yes
       loop: '{{ apps.snap }}'
       snap:
         name: '{{ item }}'
         classic: yes
-        channel: stable
-        state: present
+        channel: 'stable'
+        state: 'present'
+      tags:
+        - software
+        - snap
 
-    # Install PHP + Composer + Composer packages.
-    - name: 'Install PHP packages'
+    ############ Install PHP + composer + global packages ######################
+
+    - name: 'Install PHP apt packages'
+      when: php.install|bool
       become: yes
       apt:
         name:
-          - php{{ php.version }}-common
-          - php{{ php.version }}-cli
-          - php{{ php.version }}-curl
-          - php{{ php.version }}-gd
-          - php{{ php.version }}-json
-          - php{{ php.version }}-mbstring
-          - php{{ php.version }}-mysql
-          - php{{ php.version }}-opcache
-          - php{{ php.version }}-xml
-          - php{{ php.version }}-zip
+          - 'php{{ php.version }}-common'
+          - 'php{{ php.version }}-cli'
+          - 'php{{ php.version }}-curl'
+          - 'php{{ php.version }}-gd'
+          - 'php{{ php.version }}-json'
+          - 'php{{ php.version }}-mbstring'
+          - 'php{{ php.version }}-mysql'
+          - 'php{{ php.version }}-opcache'
+          - 'php{{ php.version }}-xml'
+          - 'php{{ php.version }}-zip'
+      tags:
+        - php
+
+    - name: 'Download "composer.phar"'
       when: php.install|bool
-    - name: 'Download composer'
       get_url:
-        url: https://getcomposer.org/composer-stable.phar
-        dest: $HOME/.local/bin/composer
+        url: 'https://getcomposer.org/composer-stable.phar'
+        dest: '$HOME/.local/bin/composer'
         mode: '0755'
-      when: php.install|bool
-    - name: 'Create ~/.composer if it does not exist'
-      file:
-        path: $HOME/.composer
-        state: directory
-      when: php.install|bool
-    - name: 'Install global composer package: "cgr/consolidation"'
-      command: composer global require consolidation/cgr
-    - name: 'Require global composer packages using "cgr"'
-      command: cgr {{ php.composer.global | join(' ') }}
-      when: php.install|bool
-    - name: 'Enable Drupal PHPCS standard'
-      file:
-        state: link
-        src: $HOME/.composer/vendor/drupal/coder/coder_sniffer/Drupal
-        dest: $HOME/.composer/vendor/squizlabs/php_codesniffer/src/Standards/Drupal
-      when: php.install|bool and 'drupal/coder' in php.composer.global
-    - name: 'Enable DrupalPractice PHPCS standard'
-      file:
-        state: link
-        src: $HOME/.composer/vendor/drupal/coder/coder_sniffer/DrupalPractice
-        dest: $HOME/.composer/vendor/squizlabs/php_codesniffer/src/Standards/DrupalPractice
-      when: php.install|bool and 'drupal/coder' in php.composer.global
+      tags:
+        - php
+        - composer
 
-    # Install Node.js + npm packages.
-    - name: 'Make sure that "nodejs" package is removed'
+    - name: 'Create "~/.composer" directory'
+      when: php.install|bool
+      file:
+        path: '$HOME/.composer'
+        state: 'directory'
+      tags:
+        - php
+        - composer
+
+    - name: 'Install "cgr/consolidation" global package'
+      when: php.composer.global is defined
+      shell: '. $HOME/.profile && composer global require consolidation/cgr'
+      args:
+        executable: '/bin/bash'
+      tags:
+        - php
+        - composer
+
+    - name: 'Install global packages using "cgr"'
+      when: php.install|bool and php.composer.global is defined
+      shell: '. $HOME/.profile && cgr {{ php.composer.global | join(" ") }}'
+      args:
+        executable: '/bin/bash'
+      tags:
+        - php
+        - composer
+
+    - name: 'Enable "Drupal" code sniffer standard'
+      when: php.install|bool and php.composer.global is defined and 'drupal/coder' in php.composer.global and 'squizlabs/php_codesniffer' in php.composer.global
+      file:
+        state: 'link'
+        src: '$HOME/.composer/global/drupal/coder/vendor/drupal/coder/coder_sniffer/Drupal'
+        dest: '$HOME/.composer/global/squizlabs/php_codesniffer/vendor/squizlabs/php_codesniffer/src/Standards/Drupal'
+      tags:
+        - php
+        - composer
+        - drupal
+
+    - name: 'Enable "DrupalPractice" code sniffer standard'
+      when: php.install|bool and php.composer.global is defined and 'drupal/coder' in php.composer.global and 'squizlabs/php_codesniffer' in php.composer.global
+      file:
+        state: 'link'
+        src: '$HOME/.composer/global/drupal/coder/vendor/drupal/coder/coder_sniffer/DrupalPractice'
+        dest: '$HOME/.composer/global/squizlabs/php_codesniffer/vendor/squizlabs/php_codesniffer/src/Standards/DrupalPractice'
+      tags:
+        - php
+        - composer
+        - drupal
+
+    ############ Install Node.js and npm packages ##############################
+
+    - name: 'Make sure "nodejs" apt package is removed'
+      when: node.install|bool
       become: yes
       apt:
-        name: nodejs
-        state: absent
-    - name: 'Install NVM'
-      shell: >
-        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
-      args:
-        creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
-      when: node.install|bool
-    - name: 'Install node via NVM'
-      command: bash -c "source $HOME/.profile && nvm install {{ node.version }} && nvm use {{ node.version }}"
-      when: node.install|bool
-    - name: 'Install global NPM packages' # Assuming zsh-nvm bundle is added.
-      command: bash -c "source $HOME/.profile && npm install -g {{ node.npm.global | join(' ') }}"
-      when: node.install|bool
+        name: 'nodejs'
+        state: 'absent'
+      tags:
+        - node
 
-    # Install python and pip3 packages.
-    - name: 'Install Python packages'
+    - name: 'Install node version manager'
+      when: node.install|bool
+      shell: 'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash'
+      args:
+        creates: '{{ ansible_env.HOME }}/.nvm/nvm.sh'
+        executable: '/bin/bash'
+      tags:
+        - node
+        - nvm
+
+    - name: 'Install node'
+      when: node.install|bool
+      shell: '. $HOME/.profile && nvm install {{ node.version | default("--lts") }} && nvm use {{ node.version | default("--lts") }}'
+      args:
+        executable: '/bin/bash'
+      tags:
+        - node
+        - nvm
+
+    - name: 'Install global npm packages'
+      when: node.install|bool and node.npm.global is defined
+      shell: '. $HOME/.profile && npm install -g {{ node.npm.global | join(" ") }}'
+      args:
+        executable: '/bin/bash'
+      tags:
+        - node
+        - nvm
+        - npm
+
+    ############ Install python and pip3 packages ##############################
+
+    - name: 'Install Python apt packages'
+      when: python.install|bool
       become: yes
       apt:
         name:
-          - python3-pip
-          - python{{ python.version }}
-          - python{{ python.version }}-dev
-          - python{{ python.version }}-doc
-          - python{{ python.version }}-minimal
-      when: python.install|bool
-    - name: 'Require global python3 packages'
-      command: pip3 install --user {{ python.pip3.global | join(' ') }}
-      when: python.install|bool
+          - 'python3-pip'
+          - 'python{{ python.version }}'
+          - 'python{{ python.version }}-dev'
+          - 'python{{ python.version }}-doc'
+          - 'python{{ python.version }}-minimal'
+      tags:
+        - python
 
-    # Install and configure vscode.
-    - name: 'Install Visual Studio Code...'
+    - name: 'Install Python global packages'
+      when: python.install|bool and python.pip3.global is defined
+      shell: 'pip3 install --user {{ python.pip3.global | join(" ") }}'
+      args:
+        executable: '/bin/bash'
+      tags:
+        - python
+        - pip3
+
+    ############ Install and configure vscode ##################################
+
+    - name: 'Install "code" apt package'
+      when: vscode.install|bool
       become: yes
       apt:
-        name: code
-        state: latest
+        name: 'code'
+        state: 'latest'
+      tags:
+        - vscode
+
+    - name: 'Copy "code" settings from ./home'
       when: vscode.install|bool
-    - name: 'Install code extensions...'
-      loop: '{{ vscode.plugins }}'
-      command: 'code --install-extension {{ item }}'
-      when: vscode.install|bool
+      copy:
+        src: './home/.config/Code/User/settings.json'
+        dest: '$HOME/.config/Code/User/settings.json'
+        backup: no
+      tags:
+        - vscode
+
+    - name: 'Install "code" extensions'
+      when: vscode.install|bool and vscode.extensions is defined
+      loop: '{{ vscode.extensions }}'
+      shell: 'code --install-extension {{ item }}'
       # Assume that not all extensions available to download. Some extensions
       # may be either removed or renamed.
       ignore_errors: yes
+      args:
+        executable: '/bin/bash'
+      tags:
+        - vscode
+        - extensions
 
-    # Install docker.
-    - name: 'Install Docker packages'
+    ############ Docker ########################################################
+
+    - name: 'Install docker apt packages'
       become: yes
       apt:
         pkg:
-          - docker-ce
-          - docker-compose
-    - name: 'Move Docker directory to ~/.docker'
+          - 'docker-ce'
+          - 'docker-compose'
+      tags:
+        - docker
+
+    - name: 'Move docker directory to ~/.docker'
       become: yes
       copy:
         content: |
           {
             "graph": "/home/{{ ansible_facts.user_id }}/.docker"
           }
-        dest: /etc/docker/daemon.json
+        dest: '/etc/docker/daemon.json'
         owner: '{{ ansible_facts.user_id }}'
         group : '{{ ansible_facts.user_id }}'
-        mode: 755
-    - name: 'Start Docker service on system boot'
-      become: yes
-      service:
-        name: docker
-        enabled: yes
-    - name: 'Restart Docker service'
-      become: yes
-      service:
-        name: docker
-        state: restarted
+        mode: '755'
+      tags:
+        - docker
 
-    # Install Docksal.
+    - name: 'Start "docker" service on boot'
+      become: yes
+      service:
+        name: 'docker'
+        enabled: yes
+      tags:
+        - docker
+
+    - name: 'Restart "docker" service'
+      become: yes
+      service:
+        name: 'docker'
+        state: 'restarted'
+      tags:
+        - docker
+
+    ############ Docksal #######################################################
+
     - name: 'Install Docksal'
-      shell: >
-        curl -o- https://get.docksal.io | bash
+      shell: 'curl -o- https://get.docksal.io | bash'
       environment:
         DOCKSAL_CONFIRM_YES: 1 # Force answer "y" to all y/n Docksal questions.  
       args:
-        creates: "/usr/local/bin/fin"
+        executable: '/bin/bash'
+        creates: /usr/local/bin/fin
+      tags:
+        - docker
+        - docksal

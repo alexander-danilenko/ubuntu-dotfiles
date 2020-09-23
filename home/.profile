@@ -10,31 +10,34 @@
 
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
-    # include .bashrc if it exists
-    if [ -f "$HOME/.bashrc" ]; then
-	. "$HOME/.bashrc"
-    fi
+  # include .bashrc if it exists
+  if [ -f "$HOME/.bashrc" ]; then
+    . "$HOME/.bashrc"
+  fi
 fi
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
+  PATH="$HOME/bin:$PATH"
 fi
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/.local/bin" ] ; then
-    PATH="$HOME/.local/bin:$PATH"
+  PATH="$HOME/.local/bin:$PATH"
 fi
 
 # set PATH so it includes user's composer bin if it exists
 if [ -d "$HOME/.composer/vendor/bin" ] ; then
-    PATH="$HOME/.composer/vendor/bin:$PATH"
+  PATH="$HOME/.composer/vendor/bin:$PATH"
 fi
 
 # Configure NVM.
 export NVM_DIR="${HOME}/.nvm"
 if [ -s "$NVM_DIR/nvm.sh" ] ; then
-    source "$NVM_DIR/nvm.sh"
+  source "$NVM_DIR/nvm.sh"
+  # If npm installed.
+  if which npm; then
     # Add global npm binaries to path.
     PATH="$PATH:$(npm config --global get prefix)/bin"
+  fi
 fi
