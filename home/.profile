@@ -36,7 +36,7 @@ export NVM_DIR="${HOME}/.nvm"
 if [ -s "$NVM_DIR/nvm.sh" ] ; then
   source "$NVM_DIR/nvm.sh"
   # If npm installed.
-  if which npm; then
+  if [ -x "$(command -v npm)" ]; then
     # Add global npm binaries to path.
     PATH="$PATH:$(npm config --global get prefix)/bin"
   fi
