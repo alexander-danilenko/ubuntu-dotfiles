@@ -9,27 +9,20 @@
 #umask 022
 
 # if running bash
-if [ -n "$BASH_VERSION" ]; then
-  # include .bashrc if it exists
-  if [ -f "$HOME/.bashrc" ]; then
-    . "$HOME/.bashrc"
+if [ -n "$BASH_VERSION" ] && [ -f "$HOME/.bashrc" ]; then
+  . "$HOME/.bashrc"
+fi
+
+PATH_DIRS=(
+  "$HOME/bin"
+  "$HOME/.local/bin"
+  "$HOME/.composer/vendor/bin"
+)
+for i in ${!PATH_DIRS[*]}; do
+  if [ -d "${PATH_DIRS[$i]}" ]; then
+    PATH="${PATH_DIRS[$i]}:$PATH"
   fi
-fi
-
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
-  PATH="$HOME/bin:$PATH"
-fi
-
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/.local/bin" ] ; then
-  PATH="$HOME/.local/bin:$PATH"
-fi
-
-# set PATH so it includes user's composer bin if it exists
-if [ -d "$HOME/.composer/vendor/bin" ] ; then
-  PATH="$HOME/.composer/vendor/bin:$PATH"
-fi
+done
 
 # Configure NVM.
 export NVM_DIR="${HOME}/.nvm"
