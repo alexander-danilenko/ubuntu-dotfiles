@@ -18,9 +18,9 @@ PATH_DIRS=(
   "$HOME/.local/bin"
   "$HOME/.composer/vendor/bin"
 )
-for i in ${!PATH_DIRS[*]}; do
-  if [ -d "${PATH_DIRS[$i]}" ]; then
-    PATH="${PATH_DIRS[$i]}:$PATH"
+for PATH_DIR in ${PATH_DIRS[@]}; do
+  if [ -d "$PATH_DIR" ]; then
+    PATH="$PATH_DIR:$PATH"
   fi
 done
 
