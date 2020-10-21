@@ -1,22 +1,31 @@
 [user]
-# name = Example Name
-# email = example@example.com
+  # name = Example Name
+  # email = example@example.com
 
 [core]
-  autocrlf = input
-  safecrlf = false
+  autocrlf   = input
+  safecrlf   = false
   ignorecase = false
-  excludesfile = 
-  longpaths = true
+  longpaths  = true
+  editor     = nano
+
 [diff]
-  renames = copies
+  renames    = copies
+
 [color]
-  ui = true
+  ui         = true
+  diff       = auto
+  status     = auto
+  branch     = auto
+
 [alias]
-  a = apply --index
-  p = format-patch --stdout
-  hide = update-index --assume-unchanged
-  unhide = update-index --no-assume-unchanged
-  ignored = !git ls-files -v | grep "^[[:lower:]]"
+  c          = commit -m
+  hidden     = !git ls-files -v | grep "^[[:lower:]]"
+  hide       = update-index --assume-unchanged
+  p          = "!git pull origin $(git branch --show-current) --rebase --autostash"
+  pp         = "!git pull origin develop --rebase --autostash"
+  s          = status --short --branch
+  unhide     = update-index --no-assume-unchanged
+
 [mergetool]
-	keepBackup = true
+  keepBackup = true
