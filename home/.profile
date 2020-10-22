@@ -24,6 +24,11 @@ for PATH_DIR in ${PATH_DIRS[@]}; do
   fi
 done
 
+# Fix Flatpak missing main menu icons.
+if [ -d "/var/lib/flatpak/exports/share/applications" ]; then 
+  XDG_DATA_DIRS="$XDG_DATA_DIRS:/var/lib/flatpak/exports/share/applications"
+fi
+
 # Configure NVM.
 export NVM_DIR="${HOME}/.nvm"
 if [ -s "$NVM_DIR/nvm.sh" ] ; then
