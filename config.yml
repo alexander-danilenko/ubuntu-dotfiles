@@ -1,6 +1,7 @@
 php:
   install: yes
   version: 7.4
+  # @TODO: Add composer version select: v1 or v2.
   composer:
     # List of global composer packages to install.
     global:
