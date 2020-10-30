@@ -161,9 +161,11 @@ apps:
     - sublime-text  # Text/code editor
 
     # Media
-    - dia       # Diagram editor
-    - flameshot # Screenshot tool
-    - inkscape  # Vector image editor
+    - clementine # Audio/Radio/Podcasts player
+    - dia        # Diagram editor
+    - flameshot  # Screenshot tool
+    - inkscape   # Vector image editor
+    - vlc        # Legend!
 
     # Fonts
     - fonts-dejavu
