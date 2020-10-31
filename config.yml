@@ -112,7 +112,6 @@ apps:
   deb:
     - https://downloads.slack-edge.com/linux_releases/slack-desktop-4.8.0-amd64.deb
     - https://global.download.synology.com/download/Tools/SynologyDriveClient/2.0.1-11061/Ubuntu/Installer/x86_64/synology-drive-client-11061.x86_64.deb
-    - https://repo.skype.com/latest/skypeforlinux-64.deb
     - https://zoom.us/client/latest/zoom_amd64.deb # Use deb version of zoom for better Hi-DPI monitor support.
 
   # List of apt packages to install.
@@ -143,7 +142,6 @@ apps:
     - google-chrome-stable # Thing for collecting your personal data
     - nordvpn              # NordVPN client
     - teamviewer
-    - telegram-desktop
     - thunderbird
     - thunderbird-locale-ru
     - transmission         # Torrent client
@@ -193,3 +191,9 @@ apps:
 
   flatpak:
     - com.getpostman.Postman
+    - com.skype.Client
+    - org.telegram.desktop
+    # - com.discordapp.Discord
+    # - com.github.johnfactotum.Foliate # eBook reader
+    # - com.rafaelmardojai.Blanket # Listen to different sounds
+    # - com.spotify.Client
