@@ -112,7 +112,6 @@ apps:
 
   # List of *.deb URLs to install.
   deb:
-    - https://download.xnview.com/XnViewMP-linux-x64.deb
     - https://downloads.slack-edge.com/linux_releases/slack-desktop-4.8.0-amd64.deb
     - https://global.download.synology.com/download/Tools/SynologyDriveClient/2.0.1-11061/Ubuntu/Installer/x86_64/synology-drive-client-11061.x86_64.deb
     - https://zoom.us/client/latest/zoom_amd64.deb # Use deb version of zoom for better Hi-DPI monitor support.
@@ -193,18 +192,5 @@ apps:
     # Customization
     - papirus-icon-theme
 
-  snap:
-    - skype
-    # - android-studio          # Android IDE
-    # - clion                   # C/C++ IDE
-    # - goland                  # Golang IDE
-    # - icloud-for-linux        # iCloud
-    # - intellij-idea-community # Jave IDE
-    # - intellij-idea-ultimate  # Java IDE
-    # - phpstorm                # PHP IDE
-    # - pycharm-community       # Python IDE
-    # - pycharm-professional    # Python IDE
-    # - rider                   # .NET IDE
-    # - rubymine                # Ruby IDE
-    # - space                   # JB Space
-    # - webstorm                # HTML/JS IDE
+  flatpak:
+    - com.getpostman.Postman

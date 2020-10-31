@@ -78,19 +78,6 @@
         - shell
         - zsh
 
-    # By default zsh is not inheriting any bash profile settings which may lead,
-    # for example, to missing snap apps in main menu.
-    # @see https://askubuntu.com/questions/910821#answer-989485
-    - name: 'Make sure that "/etc/profile" is loaded in "/etc/zsh/zprofile"'
-      become: yes
-      lineinfile:
-        path: '/etc/zsh/zprofile'
-        line: 'emulate sh -c "source /etc/profile"'
-        create: yes
-      tags:
-        - shell
-        - zsh
-
     ############ Install software ##############################################
 
     # Run deb installation first as deb packages can add apt repos.
@@ -131,18 +118,6 @@
         - apt
         - repos
 
-    # Linux Mint 20 has disabled snaps. For enabling snapd its required to
-    # remove /etc/apt/preferences.d/nosnap.pref file.
-    # @see https://www.omgubuntu.co.uk/2020/06/enable-snap-apps-linux-mint-20 
-    - name: 'Make sure that "nosnap.pref" file is removed'
-      become: yes
-      file:
-        path: '/etc/apt/preferences.d/nosnap.pref'
-        state: 'absent'
-      tags:
-        - software
-        - snap
-
     - name: 'Update apt cache'
       become: yes
       apt:
@@ -162,29 +137,28 @@
         - software
         - apt
 
-    - name: 'Make sure "snapd" is installed'
-      when: apps.snap is defined
+    - name: 'Make sure flatpak is installed'
+      when: apps.flatpak is defined
       become: yes
       apt:
-        pkg: 'snapd'
+        pkg: 'flatpak'
         state: 'present'
         update_cache: no
       tags:
         - software
-        - snap
+        - flatpak
 
-    - name: 'Install snap packages'
-      when: apps.snap is defined
+    - name: 'Install flatpak packages'
+      when: apps.flatpak is defined
       become: yes
-      loop: '{{ apps.snap }}'
-      snap:
-        name: '{{ item }}'
-        classic: yes
-        channel: 'stable'
-        state: 'present'
+      loop: '{{ apps.flatpak }}'
+      flatpak:
+        name:  '{{ item }}'
+        state: present
+        remote: flathub
       tags:
         - software
-        - snap
+        - flatpak
 
     ############ Install PHP + composer + global packages ######################
 
