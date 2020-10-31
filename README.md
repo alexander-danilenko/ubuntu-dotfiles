@@ -1,44 +1,44 @@
 ![Logo](logo.png)
 
-This repo contains Ansible scripts and dotfiles for fast and easy PHP/Drupal developer environment setup on [Ubuntu](https://ubuntu.com/) linux and its flavors like K/L/X/ubuntu, Linux Mint, Pop!\_OS, etc. 
+# Ubuntu **20.04** Web Developer Environment
+
+This repo contains [Ansible](https://www.ansible.com/) script for fast and easy web developer environment setup on [Ubuntu](https://ubuntu.com/) and destributions based on it.
+
+## TL;DR
+
+1. 📝 Open [`config.yml`](config.yml) and adjust for your needs
+2. ✨ Run `./install` script
+3. ...
+4. ✅ Done, your system now is fully loaded with all useful web developer tools! 
 
 ## Motivation
-Setting up a new PHP/Drupal developer machine can be an ad-hoc, manual, and time-consuming process. The current project aims to simplify the process with instructions and dotfiles/scripts to automate the setup of the following:
 
+Setting up a new developer machine can be an ad-hoc, manual, and time-consuming process. The current project aims to simplify the process with instructions and dotfiles/scripts to automate the setup of the apps and tools useful for web development.
 
-## Usage
+## Applications list
 
-1. Clone repo.
-2. Open [`config.yml`](config.yml) and adjust for your needs.
-3. Execute `./install` for running system provisor.
+Following tools will be installed:
 
----
+- **Node** (via [nvm](https://github.com/nvm-sh/nvm)) with global **npm** packages
+- **PHP** + **Composer** with global packages
+- **Python** + **PIP** with global packages
+- **Visual Studio Code** with extensions and themes
+- **JetBrains Toolbox**
+- **Postman**
+- **Docker** + [**Docksal**](https://docksal.io/)
+- **zsh** + [antigen](https://github.com/zsh-users/antigen) + [gorilla config](home/.zshrc)
+- CLI utilities and tools
+- Office, Media apps, Internet apps and many-many more (see [`config.yml`](config.yml) file).
 
-### Applications list
+## Requirements
 
-- ZSH + [antigen](https://github.com/zsh-users/antigen) + [beast config](home/.zshrc)
-- [PHP](https://www.php.net/)
-- [Composer](https://getcomposer.org/)
-  - [PHP codesniffer](https://github.com/squizlabs/PHP_CodeSniffer)
-  - [Drupal codesniffer standard](https://git.drupalcode.org/project/coder/tree/8.x-3.x/coder_sniffer)
-- [Node](https://nodejs.org/en/)/[NPM](https://www.npmjs.com/) (via [NVM (node version manager)](https://github.com/nvm-sh/nvm)) with set of useful global packages (gulp, eslint, eslint standards, firebase cli, vscode language servers etc.)
-- [JetBrains](https://www.jetbrains.com/) IDEs:
-  - [PHPStorm](https://snapcraft.io/phpstorm)
-  - [PyCharm (CE)](https://snapcraft.io/pycharm-community)
-  - [IDEA (CE)](https://snapcraft.io/intellij-idea-community)
-  - Optionally any other...
-- [Docker](https://www.docker.com/) + [Docksal](https://docksal.io/) for local dev environment
-- [Visual Studio Code](https://code.visualstudio.com/) + Plugins + Themes
-- ...and many-many more (see [`config.yml`](config.yml) file).
-
-## List of supported distributions
-
-| Version           | Supported          |
-| ----------------- | ------------------ |
-| Ubuntu  20.04 LTS | :white_check_mark: |
-| Ubuntu <20.04 LTS | :x:                |
+- **Ubuntu 20.04**
 
 **Ubuntu** here means [Ubuntu](https://ubuntu.com/) itself and all its flavors and distributions based on certain Ubuntu version like: Kubuntu, Lubuntu, Xubuntu, Linux Mint, Pop!\_OS, elementary OS, Zorin OS, etc.
+
+- - -
+
+## Contribution
 
 If you experiencing any problems with your distribution, please raise an issue on [GitHub](https://github.com/alexander-danilenko/ubuntu-dotfiles/issues/new).
 
