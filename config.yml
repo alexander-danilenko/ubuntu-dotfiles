@@ -144,7 +144,7 @@ apps:
     - teamviewer
     - thunderbird
     - thunderbird-locale-ru
-    - transmission         # Torrent client
+    - qbittorrent         # Torrent client
 
     # Office
     - libreoffice
