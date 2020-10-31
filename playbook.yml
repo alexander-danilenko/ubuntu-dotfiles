@@ -94,23 +94,23 @@
         - deb
 
     - name: 'Add apt keys'
-      when: apps.repos is defined and item.gpg is defined
+      when: apps.repos is defined and item.value.gpg is defined
       become: yes
-      loop: '{{ apps.repos }}'
+      loop: '{{ apps.repos | dict2items }}'
       apt_key:
-        url: '{{ item.gpg }}'
+        url: '{{ item.value.gpg }}'
       tags:
         - software
         - apt
         - repos
 
     - name: 'Add apt repositories'
-      when: apps.repos is defined and item.repo is defined
+      when: apps.repos is defined and item.value.repo is defined
       become: yes
-      loop: '{{ apps.repos }}'
+      loop: '{{ apps.repos | dict2items }}'
       apt_repository:
-        repo: '{{ item.repo }}'
-        filename: '{{ item.filename }}'
+        repo: '{{ item.value.repo }}'
+        filename: '{{ item.key }}'
         state: 'present'
         update_cache: no
       tags:
@@ -399,6 +399,33 @@
       args:
         executable: '/bin/bash'
         creates: /usr/local/bin/fin
+      register: docksal_install_ran
+      tags:
+        - docker
+        - docksal
+
+    # Sometimes on non-vanilla Ubuntu destributions Docksal sets Debian APT repo
+    # for docker that is not compatible with Ubuntu. After that APT appears
+    # broken. Just re-adding repos with original values will fix it.
+    - name: 'Remove incompatible Docker apt repo'
+      when: docksal_install_ran.changed == true
+      become: yes
+      apt_repository:
+        repo: 'deb [arch=amd64] https://download.docker.com/linux/debian bullseye stable'
+        filename: 'docker'
+        state: 'absent'
+        update_cache: no
+      tags:
+        - docker
+        - docksal
+
+    - name: 'Fix docker repo that may appear broken after docksal installation'
+      when: docksal_install_ran.changed == true
+      become: yes
+      apt_repository:
+        repo: '{{ apps.repos.docker.repo }}'
+        filename: 'docker'
+        state: 'present'
       tags:
         - docker
         - docksal

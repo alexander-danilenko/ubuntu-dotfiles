@@ -80,38 +80,31 @@ jetbrains:
 apps:
   # List of 3rd party apt repos to add.
   repos:
-    - name: 'Microsoft Visual Studio Code'
-      filename: vscode
+    vscode:
       repo: 'deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main'
       gpg: 'https://packages.microsoft.com/keys/microsoft.asc'
 
-    - name: Docker
-      filename: docker
+    docker:
       repo: 'deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable'
       gpg: 'https://download.docker.com/linux/ubuntu/gpg'
 
-    - name: Google Chrome
-      filename: google-chrome
+    google-chrome:
       repo: 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main'
       gpg: 'https://dl-ssl.google.com/linux/linux_signing_key.pub'
 
-    - name: NordVPN
-      filename: nordvpn
+    nordvpn:
       repo: 'deb https://repo.nordvpn.com/deb/nordvpn/debian stable main'
       gpg: 'https://repo.nordvpn.com/gpg/nordvpn_public.asc'
 
-    - name: PHP
-      filename: php
+    php:
       repo: 'deb http://ppa.launchpad.net/ondrej/php/ubuntu focal main'
       gpg: 'https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x4f4ea0aae5267a6c'
 
-    - name: Sublime Apps
-      filename: sublime
+    sublime:
       repo: 'deb https://download.sublimetext.com/ apt/stable/'
       gpg: 'https://download.sublimetext.com/sublimehq-pub.gpg'
 
-    - name: TeamViewer
-      filename: teamviewer
+    teamviewer:
       repo: 'deb http://linux.teamviewer.com/deb stable main'
       gpg: 'https://download.teamviewer.com/download/linux/signature/TeamViewer2017.asc'
 
