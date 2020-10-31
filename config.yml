@@ -72,6 +72,10 @@ vscode:
     - hookyqr.beautify                        # HTML/JSON beautifier
     - dakara.transformer                      # Filter, Sort, Unique, Reverse, Align, CSV, Line Selection, Text Transformations and Macros
 
+jetbrains:
+  toolbox:
+    install: yes
+
 apps:
   # List of 3rd party apt repos to add.
   repos:

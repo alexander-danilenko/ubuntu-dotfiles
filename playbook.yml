@@ -336,6 +336,19 @@
         - vscode
         - extensions
 
+    ############ Install JetBrains Toolbox #####################################
+
+    - name: 'Install JetBrains Toolbox'
+      when: jetbrains.toolbox.install is defined and jetbrains.toolbox.install|bool
+      become: yes
+      shell: 'curl -Ls https://raw.githubusercontent.com/nagygergo/jetbrains-toolbox-install/master/jetbrains-toolbox.sh | sudo bash'
+      args:
+        executable: '/bin/bash'
+        creates: /opt/jetbrains-toolbox/
+      tags:
+        - shell
+        - inotify
+
     ############ Docker ########################################################
 
     - name: 'Install docker apt packages'
