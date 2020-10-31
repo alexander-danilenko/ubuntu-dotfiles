@@ -41,7 +41,8 @@ python:
   pip3:
     # List of global packages to install.
     global:
-      - awscli
+      - awscli # AWS cli.
+      - yq     # Takes YAML input and retrieves data by query.
 
 vscode:
   install: yes
@@ -132,7 +133,7 @@ apps:
     - heif-gdk-pixbuf  # Apple HEIF/HEIC decoder support 
     - heif-thumbnailer # Apple HEIF/HEIC thumbnails support 
     - htop        # Terminal system monitor
-    - jq          # JSON query tool
+    - jq          # Takes JSON input and retrieves data by query.
     - lhasa       # lzh unarchiver
     - mc          # Two panel terminal file manager
     - neofetch    # Shows Linux System Information with Distribution Logo
