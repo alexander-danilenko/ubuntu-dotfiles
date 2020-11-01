@@ -7,6 +7,7 @@
   "editor.fontSize": 15,
   "editor.renderWhitespace": "selection",
   "editor.rulers": [8, 16, 32, 80, 120],
+  "editor.selectionClipboard": false,
   "editor.suggestSelection": "first",
   "editor.tabSize": 2,
   "phpcs.executablePath": "$HOME/.config/composer/vendor/bin/phpcs",
@@ -20,7 +21,7 @@
   "workbench.iconTheme": "material-icon-theme",
   "workbench.statusBar.visible": true,
   "workbench.colorCustomizations": {  
-    "editorRuler.foreground": "#0000003a",
+    "editorRuler.foreground": "#222",
   },
   "files.associations": {
     "Vagrantfile": "ruby",
