@@ -49,16 +49,17 @@ vscode:
   # List of plugins to install.
   extensions:
     - acarreiro.calculate                     # Calculates inline math expr
-    - alefragnani.Bookmarks                   # Bookmarks
     - bbeversdorf.drupal-check                # Drupal: check for deprecations
     - christian-kohler.npm-intellisense       # NPM better autocomplete
     - christian-kohler.path-intellisense      # File path autocomplete
     - coenraads.bracket-pair-colorizer        # Bracket Pair Colorizer
+    - dakara.transformer                      # Filter, Sort, Unique, Reverse, Align, CSV, Line Selection, Text Transformations and Macros
     - dbaeumer.vscode-eslint                  # Eslint support
     - editorconfig.editorconfig               # EditorConfig support
     - esbenp.prettier-vscode                  # Prettier - Code formatter
     - github.github-vscode-theme              # GitHub color theme
     - golang.go                               # Golang support
+    - hookyqr.beautify                        # HTML/JSON beautifier
     - ikappas.composer                        # Composer support
     - ikappas.phpcs                           # PHP CodeSniffer
     - mariusschulz.yarn-lock-syntax           # yarn.lock syntax highlight
@@ -67,11 +68,11 @@ vscode:
     - ms-azuretools.vscode-docker             # Docker support
     - ms-python.python                        # Python support
     - pkief.material-icon-theme               # Material Icon Theme
+    - tyriar.lorem-ipsum                      # Lorem Ipsum generator
     - visualstudioexptteam.vscodeintellicode  # AI-assisted autocomplete
     - william-voyek.vscode-nginx              # nginx.conf support
     - yzhang.markdown-all-in-one              # Markdown tools
-    - hookyqr.beautify                        # HTML/JSON beautifier
-    - dakara.transformer                      # Filter, Sort, Unique, Reverse, Align, CSV, Line Selection, Text Transformations and Macros
+    #- alefragnani.Bookmarks                   # Bookmarks
 
 jetbrains:
   toolbox:
