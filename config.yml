@@ -133,6 +133,7 @@ apps:
     - net-tools   # Base network tools
     - nfs-common  # Package for work with NFS shares
     - rar         # rar archiver
+    - stacer      # Cool CleanMyMac alternative
     - tree        # Displays an indented directory tree, in color
     - unrar       # rar unarchiver
     - unzip       # zip unarchiver
