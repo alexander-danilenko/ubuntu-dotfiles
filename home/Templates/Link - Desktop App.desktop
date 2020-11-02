@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Encoding=UTF-8
+Name=Link - Desktop
+Comment=A sample application
+Exec=application
+Icon=application.png
+Terminal=false
+Categories=GNOME;Utility;
+OnlyShowIn=GNOME;

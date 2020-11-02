@@ -1,0 +1,17 @@
+[Desktop Entry]
+Type=Application
+Encoding=UTF-8
+Name=Link - PWA
+Comment=Youtube App
+Exec=google-chrome --app="https://youtube.com"
+Icon=youtube.png
+Terminal=false
+Categories=GNOME;GTK;AudioVideo;
+
+################################################################################
+# @see Categories list:
+# https://developer.gnome.org/menu-spec/#main-category-registry
+# https://developer.gnome.org/menu-spec/#additional-category-registry
+# https://developer.gnome.org/menu-spec/#reserved-category-registry
+################################################################################
+
