@@ -46,6 +46,7 @@ apps:
     - nfs-common  # Package for work with NFS shares
     - stacer      # Cool CleanMyMac alternative
     - tree        # Displays an indented directory tree, in color
+    - grub-customizer # GUI for GRUB settings management
   
     # Archive formats support
     - arj         # arj archiver
