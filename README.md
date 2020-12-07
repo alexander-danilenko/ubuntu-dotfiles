@@ -1,7 +1,5 @@
 ![Logo](./logo.svg)
 
-# Ubuntu **20.04** Web Developer Environment
-
 This repo contains [Ansible](https://www.ansible.com/) script for fast and easy web developer environment setup on [Ubuntu](https://ubuntu.com/) and destributions based on it.
 
 ## TL;DR
