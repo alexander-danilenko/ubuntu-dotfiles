@@ -1,6 +1,5 @@
-[user]
-  # name = Example Name
-  # email = example@example.com
+[include]
+  path = ~/.gitconfig.local
 
 [core]
   autocrlf   = input
