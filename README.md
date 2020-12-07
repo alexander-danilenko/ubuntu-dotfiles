@@ -1,4 +1,4 @@
-![Logo](logo.png)
+![Logo](./logo.svg)
 
 # Ubuntu **20.04** Web Developer Environment
 
