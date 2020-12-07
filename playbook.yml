@@ -158,9 +158,18 @@
         - software
         - flatpak
 
+    - name: 'Make sure flathub repo is added'
+      become: yes
+      when: apps.flatpak is defined
+      shell: 'flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo'
+      args:
+        executable: '/bin/bash'
+      tags:
+        - software
+        - flatpak
+
     - name: 'Install flatpak packages'
       when: apps.flatpak is defined
-      become: yes
       loop: '{{ apps.flatpak }}'
       flatpak:
         name:  '{{ item }}'
