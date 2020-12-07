@@ -15,6 +15,10 @@ if ! [ -x "$(command -v ansible)" ]; then
   MISSING_PREREQUISITES+=("ansible")
 fi
 
+if ! [ -x "$(command -v curl)" ]; then
+  MISSING_PREREQUISITES+=("curl")
+fi
+
 # If missing prerequisites is not empty.
 if (( ${#MISSING_PREREQUISITES[@]} )); then
   green=`tput setaf 2`
