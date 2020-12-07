@@ -78,7 +78,6 @@ apps:
     - qbittorrent          # Torrent client
     - sublime-merge        # Git GUI
     - sublime-text         # Text/code editor
-    - teamviewer           # Remote administration
     - telegram-desktop     # Best IM
     - vlc                  # Legend!
 
