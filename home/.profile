@@ -2,6 +2,11 @@ if [ -n "$BASH_VERSION" ] && [ -f "$HOME/.bashrc" ]; then
   source "$HOME/.bashrc"
 fi
 
+######## Load local config #####################################################
+if [ -f "$HOME/.profile.local" ]; then
+  source "$HOME/.profile.local"
+fi
+
 ######## NVM section ###########################################################
 export NVM_DIR="${HOME}/.nvm"
 if [ -s "$NVM_DIR/nvm.sh" ] ; then
