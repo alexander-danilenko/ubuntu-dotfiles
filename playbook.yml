@@ -360,6 +360,15 @@
 
     ############ Docker ########################################################
 
+    - name: 'Make sure docker apt repo is added'
+      become: yes
+      apt_repository:
+        repo: '{{ apps.repos.docker.repo }}'
+        filename: 'docker'
+        state: 'present'
+      tags:
+        - docker
+    
     - name: 'Install docker apt packages'
       become: yes
       apt:
@@ -400,6 +409,7 @@
         - docker
 
     - name: 'Make sure current user added to "docker" group'
+      become: yes
       user:
         name: '{{ ansible_user }}'
         groups: [docker]

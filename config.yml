@@ -4,7 +4,7 @@ apps:
     vscode:
       repo: 'deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main'
       gpg: 'https://packages.microsoft.com/keys/microsoft.asc'
-    docker-ce:
+    docker:
       repo: 'deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable'
       gpg: 'https://download.docker.com/linux/ubuntu/gpg'
     google-chrome:
