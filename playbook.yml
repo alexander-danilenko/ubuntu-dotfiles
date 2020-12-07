@@ -399,6 +399,19 @@
       tags:
         - docker
 
+    - name: 'Make sure current user added to "docker" group'
+      user:
+        name: '{{ ansible_user }}'
+        groups: [docker]
+        append: yes
+      tags:
+        - docker
+
+    - name: Reset connection to use "docker" user group
+      meta: reset_connection
+      tags:
+        - docker
+
     ############ Docksal #######################################################
 
     - name: 'Install Docksal'
