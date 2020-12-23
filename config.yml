@@ -21,7 +21,7 @@ apps:
 
   # List of *.deb URLs to install.
   deb:
-   - https://downloads.slack-edge.com/linux_releases/slack-desktop-4.11.3-amd64.deb
+   - https://downloads.slack-edge.com/linux_releases/slack-desktop-4.12.0-amd64.deb
    - https://global.download.synology.com/download/Utility/SynologyDriveClient/2.0.2-11078/Ubuntu/Installer/x86_64/synology-drive-client-11078.x86_64.deb
    - https://repo.skype.com/latest/skypeforlinux-64.deb
    - https://zoom.us/client/latest/zoom_amd64.deb
