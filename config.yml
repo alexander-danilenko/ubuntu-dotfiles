@@ -13,6 +13,9 @@ apps:
     nordvpn:
       repo: 'deb https://repo.nordvpn.com/deb/nordvpn/debian stable main'
       gpg: 'https://repo.nordvpn.com/gpg/nordvpn_public.asc'
+    slack:
+      repo: 'deb https://packagecloud.io/slacktechnologies/slack/debian/ jessie main'
+      gpg: 'https://packagecloud.io/slacktechnologies/slack/gpgkey'
     php:
       repo: 'ppa:ondrej/php'
     sublime:
@@ -21,7 +24,6 @@ apps:
 
   # List of *.deb URLs to install.
   deb:
-   - https://downloads.slack-edge.com/linux_releases/slack-desktop-4.12.0-amd64.deb
    - https://global.download.synology.com/download/Utility/SynologyDriveClient/2.0.2-11078/Ubuntu/Installer/x86_64/synology-drive-client-11078.x86_64.deb
    - https://repo.skype.com/latest/skypeforlinux-64.deb
    - https://zoom.us/client/latest/zoom_amd64.deb
@@ -76,6 +78,7 @@ apps:
     - inkscape             # Vector image editor
     - nordvpn              # NordVPN client
     - qbittorrent          # Torrent client
+    - slack-desktop        # Slack Chat
     - sublime-merge        # Git GUI
     - sublime-text         # Text/code editor
     - telegram-desktop     # Best IM
@@ -87,13 +90,6 @@ apps:
     - krusader # Two-panel file manager
     - okular   # Universal document viewer
     - yakuake  # Quake-style dropdown terminal
-
-    # Fonts
-    - fonts-dejavu
-    - fonts-hack
-    - fonts-open-sans
-    - fonts-roboto
-    - fonts-ubuntu
 
     # Customization
     - papirus-icon-theme
