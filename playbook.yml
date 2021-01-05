@@ -387,19 +387,19 @@
       tags:
         - docker
 
-    - name: 'Move docker directory to ~/.docker'
-      become: yes
-      copy:
-        content: |
-          {
-            "graph": "/home/{{ ansible_facts.user_id }}/.docker"
-          }
-        dest: '/etc/docker/daemon.json'
-        owner: '{{ ansible_facts.user_id }}'
-        group : '{{ ansible_facts.user_id }}'
-        mode: '755'
-      tags:
-        - docker
+#     - name: 'Move docker directory to ~/.docker'
+#       become: yes
+#       copy:
+#         content: |
+#           {
+#             "graph": "/home/{{ ansible_facts.user_id }}/.docker"
+#           }
+#         dest: '/etc/docker/daemon.json'
+#         owner: '{{ ansible_facts.user_id }}'
+#         group : '{{ ansible_facts.user_id }}'
+#         mode: '755'
+#       tags:
+#         - docker
 
     - name: 'Start "docker" service on boot'
       become: yes
