@@ -28,8 +28,14 @@ for PATH_DIR in ${PATH_DIRS[@]}; do
   fi
 done
 
-######## QT Apps scaling fix for hi-dpi monitors ###############################
+######## QT Apps x2 scaling fix for hi-dpi monitors ############################
 # export QT_SCALE_FACTOR=1
 # export QT_AUTO_SCREEN_SCALE_FACTOR=0
 # export QT_SCREEN_SCALE_FACTORS=2
+################################################################################
+
+######## Gnome: QT apps adjustments ############################################
+## Requires kvantum: `apt install qt5-style-kvantum qt5-style-kvantum-themes`
+#export QT_STYLE_OVERRIDE=kvantum
+#export QT_AUTO_SCREEN_SCALE_FACTOR=1
 ################################################################################
